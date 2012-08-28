@@ -1,0 +1,3207 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from files:
+#  Revision: 653 /app/plugins/acl/views/layouts/default2.ctp
+#  Revision: 7945 /app/views/layouts/default.ctp
+#  Revision: 7945 /app/views/layouts/default_old.ctp
+#  Revision: 7945 /app/views/layouts/sin_menu.ctp
+#  Revision: 7945 /app/views/layouts/cuadros.ctp
+#  Revision: 7945 /app/views/layouts/depurador.ctp
+#  Revision: 7945 /app/views/layouts/popup.ctp
+#  Revision: 7945 /app/webroot/test.php
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2010-09-10 09:28-0300\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: /controllers/anios_controller.php:14
+msgid "Invalid Anio."
+msgstr ""
+
+#: /controllers/anios_controller.php:58;80
+msgid "Se ha guardado un nuevo año"
+msgstr ""
+
+#: /controllers/anios_controller.php:63;85
+msgid "Intente de nuevo. No se pudo guardar el dato."
+msgstr ""
+
+#: /controllers/anios_controller.php:301
+msgid "Id de Año inválido"
+msgstr ""
+
+#: /controllers/anios_controller.php:309;317
+msgid "Año eliminado"
+msgstr ""
+
+#: /controllers/ciclos_controller.php:14
+msgid "Invalid Ciclo."
+msgstr ""
+
+#: /controllers/ciclos_controller.php:24;39
+msgid "The Ciclo has been saved"
+msgstr ""
+
+#: /controllers/ciclos_controller.php:27;42
+#: /controllers/historial_cues_controller.php:34
+msgid "The Ciclo could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/ciclos_controller.php:34
+msgid "Invalid Ciclo"
+msgstr ""
+
+#: /controllers/ciclos_controller.php:52
+msgid "Invalid id for Ciclo"
+msgstr ""
+
+#: /controllers/ciclos_controller.php:56
+msgid "Ciclo deleted"
+msgstr ""
+
+#: /controllers/departamentos_controller.php:37;55;72
+msgid "Invalid Departamento"
+msgstr ""
+
+#: /controllers/departamentos_controller.php:46
+msgid "The Departamento has been saved"
+msgstr ""
+
+#: /controllers/departamentos_controller.php:59
+msgid "The Departamento has been saved."
+msgstr ""
+
+#: /controllers/departamentos_controller.php:75
+msgid "Departamento deleted"
+msgstr ""
+
+#: /controllers/dependencias_controller.php:14
+msgid "Invalid Dependencia."
+msgstr ""
+
+#: /controllers/dependencias_controller.php:24;39
+msgid "The Dependencia has been saved"
+msgstr ""
+
+#: /controllers/dependencias_controller.php:27;42
+msgid "The Dependencia could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/dependencias_controller.php:34
+msgid "Invalid Dependencia"
+msgstr ""
+
+#: /controllers/dependencias_controller.php:52
+msgid "Invalid id for Dependencia"
+msgstr ""
+
+#: /controllers/dependencias_controller.php:56
+msgid "Dependencia deleted"
+msgstr ""
+
+#: /controllers/depurador_planes_controller.php:347
+#: /controllers/planes_controller.php:244
+msgid "Institución incorrecta"
+msgstr ""
+
+#: /controllers/depurador_planes_controller.php:353
+#: /controllers/planes_controller.php:251
+msgid "Se ha creado un nuevo Plan"
+msgstr ""
+
+#: /controllers/depurador_planes_controller.php:359
+#: /controllers/planes_controller.php:254
+msgid "No se ha podido crear el Plan. Por favor, intente nuevamente."
+msgstr ""
+
+#: /controllers/depuradores_controller.php:66;107
+#: /controllers/instits_controller.php:74;141;1061
+msgid "Se ha guardado la Institución correctamente"
+msgstr ""
+
+#: /controllers/depuradores_controller.php:70;111
+#: /controllers/instits_controller.php:77;144;1065
+msgid "La Institución no pudo ser guardada. Escriba nuevamente el campo incorrecto."
+msgstr ""
+
+#: /controllers/depuradores_controller.php:163;280
+msgid "Se ha guardado el Plan correctamente"
+msgstr ""
+
+#: /controllers/depuradores_controller.php:167;284
+msgid "El Plan no pudo ser guardada. Escriba nuevamente el campo incorrecto."
+msgstr ""
+
+#: /controllers/depuradores_controller.php:223;390
+msgid "Se ha guardado la institución correctamente"
+msgstr ""
+
+#: /controllers/depuradores_controller.php:226;393
+msgid "La institución no pudo ser guardada. Escriba nuevamente el campo incorrecto."
+msgstr ""
+
+#: /controllers/estructura_planes_anios_controller.php:21
+msgid "Invalid EstructuraPlanesAnio."
+msgstr ""
+
+#: /controllers/estructura_planes_anios_controller.php:31;49
+msgid "The EstructuraPlanesAnio has been saved"
+msgstr ""
+
+#: /controllers/estructura_planes_anios_controller.php:34;52
+msgid "The EstructuraPlanesAnio could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/estructura_planes_anios_controller.php:44
+msgid "Invalid EstructuraPlanesAnio"
+msgstr ""
+
+#: /controllers/estructura_planes_anios_controller.php:65
+msgid "Invalid id for EstructuraPlanesAnio"
+msgstr ""
+
+#: /controllers/estructura_planes_anios_controller.php:69
+msgid "EstructuraPlanesAnio deleted"
+msgstr ""
+
+#: /controllers/estructura_planes_controller.php:14
+msgid "Invalid Estructura."
+msgstr ""
+
+#: /controllers/estructura_planes_controller.php:39
+msgid "Se ha creado un nuevo EstructuraPlan"
+msgstr ""
+
+#: /controllers/estructura_planes_controller.php:42;85
+msgid "No se ha podido crear la Estructura. Por favor, intente nuevamente."
+msgstr ""
+
+#: /controllers/estructura_planes_controller.php:53
+msgid "Invalid Estructura"
+msgstr ""
+
+#: /controllers/estructura_planes_controller.php:82
+msgid "La Estructura ha sido guardada"
+msgstr ""
+
+#: /controllers/estructura_planes_controller.php:117
+msgid "Invalid id for EstructuraPlan"
+msgstr ""
+
+#: /controllers/estructura_planes_controller.php:125
+msgid "Estructura de plan eliminada"
+msgstr ""
+
+#: /controllers/etapas_controller.php:14
+msgid "Invalid Etapa."
+msgstr ""
+
+#: /controllers/etapas_controller.php:24;39
+msgid "The Etapa has been saved"
+msgstr ""
+
+#: /controllers/etapas_controller.php:27;42
+msgid "The Etapa could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/etapas_controller.php:34
+msgid "Invalid Etapa"
+msgstr ""
+
+#: /controllers/etapas_controller.php:52
+msgid "Invalid id for Etapa"
+msgstr ""
+
+#: /controllers/etapas_controller.php:56
+msgid "Etapa deleted"
+msgstr ""
+
+#: /controllers/etapas_controller.php:72
+msgid "Invalid Id."
+msgstr ""
+
+#: /controllers/fondo_temporales_controller.php:316
+msgid "Invalid FondoTemporal."
+msgstr ""
+
+#: /controllers/fondo_temporales_controller.php:325;373;472;491;510;529
+msgid "Invalid FondoTemporal"
+msgstr ""
+
+#: /controllers/fondo_temporales_controller.php:330;379
+msgid "The FondoTemporal has been saved"
+msgstr ""
+
+#: /controllers/fondo_temporales_controller.php:333;382
+msgid "The FondoTemporal could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/fondo_temporales_controller.php:548
+msgid "Invalid id for FondoTemporal"
+msgstr ""
+
+#: /controllers/fondo_temporales_controller.php:552
+msgid "FondoTemporal deleted"
+msgstr ""
+
+#: /controllers/fondos_controller.php:30
+msgid "No especifica institución"
+msgstr ""
+
+#: /controllers/fondos_controller.php:62
+msgid "No especifica jurisdicción"
+msgstr ""
+
+#: /controllers/fondos_controller.php:111;127
+msgid "The Fondo has been saved"
+msgstr ""
+
+#: /controllers/fondos_controller.php:114;130
+msgid "The Fondo could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/fondos_controller.php:122
+msgid "Invalid Fondo"
+msgstr ""
+
+#: /controllers/fondos_controller.php:141
+msgid "Invalid id for Fondo"
+msgstr ""
+
+#: /controllers/fondos_controller.php:145
+msgid "Fondo deleted"
+msgstr ""
+
+#: /controllers/fondos_controller.php:148
+msgid "The Fondo could not be deleted. Please, try again."
+msgstr ""
+
+#: /controllers/fondos_lineas_de_acciones_controller.php:14;34
+msgid "Invalid FondosLineasDeAccion"
+msgstr ""
+
+#: /controllers/fondos_lineas_de_acciones_controller.php:24;39
+msgid "The FondosLineasDeAccion has been saved"
+msgstr ""
+
+#: /controllers/fondos_lineas_de_acciones_controller.php:27;42
+msgid "The FondosLineasDeAccion could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/fondos_lineas_de_acciones_controller.php:52
+msgid "Invalid id for FondosLineasDeAccion"
+msgstr ""
+
+#: /controllers/fondos_lineas_de_acciones_controller.php:56
+msgid "FondosLineasDeAccion deleted"
+msgstr ""
+
+#: /controllers/fondos_lineas_de_acciones_controller.php:59
+msgid "The FondosLineasDeAccion could not be deleted. Please, try again."
+msgstr ""
+
+#: /controllers/gestiones_controller.php:14
+msgid "Invalid Gestion."
+msgstr ""
+
+#: /controllers/gestiones_controller.php:24;39
+msgid "The Gestion has been saved"
+msgstr ""
+
+#: /controllers/gestiones_controller.php:27;42
+msgid "The Gestion could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/gestiones_controller.php:34
+msgid "Invalid Gestion"
+msgstr ""
+
+#: /controllers/gestiones_controller.php:52
+msgid "Invalid id for Gestion"
+msgstr ""
+
+#: /controllers/gestiones_controller.php:56
+msgid "Gestion deleted"
+msgstr ""
+
+#: /controllers/historial_cues_controller.php:31
+msgid "El Historial fue guardado correctamente"
+msgstr ""
+
+#: /controllers/historial_cues_controller.php:44
+msgid "Invalid HistorialCues"
+msgstr ""
+
+#: /controllers/historial_cues_controller.php:48
+msgid "Se guardó el historial de CUE correctamente"
+msgstr ""
+
+#: /controllers/historial_cues_controller.php:51
+msgid "El CUE histórico no pudo ser guardado, por favor intente nuevamente."
+msgstr ""
+
+#: /controllers/historial_cues_controller.php:62
+msgid "ID inválido para el Historial de CUEs"
+msgstr ""
+
+#: /controllers/historial_cues_controller.php:66
+msgid "CUE Histórico borrado"
+msgstr ""
+
+#: /controllers/instits_controller.php:26;1033
+msgid "Institución Inválida."
+msgstr ""
+
+#: /controllers/instits_controller.php:80
+msgid "Hay instituciones similares."
+msgstr ""
+
+#: /controllers/instits_controller.php:118
+msgid "Invalid Instit"
+msgstr ""
+
+#: /controllers/instits_controller.php:137
+msgid "No se pudo insertar el cambio de CUE al historial de CUEs en la base de datos"
+msgstr ""
+
+#: /controllers/instits_controller.php:189
+msgid "Se ha pasado un id que no existe para esa Institución"
+msgstr ""
+
+#: /controllers/instits_controller.php:193
+msgid "Se ha eliminado la Institución correctamente"
+msgstr ""
+
+#: /controllers/jurisdicciones_controller.php:20
+msgid "La jurisdicción no existe"
+msgstr ""
+
+#: /controllers/jurisdicciones_controller.php:31
+msgid "La Jurisdiccion ha sido creada"
+msgstr ""
+
+#: /controllers/jurisdicciones_controller.php:34;53
+msgid "The Jurisdiccion could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/jurisdicciones_controller.php:45
+msgid "Invalid Jurisdiccion"
+msgstr ""
+
+#: /controllers/jurisdicciones_controller.php:50
+msgid "La Jurisdiccion ha sido guardada"
+msgstr ""
+
+#: /controllers/jurisdicciones_controller.php:67
+msgid "Invalid id for Jurisdiccion"
+msgstr ""
+
+#: /controllers/jurisdicciones_controller.php:71
+msgid "Jurisdiccion deleted"
+msgstr ""
+
+#: /controllers/lineas_de_acciones_controller.php:14;34
+msgid "Invalid LineasDeAccion"
+msgstr ""
+
+#: /controllers/lineas_de_acciones_controller.php:24;39
+msgid "The LineasDeAccion has been saved"
+msgstr ""
+
+#: /controllers/lineas_de_acciones_controller.php:27;42
+msgid "The LineasDeAccion could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/lineas_de_acciones_controller.php:52
+msgid "Invalid id for LineasDeAccion"
+msgstr ""
+
+#: /controllers/lineas_de_acciones_controller.php:56
+msgid "LineasDeAccion deleted"
+msgstr ""
+
+#: /controllers/lineas_de_acciones_controller.php:59
+msgid "The LineasDeAccion could not be deleted. Please, try again."
+msgstr ""
+
+#: /controllers/localidades_controller.php:55
+msgid "Invalid Localidad."
+msgstr ""
+
+#: /controllers/localidades_controller.php:65;86
+msgid "The Localidad has been saved"
+msgstr ""
+
+#: /controllers/localidades_controller.php:67;89
+msgid "The Localidad could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/localidades_controller.php:81
+msgid "Invalid Localidad"
+msgstr ""
+
+#: /controllers/localidades_controller.php:102
+msgid "Invalid id for Localidad"
+msgstr ""
+
+#: /controllers/localidades_controller.php:106
+msgid "Localidad deleted"
+msgstr ""
+
+#: /controllers/logs_controller.php:14
+msgid "Invalid Log."
+msgstr ""
+
+#: /controllers/logs_controller.php:24;39
+msgid "The Log has been saved"
+msgstr ""
+
+#: /controllers/logs_controller.php:27;42
+msgid "The Log could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/logs_controller.php:34
+msgid "Invalid Log"
+msgstr ""
+
+#: /controllers/logs_controller.php:52
+msgid "Invalid id for Log"
+msgstr ""
+
+#: /controllers/logs_controller.php:56
+msgid "Log deleted"
+msgstr ""
+
+#: /controllers/ofertas_controller.php:14
+msgid "Invalid Oferta."
+msgstr ""
+
+#: /controllers/ofertas_controller.php:24;39
+msgid "The Oferta has been saved"
+msgstr ""
+
+#: /controllers/ofertas_controller.php:27;42
+msgid "The Oferta could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/ofertas_controller.php:34
+msgid "Invalid Oferta"
+msgstr ""
+
+#: /controllers/ofertas_controller.php:52
+msgid "Invalid id for Oferta"
+msgstr ""
+
+#: /controllers/ofertas_controller.php:56
+msgid "Oferta deleted"
+msgstr ""
+
+#: /controllers/orientaciones_controller.php:14
+msgid "Invalid Orientacion."
+msgstr ""
+
+#: /controllers/orientaciones_controller.php:24;39
+msgid "The Orientacion has been saved"
+msgstr ""
+
+#: /controllers/orientaciones_controller.php:27;42
+msgid "The Orientacion could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/orientaciones_controller.php:34
+msgid "Invalid Orientacion"
+msgstr ""
+
+#: /controllers/orientaciones_controller.php:52
+msgid "Invalid id for Orientacion"
+msgstr ""
+
+#: /controllers/orientaciones_controller.php:56
+msgid "Orientacion deleted"
+msgstr ""
+
+#: /controllers/planes_controller.php:35
+msgid "La institución pasada como parámetro es inválida."
+msgstr ""
+
+#: /controllers/planes_controller.php:189
+msgid "El Plan no es correcto."
+msgstr ""
+
+#: /controllers/planes_controller.php:291
+msgid "Plan Inválido"
+msgstr ""
+
+#: /controllers/planes_controller.php:296
+msgid "El Plan ha sido guardado"
+msgstr ""
+
+#: /controllers/planes_controller.php:299
+msgid "El Plan no pudo ser guardado. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/planes_controller.php:345
+msgid "Invalid id for Plan"
+msgstr ""
+
+#: /controllers/planes_controller.php:348
+msgid "Plan Eliminado"
+msgstr ""
+
+#: /controllers/queries_controller.php:17
+msgid "Invalid Query."
+msgstr ""
+
+#: /controllers/queries_controller.php:27;42
+msgid "The Query has been saved"
+msgstr ""
+
+#: /controllers/queries_controller.php:30;45
+msgid "The Query could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/queries_controller.php:37
+msgid "Invalid Query"
+msgstr ""
+
+#: /controllers/queries_controller.php:55;146
+msgid "Invalid id for Query"
+msgstr ""
+
+#: /controllers/queries_controller.php:59
+msgid "Query deleted"
+msgstr ""
+
+#: /controllers/referentes_controller.php:14
+msgid "Invalid Referente."
+msgstr ""
+
+#: /controllers/referentes_controller.php:24;42
+msgid "The Referente has been saved"
+msgstr ""
+
+#: /controllers/referentes_controller.php:27;45
+msgid "The Referente could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/referentes_controller.php:37
+msgid "Invalid Referente"
+msgstr ""
+
+#: /controllers/referentes_controller.php:58
+msgid "Invalid id for Referente"
+msgstr ""
+
+#: /controllers/referentes_controller.php:62
+msgid "Referente deleted"
+msgstr ""
+
+#: /controllers/sectores_controller.php:15
+msgid "Invalid Sector."
+msgstr ""
+
+#: /controllers/sectores_controller.php:25;42
+msgid "The Sector has been saved"
+msgstr ""
+
+#: /controllers/sectores_controller.php:28;45
+msgid "The Sector could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/sectores_controller.php:37
+msgid "Invalid Sector"
+msgstr ""
+
+#: /controllers/sectores_controller.php:56
+msgid "Invalid id for Sector"
+msgstr ""
+
+#: /controllers/sectores_controller.php:60
+msgid "Sector deleted"
+msgstr ""
+
+#: /controllers/subsectores_controller.php:14
+msgid "Invalid Subsector."
+msgstr ""
+
+#: /controllers/subsectores_controller.php:24;50
+msgid "The Subsector has been saved"
+msgstr ""
+
+#: /controllers/subsectores_controller.php:27;53
+msgid "The Subsector could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/subsectores_controller.php:36
+msgid "Invalid Subsector"
+msgstr ""
+
+#: /controllers/subsectores_controller.php:68
+msgid "Invalid id for Subsector"
+msgstr ""
+
+#: /controllers/subsectores_controller.php:72
+msgid "Subsector deleted"
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:14;34
+msgid "Invalid Sugerencia"
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:24
+msgid "¡Gracias por enviarnos una sugerencia!"
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:27
+msgid "La sugerencia no ha sido enviada por favor , intente de nuevo"
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:39
+msgid "The Sugerencia has been saved"
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:42
+msgid "The Sugerencia could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:52
+msgid "Invalid id for Sugerencia"
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:56
+msgid "Sugerencia deleted"
+msgstr ""
+
+#: /controllers/sugerencias_controller.php:59
+msgid "The Sugerencia could not be deleted. Please, try again."
+msgstr ""
+
+#: /controllers/tickets_controller.php:17
+msgid "Jurisdicción Inválida."
+msgstr ""
+
+#: /controllers/tickets_controller.php:59
+msgid "Invalid Ticket"
+msgstr ""
+
+#: /controllers/tickets_controller.php:77
+msgid "El Ticket se guardo correctamente"
+msgstr ""
+
+#: /controllers/tickets_controller.php:81
+msgid "El Ticket no se guardo. Intente nuevamente."
+msgstr ""
+
+#: /controllers/tickets_controller.php:92
+msgid "Ticket invalido."
+msgstr ""
+
+#: /controllers/tickets_controller.php:98
+msgid "El Ticket se ha guardado."
+msgstr ""
+
+#: /controllers/tickets_controller.php:101
+msgid "El Ticket no se pudo guardar. Intente de nuevo."
+msgstr ""
+
+#: /controllers/tickets_controller.php:114
+msgid "Id invalido para el Ticket."
+msgstr ""
+
+#: /controllers/tickets_controller.php:118
+msgid "Ticket eliminado."
+msgstr ""
+
+#: /controllers/tipodocs_controller.php:14
+msgid "Invalid Tipodoc."
+msgstr ""
+
+#: /controllers/tipodocs_controller.php:24;39
+msgid "The Tipodoc has been saved"
+msgstr ""
+
+#: /controllers/tipodocs_controller.php:27;42
+msgid "The Tipodoc could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/tipodocs_controller.php:34
+msgid "Invalid Tipodoc"
+msgstr ""
+
+#: /controllers/tipodocs_controller.php:52
+msgid "Invalid id for Tipodoc"
+msgstr ""
+
+#: /controllers/tipodocs_controller.php:56
+msgid "Tipodoc deleted"
+msgstr ""
+
+#: /controllers/tipoinstits_controller.php:16
+msgid "Invalid Tipoinstit."
+msgstr ""
+
+#: /controllers/tipoinstits_controller.php:26;43
+msgid "The Tipoinstit has been saved"
+msgstr ""
+
+#: /controllers/tipoinstits_controller.php:29;46
+msgid "The Tipoinstit could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/tipoinstits_controller.php:38
+msgid "Invalid Tipoinstit"
+msgstr ""
+
+#: /controllers/tipoinstits_controller.php:58
+msgid "Invalid id for Tipoinstit"
+msgstr ""
+
+#: /controllers/tipoinstits_controller.php:62
+msgid "Tipoinstit deleted"
+msgstr ""
+
+#: /controllers/titulos_controller.php:36;76;106
+msgid "Invalid Titulo"
+msgstr ""
+
+#: /controllers/titulos_controller.php:50;64;90
+msgid "Titulo guardado."
+msgstr ""
+
+#: /controllers/titulos_controller.php:53;67
+msgid "El Titulo no se pudo guardar. Por favor, intente de nuevo."
+msgstr ""
+
+#: /controllers/titulos_controller.php:109
+msgid "Titulo deleted"
+msgstr ""
+
+#: /controllers/users_controller.php:29
+msgid "Invalid User."
+msgstr ""
+
+#: /controllers/users_controller.php:41
+msgid "Se ha agregado un nuevo usuario"
+msgstr ""
+
+#: /controllers/users_controller.php:44
+msgid "No se ha podio registrar. Por favor intente nuevamente."
+msgstr ""
+
+#: /controllers/users_controller.php:63
+msgid "Invalid User"
+msgstr ""
+
+#: /controllers/users_controller.php:82
+msgid "El usuario fue guardado correctamente"
+msgstr ""
+
+#: /controllers/users_controller.php:85
+msgid "The User could not be saved. Please, try again."
+msgstr ""
+
+#: /controllers/users_controller.php:104
+msgid "Invalid id for User"
+msgstr ""
+
+#: /controllers/users_controller.php:108
+msgid "User deleted"
+msgstr ""
+
+#: /controllers/users_controller.php:156;181
+msgid "Usuario Incorrecto"
+msgstr ""
+
+#: /controllers/users_controller.php:161
+msgid "Se ha guardado la información correctamente"
+msgstr ""
+
+#: /controllers/users_controller.php:164
+msgid "El usuario no pudo ser guardado. Por favor, intente nuevamente."
+msgstr ""
+
+#: /controllers/users_controller.php:187
+msgid "Se ha guardado el nuevo password correctamente"
+msgstr ""
+
+#: /controllers/users_controller.php:191
+msgid "La contraseña no pudo ser guardada. Por favor, intente nuevamente."
+msgstr ""
+
+#: /plugins/acl/views/layouts/default2.ctp:31
+msgid "RFIETP ACL Manager"
+msgstr ""
+
+#: /plugins/acl/views/layouts/default2.ctp:46;60
+#: /views/layouts/default.ctp:191
+#: /views/layouts/default_old.ctp:124
+#: /views/layouts/sin_menu.ctp:75
+msgid "CakePHP: the rapid development php framework"
+msgstr ""
+
+#: /views/anios/index.ctp:2
+msgid "Anios"
+msgstr ""
+
+#: /views/anios/index.ctp:6
+#: /views/ciclos/index.ctp:6
+#: /views/departamentos/index.ctp:9
+#: /views/dependencias/index.ctp:6
+#: /views/depuradores/depurar_similares.ctp:10
+#: /views/estructura_planes/index.ctp:6
+#: /views/estructura_planes_anios/index.ctp:10
+#: /views/etapas/index.ctp:6
+#: /views/fondo_temporales/index.ctp:6
+#: /views/fondos_lineas_de_acciones/index.ctp:6
+#: /views/gestiones/index.ctp:6
+#: /views/instits/index.ctp:6
+#: /views/jurisdicciones/index.ctp:6
+#: /views/lineas_de_acciones/index.ctp:6
+#: /views/localidades/index.ctp:9
+#: /views/logs/index.ctp:6
+#: /views/ofertas/index.ctp:6
+#: /views/queries/index.ctp:6
+#: /views/referentes/index.ctp:6
+#: /views/sectores/index.ctp:6
+#: /views/subsectores/index.ctp:6
+#: /views/sugerencias/index.ctp:6
+#: /views/tipodocs/index.ctp:6
+#: /views/tipoinstits/index.ctp:6
+#: /views/users/listado_usuarios.ctp:6
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr ""
+
+#: /views/anios/index.ctp:22
+#: /views/ciclos/index.ctp:13
+#: /views/ciclos/view.ctp:42
+#: /views/departamentos/index.ctp:23
+#: /views/dependencias/index.ctp:13
+#: /views/dependencias/view.ctp:69
+#: /views/estructura_planes/index.ctp:14
+#: /views/estructura_planes_anios/index.ctp:20
+#: /views/etapas/index.ctp:14
+#: /views/etapas/view.ctp:42
+#: /views/fondo_temporales/checked_instits.ctp:68
+#: /views/fondo_temporales/index.ctp:47
+#: /views/fondos/index.ctp:39
+#: /views/fondos_lineas_de_acciones/index.ctp:17
+#: /views/gestiones/index.ctp:13
+#: /views/gestiones/view.ctp:69
+#: /views/instits/index.ctp:47
+#: /views/jurisdicciones/index.ctp:13
+#: /views/lineas_de_acciones/index.ctp:16
+#: /views/localidades/index.ctp:25
+#: /views/logs/index.ctp:17
+#: /views/ofertas/index.ctp:14
+#: /views/ofertas/view.ctp:53
+#: /views/queries/index.ctp:15
+#: /views/referentes/index.ctp:18
+#: /views/sectores/index.ctp:14
+#: /views/subsectores/index.ctp:14
+#: /views/subsectores/view.ctp:57
+#: /views/sugerencias/index.ctp:19
+#: /views/tipodocs/index.ctp:14
+#: /views/tipodocs/view.ctp:43
+#: /views/tipoinstits/index.ctp:14
+#: /views/tipoinstits/view.ctp:76
+#: /views/users/listado_usuarios.ctp:15
+msgid "Actions"
+msgstr ""
+
+#: /views/anios/index.ctp:67
+#: /views/ciclos/index.ctp:31
+#: /views/ciclos/view.ctp:65
+#: /views/departamentos/index.ctp:44
+#: /views/dependencias/index.ctp:31
+#: /views/dependencias/view.ctp:117
+#: /views/estructura_planes_anios/index.ctp:48
+#: /views/etapas/index.ctp:35
+#: /views/etapas/view.ctp:65
+#: /views/fondo_temporales/index.ctp:179
+#: /views/fondos_lineas_de_acciones/index.ctp:47
+#: /views/gestiones/index.ctp:31
+#: /views/gestiones/view.ctp:117
+#: /views/instits/index.ctp:167
+#: /views/jurisdicciones/index.ctp:31
+#: /views/lineas_de_acciones/index.ctp:43
+#: /views/localidades/index.ctp:49
+#: /views/logs/index.ctp:47
+#: /views/ofertas/index.ctp:35
+#: /views/ofertas/view.ctp:82
+#: /views/queries/index.ctp:39
+#: /views/referentes/index.ctp:51
+#: /views/sectores/index.ctp:38
+#: /views/subsectores/index.ctp:35
+#: /views/subsectores/view.ctp:88
+#: /views/sugerencias/index.ctp:55
+#: /views/tipodocs/index.ctp:35
+#: /views/tipodocs/view.ctp:62
+#: /views/tipoinstits/index.ctp:35
+#: /views/tipoinstits/view.ctp:124
+#: /views/users/listado_usuarios.ctp:39
+msgid "View"
+msgstr ""
+
+#: /views/anios/index.ctp:68
+#: /views/ciclos/index.ctp:32
+#: /views/ciclos/view.ctp:66
+#: /views/departamentos/index.ctp:45
+#: /views/dependencias/index.ctp:32
+#: /views/dependencias/view.ctp:118
+#: /views/estructura_planes/index.ctp:35
+#: /views/estructura_planes_anios/index.ctp:49
+#: /views/etapas/index.ctp:36
+#: /views/etapas/view.ctp:66
+#: /views/fondo_temporales/checked_instits.ctp:157;167
+#: /views/fondo_temporales/index.ctp:180
+#: /views/fondos_lineas_de_acciones/index.ctp:48
+#: /views/gestiones/index.ctp:32
+#: /views/gestiones/view.ctp:118
+#: /views/instits/index.ctp:168
+#: /views/jurisdicciones/index.ctp:32
+#: /views/lineas_de_acciones/index.ctp:44
+#: /views/localidades/index.ctp:50
+#: /views/logs/index.ctp:48
+#: /views/ofertas/index.ctp:36
+#: /views/ofertas/view.ctp:83
+#: /views/queries/index.ctp:40
+#: /views/referentes/index.ctp:52
+#: /views/sectores/index.ctp:39
+#: /views/subsectores/index.ctp:36
+#: /views/subsectores/view.ctp:89
+#: /views/sugerencias/index.ctp:56
+#: /views/tipodocs/index.ctp:36
+#: /views/tipodocs/view.ctp:63
+#: /views/tipoinstits/index.ctp:36
+#: /views/tipoinstits/view.ctp:125
+#: /views/users/listado_usuarios.ctp:40
+msgid "Edit"
+msgstr ""
+
+#: /views/anios/index.ctp:69
+#: /views/ciclos/edit.ctp:14
+#: /views/ciclos/index.ctp:33
+#: /views/ciclos/view.ctp:67
+#: /views/departamentos/edit.ctp:15
+#: /views/departamentos/index.ctp:46
+#: /views/dependencias/edit.ctp:14
+#: /views/dependencias/index.ctp:33
+#: /views/dependencias/view.ctp:119
+#: /views/estructura_planes/edit.ctp:40
+#: /views/estructura_planes/index.ctp:36
+#: /views/estructura_planes_anios/edit.ctp:17
+#: /views/estructura_planes_anios/index.ctp:50
+#: /views/etapas/edit.ctp:15
+#: /views/etapas/index.ctp:37
+#: /views/etapas/view.ctp:67
+#: /views/fondo_temporales/index.ctp:181
+#: /views/fondos/edit.ctp:21
+#: /views/fondos_lineas_de_acciones/edit.ctp:16
+#: /views/fondos_lineas_de_acciones/index.ctp:49
+#: /views/gestiones/edit.ctp:14
+#: /views/gestiones/index.ctp:33
+#: /views/gestiones/view.ctp:119
+#: /views/instits/index.ctp:169
+#: /views/jurisdicciones/index.ctp:33
+#: /views/jurisdicciones_estructura_planes/edit.ctp:15
+#: /views/lineas_de_acciones/edit.ctp:15
+#: /views/lineas_de_acciones/index.ctp:45
+#: /views/localidades/edit.ctp:22
+#: /views/localidades/index.ctp:51
+#: /views/logs/edit.ctp:18
+#: /views/logs/index.ctp:49
+#: /views/ofertas/edit.ctp:15
+#: /views/ofertas/index.ctp:37
+#: /views/ofertas/view.ctp:84
+#: /views/queries/edit.ctp:49
+#: /views/queries/index.ctp:41
+#: /views/referentes/edit.ctp:19
+#: /views/referentes/index.ctp:53
+#: /views/sectores/edit.ctp:15
+#: /views/sectores/index.ctp:40
+#: /views/subsectores/edit.ctp:16
+#: /views/subsectores/index.ctp:37
+#: /views/subsectores/view.ctp:90
+#: /views/sugerencias/edit.ctp:19
+#: /views/sugerencias/index.ctp:57
+#: /views/tipodocs/edit.ctp:15
+#: /views/tipodocs/index.ctp:37
+#: /views/tipodocs/view.ctp:64
+#: /views/tipoinstits/edit.ctp:15
+#: /views/tipoinstits/index.ctp:37
+#: /views/tipoinstits/view.ctp:126
+#: /views/users/edit.ctp:63
+#: /views/users/listado_usuarios.ctp:41
+msgid "Delete"
+msgstr ""
+
+#: /views/anios/index.ctp:69
+#: /views/anios/view.ctp:64
+#: /views/ciclos/edit.ctp:14
+#: /views/ciclos/index.ctp:33
+#: /views/ciclos/view.ctp:19;67
+#: /views/departamentos/edit.ctp:15
+#: /views/departamentos/index.ctp:46
+#: /views/departamentos/view.ctp:32
+#: /views/dependencias/edit.ctp:14
+#: /views/dependencias/index.ctp:33
+#: /views/dependencias/view.ctp:19;119
+#: /views/estructura_planes/edit.ctp:40
+#: /views/estructura_planes/index.ctp:36
+#: /views/estructura_planes/view.ctp:29
+#: /views/estructura_planes_anios/edit.ctp:17
+#: /views/estructura_planes_anios/index.ctp:50
+#: /views/estructura_planes_anios/view.ctp:54
+#: /views/etapas/edit.ctp:15
+#: /views/etapas/index.ctp:37
+#: /views/etapas/view.ctp:19;67
+#: /views/fondo_temporales/index.ctp:181
+#: /views/fondos/edit.ctp:21
+#: /views/fondos/view.ctp:64
+#: /views/fondos_lineas_de_acciones/edit.ctp:16
+#: /views/fondos_lineas_de_acciones/index.ctp:49
+#: /views/fondos_lineas_de_acciones/view.ctp:39
+#: /views/gestiones/edit.ctp:14
+#: /views/gestiones/index.ctp:33
+#: /views/gestiones/view.ctp:19;119
+#: /views/instits/index.ctp:169
+#: /views/jurisdicciones/index.ctp:33
+#: /views/jurisdicciones_estructura_planes/edit.ctp:15
+#: /views/jurisdicciones_estructura_planes/view.ctp:34
+#: /views/lineas_de_acciones/edit.ctp:15
+#: /views/lineas_de_acciones/index.ctp:45
+#: /views/lineas_de_acciones/view.ctp:34
+#: /views/localidades/edit.ctp:22
+#: /views/localidades/index.ctp:51
+#: /views/localidades/view.ctp:24
+#: /views/logs/edit.ctp:18
+#: /views/logs/index.ctp:49
+#: /views/logs/view.ctp:39
+#: /views/ofertas/edit.ctp:15
+#: /views/ofertas/index.ctp:37
+#: /views/ofertas/view.ctp:24;84
+#: /views/queries/edit.ctp:49
+#: /views/queries/index.ctp:41
+#: /views/queries/view.ctp:39
+#: /views/referentes/edit.ctp:19
+#: /views/referentes/index.ctp:53
+#: /views/referentes/view.ctp:44
+#: /views/sectores/edit.ctp:15
+#: /views/sectores/index.ctp:40
+#: /views/sectores/view.ctp:19
+#: /views/subsectores/edit.ctp:16
+#: /views/subsectores/index.ctp:37
+#: /views/subsectores/view.ctp:24;90
+#: /views/sugerencias/edit.ctp:19
+#: /views/sugerencias/index.ctp:57
+#: /views/sugerencias/view.ctp:49
+#: /views/tipodocs/edit.ctp:15
+#: /views/tipodocs/index.ctp:37
+#: /views/tipodocs/view.ctp:24;64
+#: /views/tipoinstits/edit.ctp:15
+#: /views/tipoinstits/index.ctp:37
+#: /views/tipoinstits/view.ctp:24;126
+#: /views/users/edit.ctp:63
+#: /views/users/listado_usuarios.ctp:41
+#: /views/users/view.ctp:34
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: /views/anios/index.ctp:76
+#: /views/ciclos/index.ctp:40
+#: /views/departamentos/index.ctp:53
+#: /views/dependencias/index.ctp:40
+#: /views/depuradores/depurar_similares.ctp:46
+#: /views/estructura_planes/index.ctp:43
+#: /views/estructura_planes_anios/index.ctp:57
+#: /views/etapas/index.ctp:44
+#: /views/fondo_temporales/checked_instits.ctp:182
+#: /views/fondo_temporales/index.ctp:188
+#: /views/fondos/index.ctp:82
+#: /views/fondos_lineas_de_acciones/index.ctp:56
+#: /views/gestiones/index.ctp:40
+#: /views/instits/index.ctp:176
+#: /views/jurisdicciones/index.ctp:41
+#: /views/lineas_de_acciones/index.ctp:52
+#: /views/localidades/index.ctp:58
+#: /views/logs/index.ctp:56
+#: /views/ofertas/index.ctp:44
+#: /views/queries/index.ctp:50
+#: /views/referentes/index.ctp:60
+#: /views/sectores/index.ctp:47
+#: /views/subsectores/index.ctp:44
+#: /views/sugerencias/index.ctp:64
+#: /views/tipodocs/index.ctp:44
+#: /views/tipoinstits/index.ctp:44
+#: /views/users/listado_usuarios.ctp:48
+msgid "previous"
+msgstr ""
+
+#: /views/anios/index.ctp:78
+#: /views/ciclos/index.ctp:42
+#: /views/departamentos/index.ctp:55
+#: /views/dependencias/index.ctp:42
+#: /views/depuradores/depurar_similares.ctp:48
+#: /views/estructura_planes/index.ctp:45
+#: /views/estructura_planes_anios/index.ctp:59
+#: /views/etapas/index.ctp:46
+#: /views/fondo_temporales/checked_instits.ctp:184
+#: /views/fondo_temporales/index.ctp:190
+#: /views/fondos/index.ctp:84
+#: /views/fondos_lineas_de_acciones/index.ctp:58
+#: /views/gestiones/index.ctp:42
+#: /views/instits/index.ctp:178
+#: /views/jurisdicciones/index.ctp:43
+#: /views/lineas_de_acciones/index.ctp:54
+#: /views/localidades/index.ctp:60
+#: /views/logs/index.ctp:58
+#: /views/ofertas/index.ctp:46
+#: /views/queries/index.ctp:52
+#: /views/referentes/index.ctp:62
+#: /views/sectores/index.ctp:49
+#: /views/subsectores/index.ctp:46
+#: /views/sugerencias/index.ctp:66
+#: /views/tipodocs/index.ctp:46
+#: /views/tipoinstits/index.ctp:46
+#: /views/users/listado_usuarios.ctp:50
+msgid "next"
+msgstr ""
+
+#: /views/anios/index.ctp:82
+#: /views/anios/view.ctp:66
+#: /views/ciclos/add.ctp:15
+#: /views/ciclos/edit.ctp:17
+#: /views/ciclos/index.ctp:48
+#: /views/ciclos/view.ctp:23;76
+#: /views/etapas/add.ctp:16
+#: /views/etapas/edit.ctp:18
+#: /views/etapas/index.ctp:52
+#: /views/etapas/view.ctp:23;76
+msgid "New Anio"
+msgstr ""
+
+#: /views/anios/index.ctp:83
+#: /views/anios/view.ctp:67
+#: /views/instits/index.ctp:191
+#: /views/ofertas/add.ctp:15
+#: /views/ofertas/edit.ctp:17
+#: /views/ofertas/index.ctp:51
+#: /views/ofertas/view.ctp:27
+#: /views/subsectores/add.ctp:17
+#: /views/subsectores/edit.ctp:20
+#: /views/subsectores/index.ctp:53
+#: /views/subsectores/view.ctp:29
+msgid "List Planes"
+msgstr ""
+
+#: /views/anios/index.ctp:84
+#: /views/anios/view.ctp:68
+#: /views/instits/index.ctp:192
+#: /views/ofertas/add.ctp:16
+#: /views/ofertas/edit.ctp:18
+#: /views/ofertas/index.ctp:52
+#: /views/ofertas/view.ctp:28;93
+#: /views/subsectores/add.ctp:18
+#: /views/subsectores/edit.ctp:21
+#: /views/subsectores/index.ctp:54
+#: /views/subsectores/view.ctp:30;99
+msgid "New Plan"
+msgstr ""
+
+#: /views/anios/index.ctp:85
+#: /views/anios/view.ctp:69
+#: /views/ciclos/add.ctp:13
+#: /views/ciclos/edit.ctp:15
+#: /views/ciclos/view.ctp:20
+msgid "List Ciclos"
+msgstr ""
+
+#: /views/anios/index.ctp:86
+#: /views/anios/view.ctp:70
+#: /views/ciclos/index.ctp:46
+#: /views/ciclos/view.ctp:21
+msgid "New Ciclo"
+msgstr ""
+
+#: /views/anios/index.ctp:87
+#: /views/anios/view.ctp:71
+#: /views/etapas/add.ctp:14
+#: /views/etapas/edit.ctp:16
+#: /views/etapas/view.ctp:20
+msgid "List Etapas"
+msgstr ""
+
+#: /views/anios/index.ctp:88
+#: /views/anios/view.ctp:72
+#: /views/etapas/index.ctp:50
+#: /views/etapas/view.ctp:21
+msgid "New Etapa"
+msgstr ""
+
+#: /views/anios/view.ctp:2;24
+#: /views/ciclos/view.ctp:35
+#: /views/estructura_planes_anios/view.ctp:24
+#: /views/etapas/view.ctp:35
+#: /views/fondos/view.ctp:24
+msgid "Anio"
+msgstr ""
+
+#: /views/anios/view.ctp:4
+#: /views/ciclos/view.ctp:4;31
+#: /views/departamentos/view.ctp:4
+#: /views/dependencias/view.ctp:4;31
+#: /views/estructura_planes/view.ctp:4
+#: /views/estructura_planes_anios/view.ctp:9
+#: /views/etapas/view.ctp:4;31
+#: /views/fondos/view.ctp:4
+#: /views/fondos_lineas_de_acciones/view.ctp:4
+#: /views/gestiones/view.ctp:4;31
+#: /views/jurisdicciones_estructura_planes/view.ctp:4
+#: /views/lineas_de_acciones/view.ctp:4
+#: /views/localidades/view.ctp:4
+#: /views/logs/view.ctp:4
+#: /views/ofertas/view.ctp:4;36
+#: /views/orientaciones/view.ctp:4
+#: /views/queries/view.ctp:4
+#: /views/referentes/view.ctp:4
+#: /views/sectores/view.ctp:4
+#: /views/subsectores/view.ctp:4;38
+#: /views/sugerencias/view.ctp:4
+#: /views/tipodocs/view.ctp:4;36
+#: /views/tipoinstits/view.ctp:4;38
+#: /views/titulos/view.ctp:4
+#: /views/users/view.ctp:4
+msgid "Id"
+msgstr ""
+
+#: /views/anios/view.ctp:9
+msgid "Plan"
+msgstr ""
+
+#: /views/anios/view.ctp:14
+#: /views/ciclos/view.ctp:2
+#: /views/elements/planes_view_tabla_fp.ctp:7
+msgid "Ciclo"
+msgstr ""
+
+#: /views/anios/view.ctp:19
+#: /views/ciclos/view.ctp:34
+#: /views/etapas/view.ctp:34
+#: /views/ofertas/view.ctp:39
+#: /views/subsectores/view.ctp:41
+msgid "Old Item"
+msgstr ""
+
+#: /views/anios/view.ctp:29
+#: /views/elements/planes_view_tabla_normal.ctp:26
+#: /views/etapas/view.ctp:2
+msgid "Etapa"
+msgstr ""
+
+#: /views/anios/view.ctp:34
+#: /views/ciclos/view.ctp:37
+#: /views/etapas/view.ctp:37
+#: /views/ofertas/view.ctp:47
+#: /views/subsectores/view.ctp:49
+msgid "Matricula"
+msgstr ""
+
+#: /views/anios/view.ctp:39
+#: /views/ciclos/view.ctp:38
+#: /views/elements/planes_view_tabla_normal.ctp:28
+#: /views/elements/planes_view_tabla_snu.ctp:13
+#: /views/etapas/view.ctp:38
+msgid "Secciones"
+msgstr ""
+
+#: /views/anios/view.ctp:44
+#: /views/ciclos/view.ctp:39
+#: /views/etapas/view.ctp:39
+msgid "Hs Taller"
+msgstr ""
+
+#: /views/anios/view.ctp:49
+#: /views/ciclos/view.ctp:40
+#: /views/dependencias/view.ctp:67
+#: /views/estructura_planes/view.ctp:14
+#: /views/estructura_planes_anios/view.ctp:39
+#: /views/etapas/view.ctp:40
+#: /views/fondos/view.ctp:49
+#: /views/fondos_lineas_de_acciones/view.ctp:24
+#: /views/gestiones/view.ctp:67
+#: /views/jurisdicciones_estructura_planes/view.ctp:19
+#: /views/lineas_de_acciones/view.ctp:19
+#: /views/ofertas/view.ctp:51
+#: /views/queries/view.ctp:24
+#: /views/subsectores/view.ctp:53
+#: /views/sugerencias/view.ctp:34
+#: /views/tipoinstits/view.ctp:74
+msgid "Created"
+msgstr ""
+
+#: /views/anios/view.ctp:54
+#: /views/ciclos/view.ctp:41
+#: /views/dependencias/view.ctp:68
+#: /views/estructura_planes/view.ctp:19
+#: /views/estructura_planes_anios/view.ctp:44
+#: /views/etapas/view.ctp:41
+#: /views/fondos/view.ctp:54
+#: /views/fondos_lineas_de_acciones/view.ctp:29
+#: /views/gestiones/view.ctp:68
+#: /views/jurisdicciones_estructura_planes/view.ctp:24
+#: /views/lineas_de_acciones/view.ctp:24
+#: /views/ofertas/view.ctp:52
+#: /views/queries/view.ctp:29
+#: /views/subsectores/view.ctp:54
+#: /views/tipoinstits/view.ctp:75
+msgid "Modified"
+msgstr ""
+
+#: /views/anios/view.ctp:63
+msgid "Edit Anio"
+msgstr ""
+
+#: /views/anios/view.ctp:64
+msgid "Delete Anio"
+msgstr ""
+
+#: /views/anios/view.ctp:65
+#: /views/ciclos/add.ctp:14
+#: /views/ciclos/edit.ctp:16
+#: /views/ciclos/index.ctp:47
+#: /views/ciclos/view.ctp:22
+#: /views/etapas/add.ctp:15
+#: /views/etapas/edit.ctp:17
+#: /views/etapas/index.ctp:51
+#: /views/etapas/view.ctp:22
+msgid "List Anios"
+msgstr ""
+
+#: /views/ciclos/add.ctp:4
+msgid "Add Ciclo"
+msgstr ""
+
+#: /views/ciclos/edit.ctp:4
+#: /views/ciclos/view.ctp:18
+msgid "Edit Ciclo"
+msgstr ""
+
+#: /views/ciclos/index.ctp:2
+msgid "Ciclos"
+msgstr ""
+
+#: /views/ciclos/view.ctp:9
+#: /views/departamentos/view.ctp:14
+#: /views/dependencias/view.ctp:9
+#: /views/estructura_planes/view.ctp:9
+#: /views/etapas/view.ctp:9
+#: /views/gestiones/view.ctp:9
+#: /views/lineas_de_acciones/view.ctp:9
+#: /views/localidades/view.ctp:14
+#: /views/ofertas/view.ctp:14
+#: /views/queries/view.ctp:9
+#: /views/referentes/view.ctp:9
+#: /views/sectores/view.ctp:9
+#: /views/subsectores/view.ctp:9
+#: /views/tipodocs/view.ctp:14;37
+#: /views/tipoinstits/view.ctp:14
+msgid "Name"
+msgstr ""
+
+#: /views/ciclos/view.ctp:19
+msgid "Delete Ciclo"
+msgstr ""
+
+#: /views/ciclos/view.ctp:27
+#: /views/etapas/view.ctp:27
+msgid "Related Anios"
+msgstr ""
+
+#: /views/ciclos/view.ctp:32
+#: /views/etapas/view.ctp:32
+msgid "Plan Id"
+msgstr ""
+
+#: /views/ciclos/view.ctp:33
+#: /views/etapas/view.ctp:33
+msgid "Ciclo Id"
+msgstr ""
+
+#: /views/ciclos/view.ctp:36
+#: /views/estructura_planes_anios/view.ctp:29
+#: /views/etapas/view.ctp:36
+msgid "Etapa Id"
+msgstr ""
+
+#: /views/departamentos/add.ctp:4
+msgid "Add Departamento"
+msgstr ""
+
+#: /views/departamentos/add.ctp:14
+#: /views/departamentos/edit.ctp:16
+#: /views/departamentos/view.ctp:33
+msgid "List Departamentos"
+msgstr ""
+
+#: /views/departamentos/edit.ctp:4
+#: /views/departamentos/view.ctp:31
+msgid "Edit Departamento"
+msgstr ""
+
+#: /views/departamentos/index.ctp:2
+msgid "Departamentos"
+msgstr ""
+
+#: /views/departamentos/index.ctp:59
+#: /views/departamentos/view.ctp:34
+msgid "New Departamento"
+msgstr ""
+
+#: /views/departamentos/view.ctp:2
+#: /views/historial_cues/index.ctp:18
+#: /views/instits/planes_relacionados..old.ctp:27
+#: /views/instits/view.ctp:144
+msgid "Departamento"
+msgstr ""
+
+#: /views/departamentos/view.ctp:9
+#: /views/dependencias/view.ctp:35
+#: /views/fondos/view.ctp:14
+#: /views/gestiones/view.ctp:35
+#: /views/jurisdicciones_estructura_planes/view.ctp:9
+#: /views/tipodocs/view.ctp:42
+#: /views/tipoinstits/view.ctp:42
+msgid "Jurisdiccion Id"
+msgstr ""
+
+#: /views/departamentos/view.ctp:32
+msgid "Delete Departamento"
+msgstr ""
+
+#: /views/dependencias/add.ctp:4
+msgid "Add Dependencia"
+msgstr ""
+
+#: /views/dependencias/add.ctp:13
+#: /views/dependencias/edit.ctp:15
+#: /views/dependencias/view.ctp:20
+#: /views/instits/index.ctp:185
+msgid "List Dependencias"
+msgstr ""
+
+#: /views/dependencias/add.ctp:14
+#: /views/dependencias/edit.ctp:16
+#: /views/dependencias/index.ctp:47
+#: /views/dependencias/view.ctp:22
+#: /views/gestiones/add.ctp:14
+#: /views/gestiones/edit.ctp:16
+#: /views/gestiones/index.ctp:47
+#: /views/gestiones/view.ctp:22
+#: /views/tipoinstits/add.ctp:17
+#: /views/tipoinstits/edit.ctp:19
+#: /views/tipoinstits/index.ctp:53
+#: /views/tipoinstits/view.ctp:29
+msgid "List Instits"
+msgstr ""
+
+#: /views/dependencias/add.ctp:15
+#: /views/dependencias/edit.ctp:17
+#: /views/dependencias/index.ctp:48
+#: /views/dependencias/view.ctp:23;128
+#: /views/gestiones/add.ctp:15
+#: /views/gestiones/edit.ctp:17
+#: /views/gestiones/index.ctp:48
+#: /views/gestiones/view.ctp:23;128
+#: /views/instits/index.ctp:182
+#: /views/tipoinstits/add.ctp:18
+#: /views/tipoinstits/edit.ctp:20
+#: /views/tipoinstits/index.ctp:54
+#: /views/tipoinstits/view.ctp:30;135
+msgid "New Instit"
+msgstr ""
+
+#: /views/dependencias/edit.ctp:4
+#: /views/dependencias/view.ctp:18
+msgid "Edit Dependencia"
+msgstr ""
+
+#: /views/dependencias/index.ctp:2
+msgid "Dependencias"
+msgstr ""
+
+#: /views/dependencias/index.ctp:46
+#: /views/dependencias/view.ctp:21
+#: /views/instits/index.ctp:186
+msgid "New Dependencia"
+msgstr ""
+
+#: /views/dependencias/view.ctp:2
+msgid "Dependencia"
+msgstr ""
+
+#: /views/dependencias/view.ctp:19
+msgid "Delete Dependencia"
+msgstr ""
+
+#: /views/dependencias/view.ctp:27
+#: /views/gestiones/view.ctp:27
+#: /views/tipoinstits/view.ctp:34
+msgid "Related Instits"
+msgstr ""
+
+#: /views/dependencias/view.ctp:32
+#: /views/gestiones/view.ctp:32
+#: /views/tipoinstits/view.ctp:39
+msgid "Gestion Id"
+msgstr ""
+
+#: /views/dependencias/view.ctp:33
+#: /views/gestiones/view.ctp:33
+#: /views/tipoinstits/view.ctp:40
+msgid "Dependencia Id"
+msgstr ""
+
+#: /views/dependencias/view.ctp:34
+#: /views/gestiones/view.ctp:34
+#: /views/tipoinstits/view.ctp:41
+msgid "Tipoinstit Id"
+msgstr ""
+
+#: /views/dependencias/view.ctp:36
+#: /views/gestiones/view.ctp:36
+#: /views/tipoinstits/view.ctp:43
+msgid "Cue"
+msgstr ""
+
+#: /views/dependencias/view.ctp:37
+#: /views/gestiones/view.ctp:37
+#: /views/tipoinstits/view.ctp:44
+msgid "Anexo"
+msgstr ""
+
+#: /views/dependencias/view.ctp:38
+#: /views/gestiones/view.ctp:38
+#: /views/tipoinstits/view.ctp:45
+msgid "Esanexo"
+msgstr ""
+
+#: /views/dependencias/view.ctp:39
+#: /views/gestiones/view.ctp:39
+#: /views/jurisdicciones/view.ctp:17
+#: /views/ofertas/view.ctp:41
+#: /views/orientaciones/view.ctp:9
+#: /views/planes/view.ctp:56
+#: /views/subsectores/view.ctp:43
+#: /views/tickets/index.ctp:19
+#: /views/tipoinstits/view.ctp:46
+#: /views/titulos/view.ctp:9
+#: /views/users/view.ctp:14
+msgid "Nombre"
+msgstr ""
+
+#: /views/dependencias/view.ctp:40
+#: /views/gestiones/view.ctp:40
+#: /views/tipoinstits/view.ctp:47
+msgid "Nroinstit"
+msgstr ""
+
+#: /views/dependencias/view.ctp:41
+#: /views/gestiones/view.ctp:41
+#: /views/tipoinstits/view.ctp:48
+msgid "Anio Creacion"
+msgstr ""
+
+#: /views/dependencias/view.ctp:42
+#: /views/gestiones/view.ctp:42
+#: /views/tipoinstits/view.ctp:49
+msgid "Direccion"
+msgstr ""
+
+#: /views/dependencias/view.ctp:43
+#: /views/gestiones/view.ctp:43
+#: /views/tipoinstits/view.ctp:50
+msgid "Depto"
+msgstr ""
+
+#: /views/dependencias/view.ctp:44
+#: /views/gestiones/view.ctp:44
+#: /views/historial_cues/index.ctp:24
+#: /views/instits/planes_relacionados..old.ctp:33
+#: /views/instits/view.ctp:154
+#: /views/jurisdicciones/view.ctp:40
+#: /views/localidades/view.ctp:2
+#: /views/tipoinstits/view.ctp:51
+msgid "Localidad"
+msgstr ""
+
+#: /views/dependencias/view.ctp:45
+#: /views/gestiones/view.ctp:45
+#: /views/tipoinstits/view.ctp:52
+msgid "Cp"
+msgstr ""
+
+#: /views/dependencias/view.ctp:46
+#: /views/gestiones/view.ctp:46
+#: /views/referentes/view.ctp:24
+#: /views/tipodocs/view.ctp:40
+#: /views/tipoinstits/view.ctp:53
+msgid "Telefono"
+msgstr ""
+
+#: /views/dependencias/view.ctp:47
+#: /views/gestiones/view.ctp:47
+#: /views/tipoinstits/view.ctp:54
+msgid "Telefono Alternativo"
+msgstr ""
+
+#: /views/dependencias/view.ctp:48
+#: /views/gestiones/view.ctp:48
+#: /views/referentes/view.ctp:29
+#: /views/tipodocs/view.ctp:41
+#: /views/tipoinstits/view.ctp:55
+msgid "Mail"
+msgstr ""
+
+#: /views/dependencias/view.ctp:49
+#: /views/gestiones/view.ctp:49
+#: /views/tipoinstits/view.ctp:56
+msgid "Mail Alternativo"
+msgstr ""
+
+#: /views/dependencias/view.ctp:50
+#: /views/gestiones/view.ctp:50
+#: /views/instits/view.ctp:245
+#: /views/tipoinstits/view.ctp:57
+msgid "Web"
+msgstr ""
+
+#: /views/dependencias/view.ctp:51
+#: /views/gestiones/view.ctp:51
+#: /views/tipoinstits/view.ctp:58
+msgid "Dir Nombre"
+msgstr ""
+
+#: /views/dependencias/view.ctp:52
+#: /views/gestiones/view.ctp:52
+#: /views/tipoinstits/view.ctp:59
+msgid "Dir Tipodoc Id"
+msgstr ""
+
+#: /views/dependencias/view.ctp:53
+#: /views/gestiones/view.ctp:53
+#: /views/tipoinstits/view.ctp:60
+msgid "Dir Nrodoc"
+msgstr ""
+
+#: /views/dependencias/view.ctp:54
+#: /views/gestiones/view.ctp:54
+#: /views/tipoinstits/view.ctp:61
+msgid "Dir Telefono"
+msgstr ""
+
+#: /views/dependencias/view.ctp:55
+#: /views/gestiones/view.ctp:55
+#: /views/tipoinstits/view.ctp:62
+msgid "Dir Telefono Alternativo"
+msgstr ""
+
+#: /views/dependencias/view.ctp:56
+#: /views/gestiones/view.ctp:56
+#: /views/tipoinstits/view.ctp:63
+msgid "Dir Mail"
+msgstr ""
+
+#: /views/dependencias/view.ctp:57
+#: /views/gestiones/view.ctp:57
+#: /views/tipoinstits/view.ctp:64
+msgid "Dir Mail Alternativo"
+msgstr ""
+
+#: /views/dependencias/view.ctp:58
+#: /views/gestiones/view.ctp:58
+#: /views/tipoinstits/view.ctp:65
+msgid "Vice Nombre"
+msgstr ""
+
+#: /views/dependencias/view.ctp:59
+#: /views/gestiones/view.ctp:59
+#: /views/tipoinstits/view.ctp:66
+msgid "Vice Tipodoc Id"
+msgstr ""
+
+#: /views/dependencias/view.ctp:60
+#: /views/gestiones/view.ctp:60
+#: /views/tipoinstits/view.ctp:67
+msgid "Vice Nrodoc"
+msgstr ""
+
+#: /views/dependencias/view.ctp:61
+#: /views/gestiones/view.ctp:61
+#: /views/tipoinstits/view.ctp:68
+msgid "Actualizacion"
+msgstr ""
+
+#: /views/dependencias/view.ctp:62
+#: /views/gestiones/view.ctp:62
+#: /views/ofertas/view.ctp:48
+#: /views/subsectores/view.ctp:50
+#: /views/tipoinstits/view.ctp:69
+msgid "Observacion"
+msgstr ""
+
+#: /views/dependencias/view.ctp:63
+#: /views/gestiones/view.ctp:63
+#: /views/tipoinstits/view.ctp:70
+msgid "Fecha Mod"
+msgstr ""
+
+#: /views/dependencias/view.ctp:64
+#: /views/gestiones/view.ctp:64
+#: /views/tipoinstits/view.ctp:71
+msgid "Activo"
+msgstr ""
+
+#: /views/dependencias/view.ctp:65
+#: /views/gestiones/view.ctp:65
+#: /views/ofertas/view.ctp:49
+#: /views/subsectores/view.ctp:51
+#: /views/tipoinstits/view.ctp:72
+msgid "Ciclo Alta"
+msgstr ""
+
+#: /views/dependencias/view.ctp:66
+#: /views/gestiones/view.ctp:66
+#: /views/ofertas/view.ctp:50
+#: /views/subsectores/view.ctp:52
+#: /views/tipoinstits/view.ctp:73
+msgid "Ciclo Mod"
+msgstr ""
+
+#: /views/depuradores/depurar_titulos.ctp:283
+msgid "Anterior"
+msgstr ""
+
+#: /views/depuradores/depurar_titulos.ctp:285
+msgid "Siguiente"
+msgstr ""
+
+#: /views/elements/boxCuadros.ctp:5
+msgid "Instituciones por Ámbito de Gestión"
+msgstr ""
+
+#: /views/elements/boxCuadros.ctp:6
+msgid "Instituciones por tipo de ETP"
+msgstr ""
+
+#: /views/elements/boxInstituciones.ctp:5
+msgid "Buscador"
+msgstr ""
+
+#: /views/elements/boxInstituciones.ctp:9
+msgid "Buscador Beta"
+msgstr ""
+
+#: /views/elements/boxInstituciones.ctp:12
+msgid "Histórico de CUE"
+msgstr ""
+
+#: /views/elements/boxJurisdicciones.ctp:5
+msgid "Listado"
+msgstr ""
+
+#: /views/elements/planes_view_tabla_fp.ctp:8
+#: /views/elements/planes_view_tabla_normal.ctp:27
+#: /views/elements/planes_view_tabla_snu.ctp:12
+#: /views/instits/planes_relacionados..old.ctp:103
+msgid "Matrícula"
+msgstr ""
+
+#: /views/elements/planes_view_tabla_fp.ctp:9
+msgid "Duración en Horas"
+msgstr ""
+
+#: /views/elements/planes_view_tabla_fp.ctp:10
+#: /views/elements/planes_view_tabla_normal.ctp:30
+#: /views/elements/planes_view_tabla_snu.ctp:15
+#: /views/instits/planes_relacionados..old.ctp:105
+msgid ""
+msgstr ""
+
+#: /views/elements/planes_view_tabla_fp.ctp:30
+#: /views/elements/planes_view_tabla_normal.ctp:54
+#: /views/elements/planes_view_tabla_snu.ctp:36
+#: /views/orientaciones/edit.ctp:14
+#: /views/orientaciones/index.ctp:40
+#: /views/orientaciones/view.ctp:19
+#: /views/titulos/index.ctp:48
+#: /views/titulos/view.ctp:29
+msgid "Borrar"
+msgstr ""
+
+#: /views/elements/planes_view_tabla_fp.ctp:30
+#: /views/elements/planes_view_tabla_normal.ctp:54
+#: /views/elements/planes_view_tabla_snu.ctp:36
+msgid "Seguro que desea eliminar el año # %s? del ciclo # %s"
+msgstr ""
+
+#: /views/elements/planes_view_tabla_normal.ctp:25
+#: /views/elements/planes_view_tabla_snu.ctp:10
+msgid "Año"
+msgstr ""
+
+#: /views/elements/planes_view_tabla_normal.ctp:29
+#: /views/elements/planes_view_tabla_snu.ctp:14
+msgid "Horas Taller"
+msgstr ""
+
+#: /views/estructura_planes/add.ctp:7
+msgid "Crear EstructuraPlan"
+msgstr ""
+
+#: /views/estructura_planes/add.ctp:44
+#: /views/estructura_planes/edit.ctp:41
+msgid "List estructuras de planes"
+msgstr ""
+
+#: /views/estructura_planes/edit.ctp:7
+#: /views/estructura_planes/view.ctp:28
+msgid "Edit EstructuraPlan"
+msgstr ""
+
+#: /views/estructura_planes/index.ctp:2
+msgid "Estructuras de Planes"
+msgstr ""
+
+#: /views/estructura_planes/index.ctp:49
+msgid "Nueva estructura"
+msgstr ""
+
+#: /views/estructura_planes/view.ctp:2
+msgid "EstructuraPlan"
+msgstr ""
+
+#: /views/estructura_planes/view.ctp:29
+msgid "Delete EstructuraPlan"
+msgstr ""
+
+#: /views/estructura_planes/view.ctp:30
+msgid "List estructuraplanes"
+msgstr ""
+
+#: /views/estructura_planes/view.ctp:31
+msgid "New EstructuraPlan"
+msgstr ""
+
+#: /views/estructura_planes_anios/add.ctp:4
+msgid "Add EstructuraPlanesAnio"
+msgstr ""
+
+#: /views/estructura_planes_anios/add.ctp:16
+#: /views/estructura_planes_anios/edit.ctp:18
+msgid "List estructuraPlanesAnios"
+msgstr ""
+
+#: /views/estructura_planes_anios/edit.ctp:4
+msgid "Edit EstructuraPlanesAnio"
+msgstr ""
+
+#: /views/estructura_planes_anios/index.ctp:6
+msgid "estructuraPlanesAnios"
+msgstr ""
+
+#: /views/estructura_planes_anios/index.ctp:63
+msgid "New EstructuraPlanesAnio"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:7
+msgid "TrayectoAnio"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:14
+#: /views/jurisdicciones_estructura_planes/view.ctp:14
+msgid "Trayecto Id"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:19
+msgid "Edad Teorica"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:34
+msgid "Anio Escolaridad"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:53
+msgid "Edit TrayectoAnio"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:54
+msgid "Delete TrayectoAnio"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:55
+msgid "List TrayectoAnios"
+msgstr ""
+
+#: /views/estructura_planes_anios/view.ctp:56
+msgid "New TrayectoAnio"
+msgstr ""
+
+#: /views/etapas/add.ctp:4
+msgid "Add Etapa"
+msgstr ""
+
+#: /views/etapas/edit.ctp:4
+#: /views/etapas/view.ctp:18
+msgid "Edit Etapa"
+msgstr ""
+
+#: /views/etapas/index.ctp:2
+msgid "Etapas"
+msgstr ""
+
+#: /views/etapas/view.ctp:19
+msgid "Delete Etapa"
+msgstr ""
+
+#: /views/etapas_jurisdicciones/index.ctp:221
+msgid "Etapas por Jurisdicciones"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:27
+#: /views/fondo_temporales/index.ctp:2
+msgid "Fondos temporales"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:31
+msgid "Página %page% de %pages%, mostrando %current% registros de %count%, de %start% hasta %end%"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:149
+msgid "Uncheck"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:149
+msgid "Seguro deseas deschequear %s?"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:152
+msgid "Check"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:152
+msgid "Seguro deseas marcar como chequeado %s?"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:163
+msgid "Uncheck Total"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:163
+msgid "Seguro deseas deschequear?"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:165
+msgid "Check Total"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:165
+msgid "Seguro deseas marcar como chequeado?"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:188
+msgid "Ejecutar Validacion de CUEs"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:190
+#: /views/fondo_temporales/edit.ctp:41
+#: /views/fondo_temporales/edit_cue.ctp:102
+msgid "Ejecutar Validacion de Totales"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:192
+msgid "Generar Reporte de Errores"
+msgstr ""
+
+#: /views/fondo_temporales/checked_instits.ctp:194
+msgid "Generar Reporte de Observaciones Finales"
+msgstr ""
+
+#: /views/fondo_temporales/edit.ctp:4
+msgid "Editar Fondo Temporal"
+msgstr ""
+
+#: /views/fondo_temporales/edit.ctp:40
+#: /views/fondo_temporales/edit_cue.ctp:101
+#: /views/fondo_temporales/error_report.ctp:14
+#: /views/fondo_temporales/error_report_cvs.ctp:22
+#: /views/fondo_temporales/observacion_report.ctp:14
+msgid "Listar Fondos Temporales"
+msgstr ""
+
+#: /views/fondo_temporales/edit_cue.ctp:68
+msgid "Editar CUEs Temporal"
+msgstr ""
+
+#: /views/fondo_temporales/edit_cue.ctp:88
+msgid "Buscador de Instituciones"
+msgstr ""
+
+#: /views/fondo_temporales/error_report.ctp:4
+#: /views/fondo_temporales/error_report_cvs.ctp:11
+msgid "Reporte de Errores en Excel"
+msgstr ""
+
+#: /views/fondo_temporales/error_report_txt.ctp:4
+msgid "Reporte de Errores de Totales"
+msgstr ""
+
+#: /views/fondo_temporales/error_report_txt.ctp:190
+msgid "Reporte con observaciones"
+msgstr ""
+
+#: /views/fondo_temporales/index.ctp:194
+#: /views/fondos/view.ctp:66
+msgid "New Fondo"
+msgstr ""
+
+#: /views/fondo_temporales/observacion_report.ctp:4
+msgid "Reporte de Observaciones en Excel"
+msgstr ""
+
+#: /views/fondo_temporales/validar_instits.ctp:2
+msgid "Validar instits"
+msgstr ""
+
+#: /views/fondo_temporales/validar_totales.ctp:2
+msgid "Validar Totales"
+msgstr ""
+
+#: /views/fondos/add.ctp:4
+#: /views/fondos/add_institucion.ctp:4
+#: /views/fondos/add_jurisdiccional.ctp:4
+msgid "Add Fondo"
+msgstr ""
+
+#: /views/fondos/add.ctp:20
+#: /views/fondos/add_institucion.ctp:19
+#: /views/fondos/add_jurisdiccional.ctp:19
+#: /views/fondos/edit.ctp:22
+#: /views/fondos/view.ctp:65
+msgid "List Fondos"
+msgstr ""
+
+#: /views/fondos/edit.ctp:4
+#: /views/fondos/view.ctp:63
+msgid "Edit Fondo"
+msgstr ""
+
+#: /views/fondos/fondo_de_instit.ctp:26
+msgid "Inputar un nuevo valor"
+msgstr ""
+
+#: /views/fondos/index.ctp:2
+msgid "Fondos"
+msgstr ""
+
+#: /views/fondos/index.ctp:24
+msgid "Page %page% of %pages%, showing %current% records out of <b>%count%</b> total"
+msgstr ""
+
+#: /views/fondos/index.ctp:70
+msgid "ver"
+msgstr ""
+
+#: /views/fondos/index_x_instit.ctp:124
+msgid "Click Aquí"
+msgstr ""
+
+#: /views/fondos/index_x_instit.ctp:137
+#: /views/fondos/index_x_jurisdiccion.ctp:131
+#: /views/orientaciones/index.ctp:47
+#: /views/titulos/index.ctp:55
+msgid "anterior"
+msgstr ""
+
+#: /views/fondos/index_x_instit.ctp:139
+#: /views/fondos/index_x_jurisdiccion.ctp:133
+#: /views/orientaciones/index.ctp:49
+#: /views/titulos/index.ctp:57
+msgid "siguiente"
+msgstr ""
+
+#: /views/fondos/view.ctp:2
+msgid "Fondo"
+msgstr ""
+
+#: /views/fondos/view.ctp:9
+#: /views/ofertas/view.ctp:37
+#: /views/subsectores/view.ctp:39
+msgid "Instit Id"
+msgstr ""
+
+#: /views/fondos/view.ctp:19
+msgid "Total"
+msgstr ""
+
+#: /views/fondos/view.ctp:29
+msgid "Trimestre"
+msgstr ""
+
+#: /views/fondos/view.ctp:34
+msgid "Memo"
+msgstr ""
+
+#: /views/fondos/view.ctp:39
+msgid "Resolucion"
+msgstr ""
+
+#: /views/fondos/view.ctp:44
+#: /views/lineas_de_acciones/view.ctp:14
+#: /views/queries/view.ctp:14
+msgid "Description"
+msgstr ""
+
+#: /views/fondos/view.ctp:64
+msgid "Delete Fondo"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/add.ctp:4
+msgid "Add FondosLineasDeAccion"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/add.ctp:15
+#: /views/fondos_lineas_de_acciones/edit.ctp:17
+#: /views/fondos_lineas_de_acciones/view.ctp:40
+msgid "List FondosLineasDeAcciones"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/edit.ctp:4
+#: /views/fondos_lineas_de_acciones/view.ctp:38
+msgid "Edit FondosLineasDeAccion"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/index.ctp:2
+msgid "FondosLineasDeAcciones"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/index.ctp:62
+#: /views/fondos_lineas_de_acciones/view.ctp:41
+msgid "New FondosLineasDeAccion"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/view.ctp:2
+msgid "FondosLineasDeAccion"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/view.ctp:9
+msgid "Fondo Id"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/view.ctp:14
+msgid "Lineas De Accion Id"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/view.ctp:19
+msgid "Monto"
+msgstr ""
+
+#: /views/fondos_lineas_de_acciones/view.ctp:39
+msgid "Delete FondosLineasDeAccion"
+msgstr ""
+
+#: /views/gestiones/add.ctp:4
+msgid "Add Gestion"
+msgstr ""
+
+#: /views/gestiones/add.ctp:13
+#: /views/gestiones/edit.ctp:15
+#: /views/gestiones/view.ctp:20
+#: /views/instits/index.ctp:183
+msgid "List Gestiones"
+msgstr ""
+
+#: /views/gestiones/edit.ctp:4
+#: /views/gestiones/view.ctp:18
+msgid "Edit Gestion"
+msgstr ""
+
+#: /views/gestiones/index.ctp:2
+msgid "Gestiones"
+msgstr ""
+
+#: /views/gestiones/index.ctp:46
+#: /views/gestiones/view.ctp:21
+#: /views/instits/index.ctp:184
+msgid "New Gestion"
+msgstr ""
+
+#: /views/gestiones/view.ctp:2
+msgid "Gestion"
+msgstr ""
+
+#: /views/gestiones/view.ctp:19
+msgid "Delete Gestion"
+msgstr ""
+
+#: /views/historial_cues/index.ctp:11
+#: /views/instits/planes_relacionados..old.ctp:20
+#: /views/instits/view.ctp:134
+msgid "Jurisdicción"
+msgstr ""
+
+#: /views/historial_cues/index.ctp:31
+#: /views/instits/planes_relacionados..old.ctp:40
+#: /views/instits/view.ctp:174
+msgid "Domicilio"
+msgstr ""
+
+#: /views/historial_cues/index.ctp:46
+msgid "Seguro que querés borrar el CUE # %s?"
+msgstr ""
+
+#: /views/historial_cues/search.ctp:2
+msgid "Histórico de Cambio de Cue"
+msgstr ""
+
+#: /views/historial_cues/search.ctp:31
+msgid "Mostrando %current% Registro de %count% encontrados"
+msgstr ""
+
+#: /views/historial_cues/search.ctp:100
+#: /views/instits/search.ctp:154
+#: /views/tickets/index.ctp:9
+msgid "Página %page% de %pages%<br />Mostrando %current% registros de %count% encontrados, visualizando registros desde el nº %start%, hasta el %end%"
+msgstr ""
+
+#: /views/instits/advanced_search_form.ctp:144
+msgid "Búsqueda Avanzada de Instituciones"
+msgstr ""
+
+#: /views/instits/index.ctp:2
+msgid "Instits"
+msgstr ""
+
+#: /views/instits/index.ctp:187
+#: /views/tipoinstits/add.ctp:14
+#: /views/tipoinstits/edit.ctp:16
+#: /views/tipoinstits/view.ctp:25
+msgid "List Tipoinstits"
+msgstr ""
+
+#: /views/instits/index.ctp:188
+#: /views/tipoinstits/index.ctp:50
+#: /views/tipoinstits/view.ctp:26
+msgid "New Tipoinstit"
+msgstr ""
+
+#: /views/instits/index.ctp:189
+#: /views/referentes/add.ctp:21
+#: /views/referentes/edit.ctp:23
+#: /views/referentes/index.ctp:69
+#: /views/referentes/view.ctp:49
+#: /views/tipoinstits/add.ctp:15
+#: /views/tipoinstits/edit.ctp:17
+#: /views/tipoinstits/index.ctp:51
+#: /views/tipoinstits/view.ctp:27
+msgid "List Jurisdicciones"
+msgstr ""
+
+#: /views/instits/index.ctp:190
+#: /views/jurisdicciones/index.ctp:47
+#: /views/referentes/add.ctp:22
+#: /views/referentes/edit.ctp:24
+#: /views/referentes/index.ctp:70
+#: /views/referentes/view.ctp:50
+#: /views/tipoinstits/add.ctp:16
+#: /views/tipoinstits/edit.ctp:18
+#: /views/tipoinstits/index.ctp:52
+#: /views/tipoinstits/view.ctp:28
+msgid "New Jurisdiccion"
+msgstr ""
+
+#: /views/instits/old_search_form.ctp:2
+#: /views/instits/search.ctp:2
+msgid "Buscar Institución"
+msgstr ""
+
+#: /views/instits/planes_relacionados..old.ctp:4
+#: /views/planes/view.ctp:2
+msgid "Oferta Educativa"
+msgstr ""
+
+#: /views/instits/planes_relacionados..old.ctp:100
+#: /views/ofertas/view.ctp:2
+#: /views/planes/view.ctp:19
+#: /views/titulos/view.ctp:19
+msgid "Oferta"
+msgstr ""
+
+#: /views/instits/planes_relacionados..old.ctp:101
+msgid "Nombre del Título/Certificación"
+msgstr ""
+
+#: /views/instits/planes_relacionados..old.ctp:102
+#: /views/ofertas/view.ctp:43
+#: /views/planes/view.ctp:66
+#: /views/sectores/view.ctp:2
+#: /views/subsectores/view.ctp:14;45
+msgid "Sector"
+msgstr ""
+
+#: /views/instits/planes_relacionados..old.ctp:104
+msgid "Ciclo (1)"
+msgstr ""
+
+#: /views/instits/planes_relacionados..old.ctp:138
+#: /views/planes/index.ctp:226
+msgid "Nueva Oferta"
+msgstr ""
+
+#: /views/instits/search.ctp:65
+msgid "Mostrando %current% Instituciones de %count% encontradas"
+msgstr ""
+
+#: /views/instits/search_form.ctp:12
+msgid "Búsqueda Rápida de Instituciones"
+msgstr ""
+
+#: /views/instits/view.ctp:77
+msgid "Tipo de Institución"
+msgstr ""
+
+#: /views/instits/view.ctp:91
+#: /views/orientaciones/view.ctp:2
+msgid "Orientación"
+msgstr ""
+
+#: /views/instits/view.ctp:102
+msgid "Ámbito de Gestión"
+msgstr ""
+
+#: /views/instits/view.ctp:112
+msgid "Tipo de Dependencia"
+msgstr ""
+
+#: /views/instits/view.ctp:123
+msgid "Nombre de la Dependencia"
+msgstr ""
+
+#: /views/instits/view.ctp:164
+msgid "Barrio/Pueblo/Comuna"
+msgstr ""
+
+#: /views/instits/view.ctp:184
+#: /views/jurisdicciones/view.ctp:31
+msgid "Código Postal"
+msgstr ""
+
+#: /views/instits/view.ctp:195;286
+#: /views/jurisdicciones/view.ctp:34
+msgid "Teléfono"
+msgstr ""
+
+#: /views/instits/view.ctp:207
+msgid "Teléfono Alternativo"
+msgstr ""
+
+#: /views/instits/view.ctp:220;297
+msgid "E-Mail"
+msgstr ""
+
+#: /views/instits/view.ctp:232
+msgid "E-Mail Alternativo"
+msgstr ""
+
+#: /views/instits/view.ctp:256
+msgid "Año de Creación"
+msgstr ""
+
+#: /views/instits/view.ctp:264;312
+msgid "Nombre y Apellido"
+msgstr ""
+
+#: /views/instits/view.ctp:274;322
+msgid "Tipo y Nº de Documento"
+msgstr ""
+
+#: /views/instits/view.ctp:342
+msgid "Fecha Mod (<2009)"
+msgstr ""
+
+#: /views/instits/view.ctp:351
+msgid "Actualización o Ingreso"
+msgstr ""
+
+#: /views/instits/view.ctp:363
+msgid "Observación"
+msgstr ""
+
+#: /views/instits/view.ctp:376
+#: /views/planes/view.ctp:110
+msgid "Alta"
+msgstr ""
+
+#: /views/instits/view.ctp:385
+#: /views/planes/view.ctp:119
+msgid "Modificación"
+msgstr ""
+
+#: /views/instits/view.ctp:401
+msgid "Editar Institución"
+msgstr ""
+
+#: /views/instits/view.ctp:403
+msgid "Eliminar Institución"
+msgstr ""
+
+#: /views/instits/view.ctp:403
+msgid "¿Seguro que desea eliminar la institución? CUE: \"%s\""
+msgstr ""
+
+#: /views/jurisdicciones/add.ctp:4
+msgid "Crear Jurisdiccion"
+msgstr ""
+
+#: /views/jurisdicciones/edit.ctp:34
+msgid "Editar Etapas"
+msgstr ""
+
+#: /views/jurisdicciones/index.ctp:2
+#: /views/jurisdicciones/listado.ctp:45
+msgid "Jurisdicciones"
+msgstr ""
+
+#: /views/jurisdicciones/index.ctp:34
+msgid "Asignar estructuras"
+msgstr ""
+
+#: /views/jurisdicciones/listado.ctp:46
+msgid "Haga click en la jurisdicción de la que desee obtener información"
+msgstr ""
+
+#: /views/jurisdicciones/view.ctp:14
+msgid "Cargo"
+msgstr ""
+
+#: /views/jurisdicciones/view.ctp:20
+msgid "Fecha de asunción"
+msgstr ""
+
+#: /views/jurisdicciones/view.ctp:25
+msgid "Denominación"
+msgstr ""
+
+#: /views/jurisdicciones/view.ctp:28
+msgid "Dirección"
+msgstr ""
+
+#: /views/jurisdicciones/view.ctp:37
+#: /views/sugerencias/view.ctp:24
+msgid "Email"
+msgstr ""
+
+#: /views/jurisdicciones_estructura_planes/add.ctp:4
+msgid "Add JurisdiccionesTrayecto"
+msgstr ""
+
+#: /views/jurisdicciones_estructura_planes/add.ctp:14
+#: /views/jurisdicciones_estructura_planes/edit.ctp:16
+#: /views/jurisdicciones_estructura_planes/view.ctp:35
+msgid "List JurisdiccionesTrayectos"
+msgstr ""
+
+#: /views/jurisdicciones_estructura_planes/edit.ctp:4
+#: /views/jurisdicciones_estructura_planes/view.ctp:33
+msgid "Edit JurisdiccionesTrayecto"
+msgstr ""
+
+#: /views/jurisdicciones_estructura_planes/index_trayectos.ctp:15
+msgid "JurisdiccionesTrayectos"
+msgstr ""
+
+#: /views/jurisdicciones_estructura_planes/view.ctp:2
+msgid "JurisdiccionesTrayecto"
+msgstr ""
+
+#: /views/jurisdicciones_estructura_planes/view.ctp:34
+msgid "Delete JurisdiccionesTrayecto"
+msgstr ""
+
+#: /views/jurisdicciones_estructura_planes/view.ctp:36
+msgid "New JurisdiccionesTrayecto"
+msgstr ""
+
+#: /views/layouts/cuadros.ctp:30
+#: /views/layouts/default.ctp:30
+#: /views/layouts/default_old.ctp:30
+#: /views/layouts/sin_menu.ctp:30
+msgid "Sistema Gestión de Registro - "
+msgstr ""
+
+#: /views/layouts/cuadros.ctp:63
+#: /views/layouts/default.ctp:84
+#: /views/layouts/default_old.ctp:71
+#: /views/layouts/depurador.ctp:66
+#: /views/layouts/sin_menu.ctp:63
+msgid "Registro Federal de Instituciones de Educación Técnico Profesional (RFIETP)"
+msgstr ""
+
+#: /views/layouts/default.ctp:140
+#: /views/layouts/default_old.ctp:94
+msgid "Soporte Técnico"
+msgstr ""
+
+#: /views/layouts/default.ctp:178
+#: /views/layouts/default_old.ctp:117
+msgid "Inet"
+msgstr ""
+
+#: /views/layouts/depurador.ctp:30
+msgid "Depurador"
+msgstr ""
+
+#: /views/layouts/popup.ctp:30
+msgid "Sistema Gestión de Registro"
+msgstr ""
+
+#: /views/lineas_de_acciones/add.ctp:4
+msgid "Add LineasDeAccion"
+msgstr ""
+
+#: /views/lineas_de_acciones/add.ctp:14
+#: /views/lineas_de_acciones/edit.ctp:16
+#: /views/lineas_de_acciones/view.ctp:35
+msgid "List LineasDeAcciones"
+msgstr ""
+
+#: /views/lineas_de_acciones/edit.ctp:4
+#: /views/lineas_de_acciones/view.ctp:33
+msgid "Edit LineasDeAccion"
+msgstr ""
+
+#: /views/lineas_de_acciones/index.ctp:2
+msgid "LineasDeAcciones"
+msgstr ""
+
+#: /views/lineas_de_acciones/index.ctp:58
+#: /views/lineas_de_acciones/view.ctp:36
+msgid "New LineasDeAccion"
+msgstr ""
+
+#: /views/lineas_de_acciones/view.ctp:2
+msgid "LineasDeAccion"
+msgstr ""
+
+#: /views/lineas_de_acciones/view.ctp:34
+msgid "Delete LineasDeAccion"
+msgstr ""
+
+#: /views/localidades/add.ctp:4
+msgid "Agregar Localidad"
+msgstr ""
+
+#: /views/localidades/add.ctp:28
+#: /views/localidades/edit.ctp:23
+#: /views/localidades/view.ctp:25
+msgid "List Localidades"
+msgstr ""
+
+#: /views/localidades/index.ctp:2
+msgid "Localidades"
+msgstr ""
+
+#: /views/localidades/index.ctp:64
+#: /views/localidades/view.ctp:26
+msgid "New Localidad"
+msgstr ""
+
+#: /views/localidades/view.ctp:9
+msgid "Departamento Id"
+msgstr ""
+
+#: /views/localidades/view.ctp:23
+msgid "Edit Localidad"
+msgstr ""
+
+#: /views/localidades/view.ctp:24
+msgid "Delete Localidad"
+msgstr ""
+
+#: /views/logs/add.ctp:4
+msgid "Add Log"
+msgstr ""
+
+#: /views/logs/add.ctp:17
+#: /views/logs/edit.ctp:19
+#: /views/logs/view.ctp:40
+msgid "List Logs"
+msgstr ""
+
+#: /views/logs/edit.ctp:4
+#: /views/logs/view.ctp:38
+msgid "Edit Log"
+msgstr ""
+
+#: /views/logs/index.ctp:2
+msgid "Logs"
+msgstr ""
+
+#: /views/logs/index.ctp:62
+#: /views/logs/view.ctp:41
+msgid "New Log"
+msgstr ""
+
+#: /views/logs/view.ctp:2
+msgid "Log"
+msgstr ""
+
+#: /views/logs/view.ctp:9
+#: /views/users/view.ctp:9
+msgid "Username"
+msgstr ""
+
+#: /views/logs/view.ctp:14
+msgid "Fecha In"
+msgstr ""
+
+#: /views/logs/view.ctp:19
+msgid "Hora In"
+msgstr ""
+
+#: /views/logs/view.ctp:24
+msgid "Fecha Out"
+msgstr ""
+
+#: /views/logs/view.ctp:29
+msgid "Hora Out"
+msgstr ""
+
+#: /views/logs/view.ctp:39
+msgid "Delete Log"
+msgstr ""
+
+#: /views/ofertas/add.ctp:4
+msgid "Add Oferta"
+msgstr ""
+
+#: /views/ofertas/add.ctp:14
+#: /views/ofertas/edit.ctp:16
+#: /views/ofertas/view.ctp:25
+msgid "List Ofertas"
+msgstr ""
+
+#: /views/ofertas/edit.ctp:4
+#: /views/ofertas/view.ctp:23
+msgid "Edit Oferta"
+msgstr ""
+
+#: /views/ofertas/index.ctp:2
+msgid "Ofertas"
+msgstr ""
+
+#: /views/ofertas/index.ctp:50
+#: /views/ofertas/view.ctp:26
+msgid "New Oferta"
+msgstr ""
+
+#: /views/ofertas/view.ctp:9
+#: /views/tipodocs/view.ctp:9
+msgid "Abrev"
+msgstr ""
+
+#: /views/ofertas/view.ctp:24
+msgid "Delete Oferta"
+msgstr ""
+
+#: /views/ofertas/view.ctp:32
+#: /views/subsectores/view.ctp:34
+msgid "Related Planes"
+msgstr ""
+
+#: /views/ofertas/view.ctp:38
+#: /views/subsectores/view.ctp:40
+msgid "Oferta Id"
+msgstr ""
+
+#: /views/ofertas/view.ctp:40
+#: /views/subsectores/view.ctp:42
+msgid "Norma"
+msgstr ""
+
+#: /views/ofertas/view.ctp:42
+#: /views/planes/view.ctp:61
+#: /views/subsectores/view.ctp:44
+msgid "Perfil"
+msgstr ""
+
+#: /views/ofertas/view.ctp:44
+#: /views/subsectores/view.ctp:46
+msgid "Duracion Hs"
+msgstr ""
+
+#: /views/ofertas/view.ctp:45
+#: /views/subsectores/view.ctp:47
+msgid "Duracion Semanas"
+msgstr ""
+
+#: /views/ofertas/view.ctp:46
+#: /views/subsectores/view.ctp:48
+msgid "Duracion Anios"
+msgstr ""
+
+#: /views/orientaciones/add.ctp:4
+msgid "Agregar Orientación"
+msgstr ""
+
+#: /views/orientaciones/add.ctp:13
+#: /views/orientaciones/edit.ctp:15
+msgid "Listar Orientaciones"
+msgstr ""
+
+#: /views/orientaciones/edit.ctp:4
+msgid "Editar Orientación"
+msgstr ""
+
+#: /views/orientaciones/edit.ctp:14
+#: /views/orientaciones/view.ctp:19
+#: /views/titulos/index.ctp:48
+#: /views/titulos/view.ctp:29
+msgid "Borrar %s?"
+msgstr ""
+
+#: /views/orientaciones/index.ctp:2
+msgid "Orientaciones"
+msgstr ""
+
+#: /views/orientaciones/index.ctp:6
+#: /views/titulos/index.ctp:6
+msgid "Página %page% de %pages%, desde %start% hasta %end%"
+msgstr ""
+
+#: /views/orientaciones/index.ctp:14
+#: /views/titulos/index.ctp:14
+msgid "Acciones"
+msgstr ""
+
+#: /views/orientaciones/index.ctp:38
+#: /views/planes/index.ctp:187
+msgid "Ver"
+msgstr ""
+
+#: /views/orientaciones/index.ctp:39
+#: /views/orientaciones/view.ctp:18
+#: /views/titulos/index.ctp:47
+#: /views/titulos/view.ctp:28
+msgid "Editar"
+msgstr ""
+
+#: /views/orientaciones/index.ctp:40
+msgid "Borrar # %s?"
+msgstr ""
+
+#: /views/orientaciones/index.ctp:53
+#: /views/orientaciones/view.ctp:21
+msgid "Nueva Orientación"
+msgstr ""
+
+#: /views/orientaciones/view.ctp:20
+msgid "Listar Orientación"
+msgstr ""
+
+#: /views/planes/index.ctp:227
+msgid "Depurar Institución"
+msgstr ""
+
+#: /views/planes/view.ctp:26
+msgid "Normativa"
+msgstr ""
+
+#: /views/planes/view.ctp:34
+msgid "Título de Referencia"
+msgstr ""
+
+#: /views/planes/view.ctp:71
+#: /views/subsectores/view.ctp:2
+msgid "Subsector"
+msgstr ""
+
+#: /views/planes/view.ctp:79
+msgid "Duración del plan:"
+msgstr ""
+
+#: /views/planes/view.ctp:86
+msgid " - Horas"
+msgstr ""
+
+#: /views/planes/view.ctp:94
+msgid " - Semanas"
+msgstr ""
+
+#: /views/planes/view.ctp:102
+msgid " - Años"
+msgstr ""
+
+#: /views/planes/view.ctp:133
+msgid "Editar Oferta"
+msgstr ""
+
+#: /views/planes/view.ctp:134
+msgid "Eliminar Oferta"
+msgstr ""
+
+#: /views/planes/view.ctp:134
+msgid "Seguro que desea eliminar el Plan \"%s\"?"
+msgstr ""
+
+#: /views/queries/add.ctp:31
+msgid "Add Query"
+msgstr ""
+
+#: /views/queries/add.ctp:48
+#: /views/queries/edit.ctp:50
+#: /views/queries/view.ctp:40
+msgid "List Queries"
+msgstr ""
+
+#: /views/queries/edit.ctp:30
+msgid "Editar Query"
+msgstr ""
+
+#: /views/queries/index.ctp:2
+msgid "Queries"
+msgstr ""
+
+#: /views/queries/index.ctp:56
+#: /views/queries/view.ctp:41
+msgid "New Query"
+msgstr ""
+
+#: /views/queries/list_view.ctp:17
+msgid "Página %page% de %pages% Mostrando %current% registros de %count% encontrados"
+msgstr ""
+
+#: /views/queries/view.ctp:2;19
+msgid "Query"
+msgstr ""
+
+#: /views/queries/view.ctp:38
+msgid "Edit Query"
+msgstr ""
+
+#: /views/queries/view.ctp:39
+msgid "Delete Query"
+msgstr ""
+
+#: /views/referentes/add.ctp:4
+msgid "Add Referente"
+msgstr ""
+
+#: /views/referentes/add.ctp:18
+#: /views/referentes/edit.ctp:20
+#: /views/referentes/view.ctp:45
+#: /views/tipodocs/add.ctp:15
+#: /views/tipodocs/edit.ctp:17
+#: /views/tipodocs/index.ctp:51
+#: /views/tipodocs/view.ctp:27
+msgid "List Referentes"
+msgstr ""
+
+#: /views/referentes/add.ctp:19
+#: /views/referentes/edit.ctp:21
+#: /views/referentes/index.ctp:67
+#: /views/referentes/view.ctp:47
+#: /views/tipodocs/add.ctp:14
+#: /views/tipodocs/edit.ctp:16
+#: /views/tipodocs/view.ctp:25
+msgid "List Tipodocs"
+msgstr ""
+
+#: /views/referentes/add.ctp:20
+#: /views/referentes/edit.ctp:22
+#: /views/referentes/index.ctp:68
+#: /views/referentes/view.ctp:48
+#: /views/tipodocs/index.ctp:50
+#: /views/tipodocs/view.ctp:26
+msgid "New Tipodoc"
+msgstr ""
+
+#: /views/referentes/edit.ctp:4
+#: /views/referentes/view.ctp:43
+msgid "Edit Referente"
+msgstr ""
+
+#: /views/referentes/index.ctp:2
+msgid "Referentes"
+msgstr ""
+
+#: /views/referentes/index.ctp:66
+#: /views/referentes/view.ctp:46
+#: /views/tipodocs/add.ctp:16
+#: /views/tipodocs/edit.ctp:18
+#: /views/tipodocs/index.ctp:52
+#: /views/tipodocs/view.ctp:28;73
+msgid "New Referente"
+msgstr ""
+
+#: /views/referentes/view.ctp:2
+msgid "Referente"
+msgstr ""
+
+#: /views/referentes/view.ctp:14
+#: /views/tipodocs/view.ctp:2
+msgid "Tipodoc"
+msgstr ""
+
+#: /views/referentes/view.ctp:19
+#: /views/tipodocs/view.ctp:39
+msgid "Nrodoc"
+msgstr ""
+
+#: /views/referentes/view.ctp:34
+#: /views/tipoinstits/view.ctp:9
+msgid "Jurisdiccion"
+msgstr ""
+
+#: /views/referentes/view.ctp:44
+msgid "Delete Referente"
+msgstr ""
+
+#: /views/sectores/add.ctp:4
+msgid "Add Sector"
+msgstr ""
+
+#: /views/sectores/add.ctp:14
+#: /views/sectores/edit.ctp:16
+#: /views/sectores/view.ctp:20
+#: /views/subsectores/add.ctp:15
+#: /views/subsectores/edit.ctp:18
+#: /views/subsectores/index.ctp:51
+#: /views/subsectores/view.ctp:27
+msgid "List Sectores"
+msgstr ""
+
+#: /views/sectores/edit.ctp:4
+#: /views/sectores/view.ctp:18
+msgid "Edit Sector"
+msgstr ""
+
+#: /views/sectores/index.ctp:2
+msgid "Sectores"
+msgstr ""
+
+#: /views/sectores/index.ctp:53
+#: /views/sectores/view.ctp:21
+#: /views/subsectores/add.ctp:16
+#: /views/subsectores/edit.ctp:19
+#: /views/subsectores/index.ctp:52
+#: /views/subsectores/view.ctp:28
+msgid "New Sector"
+msgstr ""
+
+#: /views/sectores/view.ctp:19
+msgid "Delete Sector"
+msgstr ""
+
+#: /views/subsectores/add.ctp:4
+msgid "Add Subsector"
+msgstr ""
+
+#: /views/subsectores/add.ctp:14
+#: /views/subsectores/edit.ctp:17
+#: /views/subsectores/view.ctp:25
+msgid "List Subsectores"
+msgstr ""
+
+#: /views/subsectores/edit.ctp:4
+#: /views/subsectores/view.ctp:23
+msgid "Edit Subsector"
+msgstr ""
+
+#: /views/subsectores/index.ctp:2
+msgid "Subsectores"
+msgstr ""
+
+#: /views/subsectores/index.ctp:50
+#: /views/subsectores/view.ctp:26
+msgid "New Subsector"
+msgstr ""
+
+#: /views/subsectores/view.ctp:24
+msgid "Delete Subsector"
+msgstr ""
+
+#: /views/subsectores/view.ctp:55
+msgid "Sector Id"
+msgstr ""
+
+#: /views/subsectores/view.ctp:56
+msgid "Subsector Id"
+msgstr ""
+
+#: /views/sugerencias/add.ctp:9
+#: /views/sugerencias/index.ctp:2
+msgid "Sugerencias"
+msgstr ""
+
+#: /views/sugerencias/edit.ctp:4
+#: /views/sugerencias/view.ctp:48
+msgid "Edit Sugerencia"
+msgstr ""
+
+#: /views/sugerencias/edit.ctp:20
+#: /views/sugerencias/view.ctp:50
+msgid "List Sugerencias"
+msgstr ""
+
+#: /views/sugerencias/index.ctp:70
+#: /views/sugerencias/view.ctp:51
+msgid "New Sugerencia"
+msgstr ""
+
+#: /views/sugerencias/view.ctp:2
+msgid "Sugerencia"
+msgstr ""
+
+#: /views/sugerencias/view.ctp:9
+msgid "Asunto"
+msgstr ""
+
+#: /views/sugerencias/view.ctp:14
+msgid "Mensaje"
+msgstr ""
+
+#: /views/sugerencias/view.ctp:19
+msgid "Remitente"
+msgstr ""
+
+#: /views/sugerencias/view.ctp:29
+msgid "IP"
+msgstr ""
+
+#: /views/sugerencias/view.ctp:39
+msgid "Leido"
+msgstr ""
+
+#: /views/sugerencias/view.ctp:49
+msgid "Delete Sugerencia"
+msgstr ""
+
+#: /views/tipodocs/add.ctp:4
+msgid "Add Tipodoc"
+msgstr ""
+
+#: /views/tipodocs/edit.ctp:4
+#: /views/tipodocs/view.ctp:23
+msgid "Edit Tipodoc"
+msgstr ""
+
+#: /views/tipodocs/index.ctp:2
+msgid "Tipodocs"
+msgstr ""
+
+#: /views/tipodocs/view.ctp:24
+msgid "Delete Tipodoc"
+msgstr ""
+
+#: /views/tipodocs/view.ctp:32
+msgid "Related Referentes"
+msgstr ""
+
+#: /views/tipodocs/view.ctp:38
+msgid "Tipodoc Id"
+msgstr ""
+
+#: /views/tipoinstits/add.ctp:4
+msgid "Add Tipoinstit"
+msgstr ""
+
+#: /views/tipoinstits/edit.ctp:4
+#: /views/tipoinstits/view.ctp:23
+msgid "Edit Tipoinstit"
+msgstr ""
+
+#: /views/tipoinstits/index.ctp:2
+msgid "Tipoinstits"
+msgstr ""
+
+#: /views/tipoinstits/view.ctp:2
+msgid "Tipoinstit"
+msgstr ""
+
+#: /views/tipoinstits/view.ctp:24
+msgid "Delete Tipoinstit"
+msgstr ""
+
+#: /views/titulos/add.ctp:4
+#: /views/titulos/edit.ctp:4
+#: /views/titulos/index.ctp:61
+#: /views/titulos/view.ctp:31
+msgid "Nuevo Título"
+msgstr ""
+
+#: /views/titulos/add.ctp:21
+#: /views/titulos/edit.ctp:23
+#: /views/titulos/view.ctp:30
+msgid "Listar Títulos"
+msgstr ""
+
+#: /views/titulos/index.ctp:2
+msgid "Títulos"
+msgstr ""
+
+#: /views/titulos/view.ctp:2
+msgid "Titulo"
+msgstr ""
+
+#: /views/titulos/view.ctp:14
+msgid "Marco de referencia"
+msgstr ""
+
+#: /views/users/add.ctp:35
+#: /views/users/edit.ctp:64
+#: /views/users/view.ctp:35
+msgid "List Users"
+msgstr ""
+
+#: /views/users/listado_usuarios.ctp:2
+msgid "Users"
+msgstr ""
+
+#: /views/users/listado_usuarios.ctp:54
+#: /views/users/view.ctp:36
+msgid "New User"
+msgstr ""
+
+#: /views/users/view.ctp:2
+msgid "User"
+msgstr ""
+
+#: /views/users/view.ctp:19
+msgid "Apellido"
+msgstr ""
+
+#: /views/users/view.ctp:24
+msgid "Password"
+msgstr ""
+
+#: /views/users/view.ctp:33
+msgid "Edit User"
+msgstr ""
+
+#: /views/users/view.ctp:34
+msgid "Delete User"
+msgstr ""
+
+#: /webroot/test.php:99
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+

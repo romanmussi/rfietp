@@ -1,0 +1,113 @@
+.status { 
+	color: #FF0000;
+	white-space: nowrap;
+}
+
+.control_panel {
+    clear: none;
+    float: right;
+    width: 10%;
+}
+
+.spell_container {
+    padding-left: 0px;
+}
+.suggestion_box {
+	background-color: #F1F7FF;
+	border: 1px solid #3A92FF;
+	position: absolute;
+	padding: 0px;
+	text-align: left;
+	margin-left: 1px;
+}
+.suggestion {
+	cursor: pointer;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 10px;
+	color: #666666;
+	font-weight:bold;
+	padding:4px;
+}
+.suggestion_hover {
+	cursor: pointer;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 10px;
+	color: #333333;
+	font-weight:bold;
+	padding-bottom:3px;
+	background:#FDFEFF;
+	padding:4px;
+}
+
+
+
+
+.corrected_word
+{
+	color: #005500;
+}
+
+.addtoDictionary {
+	border-top: 1px solid #3A92FF;
+	background-color:  #DAEBFF;
+	cursor: pointer;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 10px;
+	color: #0A65D6;
+	padding:4px;
+}
+.addtoDictionary_hover {
+	border-top: 1px solid #3A92FF;
+	background-color:  #C5E0FF;
+	cursor: pointer;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 10px;
+	color: #003C87;
+	padding:4px;
+}
+.edit_box {
+	background-color: #FFFFFF;
+	color: #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 10pt;
+        min-height: 15px !important;
+	border: 1px solid #BBBBBB;
+	overflow: auto;
+        clear: none;
+        padding: 1px 2px 3px 1px;
+}
+.text_box {
+	background-color: #FFFFFF;
+	color: #000000;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 11px;
+}
+.highlight {
+	color: #FF0000;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 10pt;
+	text-decoration: underline;
+	cursor: help;
+}
+.no_misspellings {
+	color: #009933;
+}
+.check_spelling {
+	color: #0066CC;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.resume_editing {
+	color: #009933;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.customInsertAdd{
+	border: 1px solid #999999;
+	font-size:10px;
+}
+.customInsertText{
+	border: 1px solid #999999;
+	width:80px;
+	font-size:10px;
+}

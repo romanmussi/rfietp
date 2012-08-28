@@ -1,0 +1,497 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+TH{
+    border-bottom: 1px solid black;
+}
+
+/* General Style Info */
+body {
+    color: #000000;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size:10pt;
+    margin: 0;
+    background-color:#FFFFFF;
+    overflow-x: hidden;
+}
+p {
+    padding-bottom: 0.8em;
+}
+a, a:visited, a:active {
+    color: #003d4c;
+    font-weight: bold;
+    outline: none;
+    text-decoration: none;
+}
+a:hover {
+    color: #003d4c;
+    text-decoration:none;
+}
+a img {
+    border:none;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 12pt;
+    color: #045FB4;
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    padding-top: 0.4em;
+    margin-top: 0.3em;
+    margin-right: 0;
+    margin-bottom: 0.3em;
+    margin-left: 0;
+}
+
+h2 {
+    font-size: 11pt;
+    color: #045FB4;
+    font-weight: bold;
+    font-family:Arial, Helvetica, sans-serif;
+    padding-top: 0.4em;
+    margin-top: 0.3em;
+    margin-right: 0;
+    margin-bottom: 0.3em;
+    margin-left: 0;
+}
+
+/* estructura */
+
+.dato_instit {
+    float:left;
+    padding: 3px 10px 10px;
+}
+
+.dato_instit label {
+    font-weight: bold;
+}
+
+#cuerpo {
+    clear:both;
+    float: none;
+    background-color: #FFFFFF;
+    /*width:1800px;*/
+}
+#col_izq {
+    float: left;
+    width: 240px;
+    border: 1px solid #000000;
+    margin:0;
+    /*padding: 14px 0 0;*/
+}
+
+#col_izq select {
+    width:160px;
+    font-size:8pt;
+}
+
+#col_der {
+    /*float: left;*/
+    border: 1px solid #000000;
+    border-left: none;
+    margin:0;
+    padding:0;
+    overflow: auto;
+    /*width: 84%;*/
+}
+
+.row_header {
+    height: 20px;
+    clear: both;
+    width: 1500px;
+}
+
+.row_header .ciclo {
+    width: 200px;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.planes_izq {
+    border-bottom:1px solid #000000;
+    font-size:7pt;
+    height:75px;
+}
+
+.planes_izq > A{
+    position: absolute;
+    background-color: white;
+    padding-right: 20px;
+    padding-left: 5px;
+}
+
+.table_planes_der {
+    border-bottom: 1px solid #000000;
+    min-width: 99% !important;
+}
+
+.tr_header {
+    height: 20px;
+    max-width: 1500px !important;
+}
+
+.table_planes_der th {
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.tr_plan {
+    height: 74px;
+}
+
+.td_ciclos {
+    max-width: 800px !important;
+    margin: 0 10px 17px;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+    border-right:1px solid;
+}
+
+.td_last{
+    border-right: none;
+}
+
+.col_ciclos .title {
+    font-weight: bold;
+    font-size: 11px;
+    clear: both;
+
+}
+
+#editor_anio {
+    
+}
+
+.instit_name {
+    color: black;
+    font-weight: bold;
+    margin: 0px 4px 0px 4px;
+}
+
+.instit_atributte {
+    margin: 0px 4px 0px 4px;
+    display: inline;
+    color: #6E6E6E;
+}
+
+#datos_instit {
+    float: left;
+}
+#volver {
+    padding-right:4px;
+    float:right;
+}
+
+.plan_ok_button {
+    float:right;
+    margin-right:5px;
+    padding:3px 3px;
+    border:1px solid black;
+    background:#cecece;
+    font-weight: bold;
+}
+
+
+/**** Arreglador de Años *****/
+#arregladorAnios {
+    padding-bottom: 0.5em;
+    font-size: 9pt;
+}
+
+
+
+/*
+ELEMENTO GRAFICADOR DE PLANES
+*/
+
+.eventHeading{
+	/* The colorful year headings at the top */
+	font-size:1em;
+	text-align:center;
+}
+
+/* Three color styles for the headings: */
+
+.eventHeading.chreme{
+	background:#FBF7F0;
+	border:1px solid #EEE4D4;
+	color:#A78B5F;
+}
+
+.eventHeading.blue{
+	background:#E6F8FF;
+	border:1px solid #D4E6EE;
+	color:#548DA5;
+}
+
+.eventHeading.green{
+	border:1px solid #666666;
+	color:#333333;
+}
+
+#timelineLimiter{
+	/* Hides the overflowing timeline */
+	overflow:hidden;
+	padding-top:10px;
+	margin:10px 0;
+        border:1px solid #C9E6C1;
+        height:120px;
+        width: 350px;
+}
+
+.timelineLimiterMini{
+	/* Hides the overflowing timeline */
+	overflow:hidden;
+	border:1px solid #D8EFD1;
+        height:45px;
+        font-size: 8pt;
+        float:left;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 5px;
+        clear: none;
+}
+
+.green{
+	/* Hides the overflowing timeline */
+	background:#F2FFEF none repeat scroll 0 0;
+        border:2px solid green !important;
+}
+
+.yellow{
+	/* Hides the overflowing timeline */
+	background:#FFFFDF none repeat scroll 0 0;
+        border:1px solid #FEFF8F !important;
+}
+
+.red{
+	/* Hides the overflowing timeline */
+	background:#FFDFDF none repeat scroll 0 0;
+        border:1px solid #DF8B8B !important;
+}
+
+.edades {
+
+}
+.edades span{
+	/* The individual events */
+	border:1px solid #EEEEEE;
+	list-style:none;
+	margin:2px;
+	padding:4px 7px;
+        width: 40px;
+}
+
+.edadesList{
+	margin:0px 0px 0px 0px !important;
+        padding-bottom: 40px;
+}
+
+.edadesList li{
+	/* The individual events */
+	background:#F0F7FC;
+	border:1px solid #EEEEEE;
+	list-style:none;
+	margin:2px;
+	padding:4px 7px;
+        float:left;
+        display:inline;
+        width: 40px;
+}
+
+.event{
+	/* Contains the event header and body list */
+	float:left;
+	padding:0px;
+	text-align:left;
+	margin:0 0px 50px;
+        clear:none;
+}
+
+.eventList{
+    margin:0px 0px 0px 0px !important;
+}
+
+.eventList li{
+	/* The individual events */
+	
+	list-style:none;
+	margin:2px;
+	padding: 3px 4px;
+        float:left;
+        display:inline;
+        font-size: 9pt;
+        text-align: center;
+
+	/* CSS3 rounded corners */
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+}
+
+.vacio{
+     width:100%;
+     border: 1px #D7D7D7 dotted !important;
+     padding: 3px
+}
+
+.vacio p{
+    margin-top:15px;
+    color:#D7D7D7;
+    font-size:10pt;
+}
+
+
+.message{
+    color: red;
+    font-weight: bolder;
+    background-color: #FFC0CB;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    border: 3px dotted;
+}
+
+.message_exito {
+    color: green;
+    font-weight: bolder;
+    background-color: #BAFFB2;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    border: 3px dotted;
+}
+
+
+
+/*** Estilos de etapas (graficadorAnios) ***/
+
+.ciclo-basico{
+    color: #4583B9;
+    
+}
+div.ciclo-basico{
+    border-bottom:1px solid #4583B9;
+}
+
+li.ciclo-basico{
+    border:1px solid #4583B9;
+}
+
+.ciclo-superior{
+    color: #A0645C;
+}
+
+div.ciclo-superior{
+    border-bottom:1px solid #A0645C;
+}
+
+li.ciclo-superior{
+    border:1px solid #A0645C;
+}
+
+.egb3{
+    color: #80061A;
+}
+
+div.egb3 {
+    border-bottom:1px solid #80061A;
+}
+
+li.egb3{
+    border:1px solid #80061A;
+}
+
+
+
+.media{
+    color: #000000;
+}
+
+div.media {
+    border-bottom:1px solid #000000;
+}
+
+li.media{
+    border:1px solid #000000;
+}
+
+
+.polimodal{
+    color: #2D8B56;
+}
+
+div.polimodal {
+    border-bottom:1px solid #2D8B56;
+}
+
+li.polimodal{
+    border:1px solid #2D8B56;
+}
+
+.ano-superior-polimodal{
+    color: #2D8B56;
+}
+
+div.ano-superior-polimodal {
+    border-bottom:1px solid #2D8B56;
+}
+
+li.ano-superior-polimodal{
+    border:1px solid #2D8B56;
+}
+
+.secundario-no-ciclado{
+    color: #2D8B56;
+}
+
+div.secundario-no-ciclado {
+    border-bottom:1px solid #2D8B56;
+}
+
+li.secundario-no-ciclado {
+    border:1px solid #2D8B56;
+}
+
+.ciclo-orientado{
+    color: #2D8B56;
+}
+
+div.ciclo-orientado {
+    border-bottom:1px solid #2D8B56;
+}
+
+li.ciclo-orientado {
+    border:1px solid #2D8B56;
+}
+
+
+.primer-ciclo{
+    color: #2D8B56;
+}
+
+div.primer-ciclo {
+    border-bottom:1px solid #2D8B56;
+}
+
+li.primer-ciclo {
+    border:1px solid #2D8B56;
+}
+
+.segundo-ciclo{
+    color: #2D8B56;
+}
+
+div.segundo-ciclo {
+    border-bottom:1px solid #2D8B56;
+}
+
+li.segundo-ciclo {
+    border:1px solid #2D8B56;
+}

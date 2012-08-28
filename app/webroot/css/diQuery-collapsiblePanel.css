@@ -1,0 +1,26 @@
+.collapsibleContainer
+{
+    border: solid 1px #9BB5C1;
+
+}
+
+.collapsibleContainerTitle
+{
+    cursor:pointer;
+}
+
+.collapsibleContainerTitle div {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	background:#5C9CCC url(../img/fondo_panel_collapsible.png) repeat-x scroll 50% 50%;
+	border:1px solid #4297D7;
+	color:#FFFFFF;
+	font-weight:bold;
+}
+
+.collapsibleContainerContent
+{
+    padding: 10px;
+}
+

@@ -1,0 +1,125 @@
+.datos-anios input[type=text]{
+    margin: 0px;
+    padding: 0px;
+}
+
+.anio-ciclo-dato select{
+    width: 60px;
+    font-size: 8pt;
+}
+
+.estructura-plan{
+	background: url(images/edad_teorica_fondo.png) repeat-y;
+	margin-left: 90px;
+	float:left;
+}
+
+.estructura-plan  span{
+	width: 128px;
+	float: left;
+	text-align: center;
+}
+
+
+.etapa{
+	float: left;
+	border-bottom: solid thin black;
+}
+
+.etapa-anios{
+    border:thin solid;
+    height:19px;
+    padding:0;
+}
+
+
+.estructura-plan H1, .estructura-plan H2{
+	font-size: 10pt;
+	text-align: center;
+	background-color: white;
+	margin: 0;
+}
+
+.estructura-plan H2{
+	margin: 10px 0px 0px 0px;
+        color: black;
+}
+
+
+
+.mover-1{
+	margin-left: 64px;
+}
+
+.mover-2{
+	margin-left: 128px;
+}
+
+.izquierda-1{
+	margin-left: -64px;
+}
+
+.izquierda-2{
+	margin-left: -128px;
+}
+
+.clear{
+	float: left;
+	clear: both;
+}
+
+.edad-teorica{
+	font-size: 8pt;
+}
+
+.datos-anios{
+	display: block;
+	clear: both;
+}
+
+.anio-dato{
+	font-size: 10pt;
+        clear: both;
+}
+
+.anio-dato-title{
+    clear: both;
+}
+
+.anio-ciclo{
+}
+
+.anio-matricula{
+	font-size: 12pt !important;
+        
+}
+
+.anio-seccion{
+}
+
+.anio-hstaller{
+}
+
+
+.anio-ciclo-dato{
+	float:left;
+        font-size:14pt;
+        margin-bottom:-20px;
+        padding-top:13px;
+}
+
+
+
+
+/*----------------------------------------
+    DETALLE VISUAL POR CICLO
+    ---------------------------------------*/
+.ciclo-basico H2{
+	background-color: pink;
+	border: thin solid red;
+}
+
+.ciclo-superior H2{
+	background-color: pink;
+	border: thin solid red;
+}

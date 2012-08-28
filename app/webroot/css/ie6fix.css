@@ -1,0 +1,30 @@
+.horizontal-shadetabs{
+    position: static !important;
+    background-color: pink;
+}
+
+.vertical-shadetabs li{
+margin: 0px;
+}
+
+.vertical-shadetabs li a{
+margin: 0px;
+}
+
+
+.horizontal-shadetabs a {
+    display: block;
+    height: 28px;
+}
+
+.ciclos-container{
+    height: 350px;
+}
+
+#formPlanesViewFp .input {
+    width: 130px !important;
+}
+
+#formPlanesViewFp select {
+    width:130px !important;
+}

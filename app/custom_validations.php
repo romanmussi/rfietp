@@ -1,0 +1,6 @@
+<? 
+
+
+class RegetpValidation extends Object {
+	
+}

@@ -1,0 +1,1 @@
+UPDATE planes SET nombre = TRIM(nombre) WHERE nombre <> TRIM(nombre);
