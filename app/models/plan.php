@@ -142,10 +142,14 @@ class Plan extends AppModel {
         'rule'   => 'hs_para_fp_it',
         'message'=>'Debe cargar una duracion en horas para las ofertas Formación Profesional e Itinerario Formativo' 
         ),
+      'hs_para_sec' => array(
+        'rule'   => 'hs_para_sec',
+        'message'=>'La oferta Secundaria Técnica no puede tener una duracion en horas' 
+        ),
       'number' => array(
         'rule' => VALID_NUMBER,
         'allowEmpty' => true,
-        'message' => 'Debe ingresar un valor numérico para las horas.'
+        'message' => 'Debe ingresar un valor numérico para las horas'
       ),
       'between' => array(
         'rule' => array( 'between', '0', '9' ),
@@ -226,6 +230,15 @@ class Plan extends AppModel {
   function hs_para_fp_it() {
     if($this->data['Plan']['oferta_id'] == ITINERARIO_ID || $this->data['Plan']['oferta_id'] == FP_ID){
       if(empty($this->data['Plan']['duracion_hs'])){
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  function hs_para_sec() {
+    if($this->data['Plan']['oferta_id'] == SEC_TEC_ID){
+      if(!empty($this->data['Plan']['duracion_hs'])){
         return false;
       }
     }

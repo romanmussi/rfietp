@@ -8,9 +8,11 @@ function oferta_change(){
 
   if (jQuery('#PlanOfertaId :selected').val() != 3 && jQuery('#PlanOfertaId').val() != 3) {
       jQuery('#PlanEstructura').hide();
+      jQuery('#div_hs').show();
   }
   else {
       jQuery('#PlanEstructura').show();
+      jQuery('#div_hs').hide();
   }
 
   //si es FP oculto años

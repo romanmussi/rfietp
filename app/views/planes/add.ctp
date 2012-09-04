@@ -138,7 +138,7 @@ $cue_instit = $instit['cue'].$anexo;
         
                 <?php
 		echo "<br>Duración:";
-		echo $form->input('duracion_hs',array('label'=>'- Horas','maxlength'=>9));
+		echo $form->input('duracion_hs',array('label'=>'- Horas','maxlength'=>9, 'div'=>array('id'=>"div_hs")));
 		//echo $form->input('duracion_semanas',array('label'=>'- Semanas','maxlength'=>9));
 		echo $form->input('duracion_anios',array('label'=>' - Años','maxlength'=>9, 'div'=>array('id'=>"div_anios")));
 
