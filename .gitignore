@@ -29,3 +29,4 @@ app/config/config.email.php
 Icon?
 ehthumbs.db
 Thumbs.db
+/nbproject/private/

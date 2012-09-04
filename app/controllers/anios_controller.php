@@ -76,7 +76,7 @@ class AniosController extends AppController {
         function save($plan_id = null,$duracion_hs = null){
             if (!empty($this->data)) {
 //                    $this->Anio->create();
-                debug($this->data);
+//                debug($this->data);
                     if ($this->Anio->save($this->data)) {
                         $this->Session->setFlash(__('Se ha guardado un nuevo año', true));
                         $this->redirect('/planes/view/'.$this->data['Anio']['plan_id']);

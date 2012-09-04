@@ -23,7 +23,7 @@ class AclprepController extends AclAppController {
 
     function admin_buildAcos() {
         if (!Configure::read('debug')) {
-            return $this->_stop();
+            //return $this->_stop(); no hace falta
         }
         $log = array();
 

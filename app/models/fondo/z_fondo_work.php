@@ -36,7 +36,7 @@ class ZFondoWork extends AppModel {
          * @param boolean $borrarDatosFondo  default en false
          * @return integer cant de registros migrados
          */
-        function migrar($cosasMigrar = 'ij', $registrosATraer = 0, $borrarDatosFondo = false) {
+        function migrar($cosasMigrar = 'ij', $registrosATraer = 0) {
             // marco los jurisdiccionales como CUE checked = 1
             if (!$this->updateAll(array('ZFondoWork.cue_checked'=>1), array('ZFondoWork.tipo'=>'j'))){
                 debug("no se pudo pone los jurisdiccionales como cue_checked = 1");
@@ -74,13 +74,7 @@ class ZFondoWork extends AppModel {
                 return -2;
             }
             
-            if ($borrarDatosFondo == true) {
-                // PELIGRO!!! (commented by Pablo)
-                //$this->query('truncate fondos');
-                //$this->query('truncate fondos_lineas_de_acciones');
-                //$consoleText .= "Borre todo lo que habia en fondo.<br />";
-            }
-
+       
             $consoleText = "Chequeando que existan las lineas de accion.....<br />";
             //algunas verificaciones previas
             $lineaChecked = $this->__verificarQueLasLineasExistanEnFondo($aLineasDeAcciones, $temps[0]['ZFondoWork']);
