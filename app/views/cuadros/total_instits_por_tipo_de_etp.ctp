@@ -102,7 +102,7 @@
             <th width="10%" class="head_select" align="center">Secundario</th>
             <th width="10%" class="head_select" align="center">Superior</th>
             <th width="10%" class="head_select" align="center">Formación Profesional</th>
-            <th width="10%" class="head_select" align="center">Inst. con<br />Programa<br />de ETP</th>
+            <th width="10%" class="head_select" align="center">Inst. <br />Otros Niveles / Modalidades</th>
         </tr>
     </thead>
 
