@@ -323,6 +323,9 @@ class AclprepController extends AclAppController {
     }
 
     function assignPermissions() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         // Desarrolladores
         $this->Acl->allow('desarrolladores', 'controllers');
 
@@ -417,11 +420,13 @@ class AclprepController extends AclAppController {
         //let them use (read) aux, but nothing else!
         //$this->Acl->allow('users', 'Aux_Models','read');
 
-        die('done');
+        echo 'done';
     }
 
     function assignPermissions1Dot6() {
-
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         // Administradores
         // modificado 15/09/2010 administradores pasan a usar ALLOWS
         /*$this->Acl->deny('administradores',  'Sugerencias/index');
@@ -488,11 +493,13 @@ class AclprepController extends AclAppController {
         $this->Acl->allow('usuarios', 'Instits/search_form');
         $this->Acl->allow('usuarios', 'Instits/old_search_form');
 
-        die('done 1.6');
+        echo 'done 1.6';
     }
 
     function assignPermissions1Dot6Dot2() {
-
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         // Administradores
         echo 'administradores => Anios/addSecTec<br />';
         $this->Acl->allow('administradores', 'Anios/addSecTec');
@@ -501,19 +508,25 @@ class AclprepController extends AclAppController {
         echo 'editores => Anios/addSecTec<br />';
         $this->Acl->allow('editores', 'Anios/addSecTec');
 
-        die('done 1.6.2');
+        echo 'done 1.6.2';
     }
 
     function assignPermissions1Dot6Dot3() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         // Usuarios
         $this->Acl->allow('usuarios', 'Planes/view_fp');
         $this->Acl->allow('usuarios', 'Planes/view_it_sec_sup');
         $this->Acl->allow('usuarios', 'Planes/index_clasico');
 
-        die('done 1.6.3');
+        echo 'done 1.6.3';
     }
 
     function assignPermissions1Dot6Dot4() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         // Administradores
         $this->Acl->allow('administradores', 'Titulos/corrector_de_planes');
         $this->Acl->allow('administradores', 'Titulos/fusionar');
@@ -523,10 +536,13 @@ class AclprepController extends AclAppController {
         $this->Acl->allow('usuarios', 'Titulos/ajax_search');
         $this->Acl->allow('usuarios', 'Titulos/ajax_similars');
 
-        die('done 1.6.4');
+        echo('done 1.6.4');
     }
 
     function assignPermissions1Dot7() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         // Usuarios
         $this->Acl->allow('usuarios', 'Titulos/ajax_view_planes_asociados');
        /* $this->Acl->allow('usuarios', 'Titulos/view');
@@ -543,10 +559,13 @@ class AclprepController extends AclAppController {
 
 
 
-        die('done 1.7');
+        echo 'done 1.7';
     }
     
     function assignPermissions1Dot7Dot1() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         // Usuarios
         $this->Acl->allow('usuarios', 'Planes/ajax_similars');
         
@@ -562,24 +581,30 @@ class AclprepController extends AclAppController {
         $this->Acl->allow('ministros', 'Fondos/index_x_jurisdiccion');
         
 
-        die('done 1.7.1');
+        echo 'done 1.7.1';
     }
     
     function assignPermissions1Dot7Dot6() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         $this->Acl->allow('administradores', 'Modalidades/index');
         $this->Acl->allow('administradores', 'Modalidades/add');
         $this->Acl->allow('administradores', 'Modalidades/edit');
         $this->Acl->allow('administradores', 'Modalidades/view');
         $this->Acl->allow('administradores', 'Modalidades/delete');
 
-        die('done 1.7.6');
+        echo 'done 1.7.6';
     }
     
     function assignPermissions1Dot7Dot11() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
         $this->Acl->allow('editores', 'Planes/index_x_nombre');
         $this->Acl->allow('administradores', 'Planes/index_x_nombre');
 
-        die('done 1.7.11');
+        echo 'done 1.7.11';
     }
 
 
@@ -605,7 +630,7 @@ class AclprepController extends AclAppController {
 //nor can they edit or delete main models (until we assign that on an individual basis)
         echo $this->Acl->check('users', 'Items', 'delete');
         echo $this->Acl->check('users', 'Items', 'update');
-        die('done');
+        echo 'done';
     }
 }
 ?>
