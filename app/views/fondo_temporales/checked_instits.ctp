@@ -238,9 +238,8 @@ echo $javascript->link('scriptaculous-js-1.8.3/src/scriptaculous');
             var validar = $F('validar');
             var cantFondosExcel = $F('cantFondosExcel');
             var limit = $F('limit');
-            var borrar = $F('borrar');
             
-            var urlCompleta =  url +'/'+validar+"/"+cantFondosExcel+"/"+limit+"/"+borrar;
+            var urlCompleta =  url +'/'+validar+"/"+cantFondosExcel+"/"+limit;
 
             window.location = urlCompleta;
             return false;
