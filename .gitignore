@@ -5,6 +5,7 @@ app/tmp/cache/*
 app/tmp/tests/*
 app/config/database.php
 app/config/config.email.php
+nbproject/*
 !empty
 
 
@@ -31,3 +32,4 @@ app/config/config.email.php
 Icon?
 ehthumbs.db
 Thumbs.db
+/nbproject/private/

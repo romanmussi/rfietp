@@ -14,11 +14,9 @@
                 
                 function mostrar_ocultar_nombre_dependencia(){
                     
-                    var $nombreDep = jQuery('#InstitNombreDep').parent('div'),
-                        depNacionalId = <?php echo DEPENDENCIA_NACIONAL ?>;
-                    console.info("cambio "+depNacionalId);
-                    console.info("es "+ $dependenciaId.val());
-                    if ( $dependenciaId.val() == depNacionalId ) {
+                    var $nombreDep = jQuery('#InstitNombreDep').parent('div');
+ 
+                    if ( $dependenciaId.val() != <?php echo DEPENDENCIA_PROVINCIAL ?> ) {
                         $nombreDep.show();
                     } else {
                         $nombreDep.hide();

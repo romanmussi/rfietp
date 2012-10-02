@@ -189,7 +189,7 @@ echo $javascript->link('scriptaculous-js-1.8.3/src/scriptaculous');
 
         <li><?php echo $html->link(__('Ejecutar Validacion de Totales', true), array('controller'=>'fondo_temporales','action'=>'validar_totales'));?></li>
 
-        <li><?php echo $html->link(__('Generar Reporte de Errores', true), array('controller'=>'fondo_temporales','action'=>'error_report'));?></li>
+        <li><?php echo $html->link(__('Generar Reporte de Errores', true), array('controller'=>'fondo_temporales','action'=>'error_report_txt'));?></li>
 
         <li><?php echo $html->link(__('Generar Reporte de Observaciones Finales', true), array('controller'=>'fondo_temporales','action'=>'observacion_report'));?></li>
     </ul>
@@ -226,17 +226,8 @@ echo $javascript->link('scriptaculous-js-1.8.3/src/scriptaculous');
                 <input id="limit" name="limit"  value="0">
             </span>
         </p>
-        <p>
-            Borrar datos existentes en "fondos" y "fondos_lineas_de_acciones". Poner 1 (borra) o 0 (no borra)
-            <br>
-            <span>
-                <select id="borrar" name="borrar" >
-                    <option value="0" selected>NO Borra</option>
-                    <option value="1">Borrar (hace truncate de "fondos")</option>
-                </select>
-            </span>
-        </p>
         <input type="submit" value="RUN MIGRATOR!">
+        <br />
     </form>
     <script type="text/javascript">
 

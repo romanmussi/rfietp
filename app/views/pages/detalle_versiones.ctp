@@ -1,3 +1,13 @@
+<h1>RFIETP - Novedades de la versión 1.7.13</h1>
+<br>
+<ul>
+	<!--<li>Se han publicado los Planes de Mejora del 1° semestre de 2012</li>-->
+        <li>Se agregaron y optimizaron validaciones para la carga de Instituciones y Oferta por parte de la Unidad de Información</li>
+        <li>Se modificaron campos y opciones al momento de migrar Planes de Mejora</li>
+        <li>Se cambió el título de una columna de los Cuadros</li>
+        <li>Se modificó el actualizar ACOS, ya no necesita la aplicación en modo "debug"</li>
+</ul>
+
 <h1>RFIETP - Novedades de la versión 1.7.12</h1>
 <br>
 <ul>
