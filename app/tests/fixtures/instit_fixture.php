@@ -44,6 +44,7 @@ class InstitFixture extends CakeTestFixture {
           'etp_estado_id' =>array	('type' => 'integer', 	'null' => false, 	'default' => '0'),
           'claseinstit_id' =>array	('type' => 'integer', 	'null' => false, 	'default' => '0'),
           'orientacion_id' =>array	('type' => 'integer', 	'null' => false, 	'default' => '0'),
+          'modalidad_id' =>array	('type' => 'integer', 	'null' => false, 	'default' => '0'),
 
    );
     
@@ -77,6 +78,7 @@ class InstitFixture extends CakeTestFixture {
         //'modified' => "'2009-08-13 12:17:33'", 
         'localidad_id' => 1,
         'departamento_id' => 1,'lugar' => "''",
+        'modalidad_id' => 1,
         ),
         array (
         'id' => 2, 
@@ -106,6 +108,7 @@ class InstitFixture extends CakeTestFixture {
         //'modified' => "'2009-08-13 12:17:33'", 
         'localidad_id' => 1,
         'departamento_id' => 1,'lugar' => "''",
+        'modalidad_id' => 1,
         ),
         array (
         'id' => 3, 
@@ -135,6 +138,7 @@ class InstitFixture extends CakeTestFixture {
         //'modified' => "'2009-08-13 12:17:33'", 
         'localidad_id' => 2,
         'departamento_id' => 1,'lugar' => "''",
+        'modalidad_id' => 1,
         ),
          array (
         'id' => 4, 
@@ -164,6 +168,7 @@ class InstitFixture extends CakeTestFixture {
         //'modified' => "'2009-08-13 12:17:33'", 
         'localidad_id' => 1,
         'departamento_id' => 1,'lugar' => "''",
+        'modalidad_id' => 1,
         ),
          array (
         'id' => 5,
@@ -193,6 +198,7 @@ class InstitFixture extends CakeTestFixture {
         //'modified' => "'2009-08-13 12:17:33'",
         'localidad_id' => 1,
         'departamento_id' => 1,'lugar' => "''",
+        'modalidad_id' => 1,
         ),
          array (
         'id' => 6,
@@ -222,6 +228,7 @@ class InstitFixture extends CakeTestFixture {
         //'modified' => "'2009-08-13 12:17:33'",
         'localidad_id' => 1,
         'departamento_id' => 1,'lugar' => "''",
+        'modalidad_id' => 1,
         )
     );
 

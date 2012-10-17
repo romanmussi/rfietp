@@ -106,6 +106,7 @@ class InstitTestCase extends CakeTestCase {
                 'etp_estado_id' => 0,
                 'claseinstit_id' => 0,
                 'orientacion_id' => 0,
+                'modalidad_id' => 1,
             );
             
             //$this->Instit->create();
@@ -259,8 +260,8 @@ class InstitTestCase extends CakeTestCase {
     
 
     function testFindConNombreCompleto(){
-        $nombre1 = 'ESCUELA DE EDUCACION TECNICA (E.E.T.) Nº 06  "FERNANDO FADER TEST"';
-        $nombre2 = 'ESCUELA DE EDUCACION TECNICA (E.E.T.) Nº 06  "FERNANDO FADER 2"';
+        $nombre1 = 'ESCUELA DE EDUCACION TECNICA (E.E.T.) N° 06  "FERNANDO FADER TEST"';
+        $nombre2 = 'ESCUELA DE EDUCACION TECNICA (E.E.T.) N° 06  "FERNANDO FADER 2"';
         
         $this->Instit->recursive = 0;
         $iii = $this->Instit->find('first', array(
@@ -285,25 +286,25 @@ class InstitTestCase extends CakeTestCase {
         $this->Instit->id = 1;
         $rta = $this->Instit->dameSumatoriaDeMatriculasPorOferta();
 
-        $expected = Array(
-            'array_de_ofertas' => Array(
-                0 => Array(
+        $expected = array(
+            'array_de_ofertas' => array(
+                0 => array(
                         'id' => 1,
                         'abrev' => 'FP'
                     )
                 ),
-             'array_de_ciclos' => Array(
+             'array_de_ciclos' => array(
                 0 => 2010,
                 1 => 2009,
                  ),
-            'totales' => Array(
-                2010 => Array(
-                    'FP' => Array(
+            'totales' => array(
+                2010 => array(
+                    'FP' => array(
                             'total_matricula' => 2
                         )
                 ),
-                2009 => Array(
-                    'FP' => Array(
+                2009 => array(
+                    'FP' => array(
                             'total_matricula' => 5
                         )
                 )

@@ -2,7 +2,6 @@
 
 class PlanEstadoFixture  extends CakeTestFixture {
     var $name = 'PlanEstado';
-    var $import = array('model' => 'PlanEstado', 'records' => true);
     
     var $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 11, 'key' => 'primary'),

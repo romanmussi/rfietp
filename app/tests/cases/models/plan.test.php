@@ -138,9 +138,10 @@ class PlanTestCase extends CakeTestCase {
                     )
                 );
         $aniosQueTieneEsteInstit = array(
-                                         2009, 2009,// anios del ultimo ciclo del Plan id = 2
+                                         2006, 2009,// anios del ultimo ciclo del Plan id = 2
                                          2007,      // unico anio del ultimo ciclo del Plan id = 3
             );
+        
         foreach ($is2 as $i) {
             foreach ($i['Anio'] as $a ) {
                 $c = $a['ciclo_id'];

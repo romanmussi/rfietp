@@ -18,6 +18,8 @@ class PlanFixture  extends CakeTestFixture {
             'ciclo_alta'	=> array('type' => 'integer', 'null' => false, 'default' => 0),
             'titulo_id'		=> array('type' => 'integer', 'null' => false, 'default' => 0),
             'estructura_plan_id'=> array('type' => 'integer', 'null' => false, 'default' => 0),
+            'plan_turno_id'	=> array('type' => 'integer', 'null' => false, 'default' => 0),
+            'plan_estado_id'	=> array('type' => 'integer', 'null' => false, 'default' => 0),
     );
 
 
@@ -37,6 +39,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 0,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
         
             array(
@@ -54,6 +58,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 2,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
             array(
                 'id' 			=> 3,
@@ -70,6 +76,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 0,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
 
 
@@ -88,6 +96,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 2,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
             array(
                 'id' 			=> 5,
@@ -104,6 +114,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 1,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
             array(
                 'id' 			=> 6,
@@ -120,6 +132,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 0,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
          array(
                 'id' 			=> 7,
@@ -136,6 +150,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 0,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
         array(
                 'id' 			=> 8,
@@ -152,6 +168,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2007,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 3,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
 
 
@@ -171,6 +189,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2004,
                 'titulo_id'             => 1,
                 'estructura_plan_id'    => 1,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
          array(
                 'id' 			=> 10,
@@ -187,6 +207,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2005,
                 'titulo_id'             => 2,
                 'estructura_plan_id'    => 3,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
         array(
                 'id' 			=> 11,
@@ -203,6 +225,8 @@ class PlanFixture  extends CakeTestFixture {
                 'ciclo_alta'            => 2008,
                 'titulo_id'             => 55,
                 'estructura_plan_id'    => 2,
+                'plan_turno_id'         => 1,
+                'plan_estado_id'        => 1,
             ),
 
 

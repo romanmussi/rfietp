@@ -2,7 +2,6 @@
 
 class ModalidadFixture  extends CakeTestFixture {
     var $name = 'Modalidad';
-    var $import = array('model' => 'Modalidad', 'records' => true);
     
     var $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 11, 'key' => 'primary'),

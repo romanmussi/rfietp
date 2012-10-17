@@ -15,7 +15,6 @@ if (empty($planes)) {
             if (!empty($plan['Anio'])) {
         ?>
             <div class="plan_item">
-                mbre
                 <table class="tabla_plan" width="100%"border="2" cellpadding="2" cellspacing="0">
                     <caption class="plan_title">
                         <span class="plan_mas_info btn-ir">

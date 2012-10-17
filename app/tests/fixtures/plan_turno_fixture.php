@@ -2,7 +2,6 @@
 
 class PlanTurnoFixture  extends CakeTestFixture {
     var $name = 'PlanTurno';
-    var $import = array('model' => 'PlanTurno', 'records' => true);
     
     var $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 11, 'key' => 'primary'),

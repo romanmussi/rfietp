@@ -8,6 +8,7 @@ class OfertaFixture extends CakeTestFixture {
 		'abrev' => array('type' => 'string', 'null' => false, 'length' => 10),
 		'name' => array('type' => 'string', 'null' => false, 'length' => 30),
 		'indexes' => array('PRIMARY' => array('unique' => true, 'column' => 'id')),
+                'order' => array('type' => 'integer', 'null' => false, 'default' => 0),
 		'tableParameters' => array()
 	);
 
@@ -15,17 +16,20 @@ class OfertaFixture extends CakeTestFixture {
 		array(
 			'id' => 1,
 			'abrev' => 'FP',
-			'name' => 'Formacion Profesional'
+			'name' => 'Formacion Profesional',
+                        'order' => 4,
 		),
                 array(
 			'id' => 2,
 			'abrev' => 'IT',
-			'name' => 'Itinerario'
+			'name' => 'Itinerario',
+                        'order' => 3,
 		),
                 array(
 			'id' => 3,
 			'abrev' => 'SEC TEC',
-			'name' => 'Secundario Tecnico'
+			'name' => 'Secundario Tecnico',
+                        'order' => 1,
 		),
 	);
 }

@@ -128,7 +128,7 @@ class AnioFixture extends CakeTestFixture {
 			'plan_id' => 2,
 			'ciclo_id' => 2009,
 			'anio' => 2,
-			'etapa_id' => 2,
+    			'etapa_id' => 2,
 			'matricula' => 6,
 			'secciones' => 7,
 			'hs_taller' => 8,
