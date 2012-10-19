@@ -138,18 +138,20 @@ class PlanTestCase extends CakeTestCase {
                     )
                 );
         $aniosQueTieneEsteInstit = array(
-                                         2006, 2009,// anios del ultimo ciclo del Plan id = 2
+                                         2009,// anios del ultimo ciclo del Plan id = 2
                                          2007,      // unico anio del ultimo ciclo del Plan id = 3
             );
+        
         
         foreach ($is2 as $i) {
             foreach ($i['Anio'] as $a ) {
                 $c = $a['ciclo_id'];
                 $key = array_search($c, $aniosQueTieneEsteInstit);
-                if ($key !== FALSE) {
+                
+                if ($key !== FALSE || $key==0) {
                     unset($aniosQueTieneEsteInstit[$key]);
                 } else {
-                    $this->fail("el ciclo $c no aparece entre los ciclos que deberia tener esta instit. ¿fixtures outdated? ");
+                    $this->fail("El ciclo $c no aparece entre los ciclos que deberia tener esta instit. ¿fixtures outdated? ");
                 }
             }
         }
