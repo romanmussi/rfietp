@@ -779,7 +779,7 @@ class DepuradoresController extends AppController {
             $plan_nombre = $this->data['FPlan']['plan_nombre'];
         }
         elseif(!empty($this->passedArgs['Plan.plan_nombre'])) {
-            $plan_nombre = $this->passedArgs['Plan.plan_nombre'];
+            $plan_nombre = utf8_decode($this->passedArgs['Plan.plan_nombre']);
             $this->data['FPlan']['plan_nombre'] = $plan_nombre;
         }
 
