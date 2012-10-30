@@ -25,7 +25,7 @@
                     
                     var $nombreDep = jQuery('#InstitNombreDep').parent('div');
  
-                    if ( $dependenciaId.val() != <?php echo DEPENDENCIA_PROVINCIAL ?> ) {
+                    if ( $dependenciaId.val() != '' && $dependenciaId.val() != <?php echo DEPENDENCIA_PROVINCIAL ?> ) {
                         $nombreDep.show();
                     } else {
                         $nombreDep.hide();
@@ -157,7 +157,8 @@
     /**
      *    DEPENDENCIA
      */
-    echo $form->input('dependencia_id', array('label'=>'Tipo de Dependencia'));
+    echo $form->input('dependencia_id', array('label'=>'Tipo de Dependencia',
+						'empty'=>'Seleccione un Tipo de Dependencia'));
     /**
      *    NOMBRE DE LA DEPENDENCIA
      */

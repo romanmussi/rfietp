@@ -404,6 +404,12 @@ class Instit extends AppModel {
 		),
             
                 'dependencia_id' => array(
+		    'notEmpty' => array(
+				'rule' => VALID_NOT_EMPTY,
+				'required' => true,
+				'allowEmpty' => false,
+				'message' => 'Seleccione un Tipo de Dependencia.'
+			),
                     'tipo_dependencia_provincial_y_nombre_dep_vacio' => array(
                         'rule' => array('tipo_dependencia_provincial_y_nombre_dep_vacio'),
                         'message' => 'Si la dependencia es Provincial, el nombre de la dependencia debe estar vacio',
@@ -1100,6 +1106,7 @@ class Instit extends AppModel {
   		if( !empty($this->data['Instit']['nombre']) && 
   			!empty($this->data['Instit']['localidad_id']))
 		{
+
 			$nombre = convertir_para_busqueda_avanzada($this->data['Instit']['nombre']);
 		
 			$conditions = array("lower(nombre)  SIMILAR TO ?" => $nombre,
