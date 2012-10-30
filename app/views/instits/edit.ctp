@@ -97,8 +97,8 @@
     /**
      *    DEPENDENCIA
      */
-    echo $form->input('dependencia_id',array('label'=>'Tipo de Dependencia',
-						'empty'=>'Seleccione un Tipo de Dependencia')));
+    echo $form->input('dependencia_id', array('label'=>'Tipo de Dependencia',
+						'empty'=>'Seleccione un Tipo de Dependencia'));
 
     /**
      *    NOMBRE DE LA DEPENDENCIA
