@@ -22,7 +22,7 @@ class DbMigrationScriptShell extends Shell {
 
             $db = ConnectionManager::getInstance();
             $conn = $db->getDataSource('default');
-            $res = $conn->query('SELECT * FROM version;');
+            $res = $conn->query('SELECT * FROM version ORDER BY id DESC;');
             $current_version = $res[0][0]['version'];
             
             $this->out($current_version);
@@ -30,8 +30,12 @@ class DbMigrationScriptShell extends Shell {
             if (version_compare($user_version, $current_version) == 1) {
                 // actualiza version => ejecuta script en BD
                 if (file_exists(sprintf(NOMBRE_ARCHIVO, $user_version))) {
+                    // ejecuta script sql
                     $sql = file_get_contents(sprintf(NOMBRE_ARCHIVO, $user_version), true);
                     $conn->query($sql);
+                    // actualiza version de BD
+                    $conn->query("INSERT INTO version (version, fecha) VALUES ('".$user_version."', NOW())");
+                    $this->out("La base de datos se ha actualizado a la version ".$user_version);
                 }
                 else {
                     $this->out("El archivo ".sprintf(NOMBRE_ARCHIVO, $user_version)." no existe. Proceso abortado!");

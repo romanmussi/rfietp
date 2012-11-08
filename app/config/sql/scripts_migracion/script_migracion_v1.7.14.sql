@@ -18,7 +18,7 @@ ALTER TABLE public.version_id_seq OWNER TO www;
 
 CREATE TABLE version (
     id INTEGER DEFAULT nextval('version_id_seq'::regclass) NOT NULL,
-    version character varying(5) NOT NULL,
+    version character varying(10) NOT NULL,
     fecha date,
     CONSTRAINT version_pkey PRIMARY KEY (id)
 );
