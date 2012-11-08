@@ -42,6 +42,7 @@ class DbMigrationScriptShell extends Shell {
                 }
             }
             else {
+                $this->out("");
                 $this->out("La versión actual ".$current_version. " es mayor que ".$user_version);
             }
         }      
