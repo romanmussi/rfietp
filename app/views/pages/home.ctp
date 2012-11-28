@@ -20,9 +20,9 @@ Requerimientos mínimos para utilizar el <b>Sistema Gestión de Registro</b>:<br /
 
 <h2>Versión <?php echo Configure::read('regetpVersion');?></h2>
 
-<p>Desde su puesta en funcionamiento en junio de 2009 el sistema RFIETP se encuentra en permanente actualización y mejoramiento, tanto del contenido de información de la base de datos como de la aplicación que permite su gestión. En esa línea de trabajo a partir del 19 de Septiembre de 2012 se ha instalado la versión  <?php echo Configure::read('regetpVersion');?> del sistema. Sus principales novedades son:</p>
+<p>Desde su puesta en funcionamiento en junio de 2009 el sistema RFIETP se encuentra en permanente actualización y mejoramiento, tanto del contenido de información de la base de datos como de la aplicación que permite su gestión. En esa línea de trabajo a partir del 27 de Noviembre de 2012 se ha instalado la versión  <?php echo Configure::read('regetpVersion');?> del sistema. Sus principales novedades son:</p>
 <ul>
-	<li>Se han publicado los Planes de Mejora del 1° semestre de 2012</li>
+	<li>Se han publicado los Planes de Mejora del 3° trimestre de 2012</li>
         <li>Se agregaron y optimizaron validaciones para la carga de Instituciones y Oferta por parte de la Unidad de Información</li>
 </ul>
 
