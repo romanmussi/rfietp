@@ -29,7 +29,7 @@ $menuOptions = array(
                 'nombre'=> 'Planes de Mejora',
                 'link'=> array('controller'=>'Fondos','action'=>'index_x_jurisdiccion', $jurisdiccion_id),
                 'options' => array(
-                    'class'=>'acl acl-directores acl-administradores acl-desarrolladores acl-referentes acl-ministros',
+                    'class'=>'acl acl-directores acl-administradores acl-desarrolladores acl-referentes acl-ministros acl-editores',
                     )
         ),
 
