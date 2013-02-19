@@ -607,6 +607,16 @@ class AclprepController extends AclAppController {
         echo 'done 1.7.11';
     }
 
+    function assignPermissions1Dot7Dot14() {
+        App::import('Component','Acl');
+        $this->Acl = new AclComponent();
+        
+        $this->Acl->allow('editores', 'Fondos/index_x_instit');
+	$this->Acl->allow('editores', 'Fondos/index_x_jurisdiccion');
+
+        echo 'done 1.7.14';
+    }
+
 
     
     function checkPermissions() {
