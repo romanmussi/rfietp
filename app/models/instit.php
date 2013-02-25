@@ -542,17 +542,16 @@ class Instit extends AppModel {
                             }
                         }*/
 
-                        $item_aux['nombre_completo'] = $this->getNombreCompleto($item_aux['nombre'], $item_aux['nroinstit'], $nombre_tipoinstit);
+                        $item_aux['nombre_completo'] = $this->getNombreCompleto($item_aux['nombre'], $item_aux['nroinstit'], $nombre_tipoinstit, $item_aux['nombre_dep']);
                         //$item_aux['ultimo_ciclo'] = $this->getUltimoCiclo($item_aux['id']);
                     }
-
                     unset($item_aux);
                 }
             }
             else {
                 $nombre_tipoinstit = isset($results['Tipoinstit']['name']) ? $results['Tipoinstit']['name'] : '';
 
-                $results['nombre_completo'] = $this->getNombreCompleto($results['nombre'], $results['nroinstit'], $nombre_tipoinstit);
+                $results['nombre_completo'] = $this->getNombreCompleto($results['nombre'], $results['nroinstit'], $nombre_tipoinstit, $item_aux['nombre_dep']);
                 //$results['ultimo_ciclo'] = $this->getUltimoCiclo($item_aux['id']);
             }
 
@@ -572,7 +571,7 @@ class Instit extends AppModel {
          * @param array $arrayParaCompletar si se lo pasa con el puntero de referencia lo modifica directamente ahi mismo
          * @return string el nombre completo
          */
-        function getNombreCompleto($nombre='', $nroinstit='', $tipoinstit='') {
+        function getNombreCompleto($nombre='', $nroinstit='', $tipoinstit='', $dependencia='') {
             $nombreCompleto = "";
 
             if (!empty($tipoinstit) && $tipoinstit == 'SIN DATOS') {
@@ -590,6 +589,10 @@ class Instit extends AppModel {
             else {
                 $nombreCompleto .= ($nroinstit > 0 || $nroinstit != '')?"N° $nroinstit ":"";
                 $nombreCompleto .= ($nombre != '')?'"'.$nombre.'"':"";
+            }
+            
+            if (!empty($dependencia)) {
+                $nombreCompleto .= "(".$dependencia.")";
             }
 
             return $nombreCompleto;
