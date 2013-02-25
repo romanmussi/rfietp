@@ -542,7 +542,7 @@ class Instit extends AppModel {
                             }
                         }*/
 
-                        $item_aux['nombre_completo'] = $this->getNombreCompleto($item_aux['nombre'], $item_aux['nroinstit'], $nombre_tipoinstit, $item_aux['nombre_dep']);
+                        $item_aux['nombre_completo'] = $this->getNombreCompleto($item_aux['nombre'], $item_aux['nroinstit'], $nombre_tipoinstit, $item_aux['dependencia_id'], $item_aux['nombre_dep']);
                         //$item_aux['ultimo_ciclo'] = $this->getUltimoCiclo($item_aux['id']);
                     }
                     unset($item_aux);
@@ -551,7 +551,7 @@ class Instit extends AppModel {
             else {
                 $nombre_tipoinstit = isset($results['Tipoinstit']['name']) ? $results['Tipoinstit']['name'] : '';
 
-                $results['nombre_completo'] = $this->getNombreCompleto($results['nombre'], $results['nroinstit'], $nombre_tipoinstit, $item_aux['nombre_dep']);
+                $results['nombre_completo'] = $this->getNombreCompleto($results['nombre'], $results['nroinstit'], $nombre_tipoinstit, $item_aux['dependencia_id'], $item_aux['nombre_dep']);
                 //$results['ultimo_ciclo'] = $this->getUltimoCiclo($item_aux['id']);
             }
 
@@ -571,7 +571,7 @@ class Instit extends AppModel {
          * @param array $arrayParaCompletar si se lo pasa con el puntero de referencia lo modifica directamente ahi mismo
          * @return string el nombre completo
          */
-        function getNombreCompleto($nombre='', $nroinstit='', $tipoinstit='', $dependencia='') {
+        function getNombreCompleto($nombre='', $nroinstit='', $tipoinstit='', $dependencia_id='', $dependencia='') {
             $nombreCompleto = "";
 
             if (!empty($tipoinstit) && $tipoinstit == 'SIN DATOS') {
@@ -591,7 +591,7 @@ class Instit extends AppModel {
                 $nombreCompleto .= ($nombre != '')?'"'.$nombre.'"':"";
             }
             
-            if (!empty($dependencia)) {
+            if ($dependencia_id > 1 && !empty($dependencia)) {
                 $nombreCompleto .= "(".$dependencia.")";
             }
 
