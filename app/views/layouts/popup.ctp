@@ -39,7 +39,7 @@
 	
 </head>
 <body>
-	<div id="popup_container" style="width: 300px">
+	<div id="popup_container">
 	<?php $session->flash(); ?>
 	<?php echo $content_for_layout; ?>
 	</div>

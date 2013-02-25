@@ -59,7 +59,7 @@ foreach ($tickets as $ticket):
 		
 		</td>
 		<td class="actions">
-			<a href="<?= $html->url(array('controller'=> 'tickets', 'action'=>'edit/'.$ticket['Ticket']['id']))?>" onClick="window.open('<?= $html->url(array('controller'=> 'tickets', 'action'=>'edit/'.$ticket['Ticket']['id']))?>','_blank' , 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=310,height=390'); return false;">Editar</a>
+			<a href="<?= $html->url(array('controller'=> 'tickets', 'action'=>'edit/'.$ticket['Ticket']['id']))?>" onClick="window.open('<?= $html->url(array('controller'=> 'tickets', 'action'=>'edit/'.$ticket['Ticket']['id']))?>','_blank' , 'toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=450,height=430'); return false;">Editar</a>
                         <?php echo $html->link( $html->image('preview.png'),"/tickets/view/".$ticket['Ticket']['id'],array('class' => 'verTicket', 'escape' => false) ); ?>
 		</td>
 	</tr>

@@ -29,6 +29,7 @@ if(isset($script)){
 
 		echo $form->input('observacion', array(
                     'readonly'  => !in_array($session->read('Auth.User.role'), $gruposConPermisos),
+                    'style'     => 'width:411px; height:200px;',
                             ));
 
                 // grupos que tienen permiso para marcar como "Resuelto" al ticket
