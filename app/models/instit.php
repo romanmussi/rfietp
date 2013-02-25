@@ -592,7 +592,7 @@ class Instit extends AppModel {
             }
             
             if ($dependencia_id > 1 && !empty($dependencia)) {
-                $nombreCompleto .= "(".$dependencia.")";
+                $nombreCompleto .= " (".$dependencia.")";
             }
 
             return $nombreCompleto;
