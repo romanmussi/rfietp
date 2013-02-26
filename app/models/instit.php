@@ -551,7 +551,7 @@ class Instit extends AppModel {
             else {
                 $nombre_tipoinstit = isset($results['Tipoinstit']['name']) ? $results['Tipoinstit']['name'] : '';
 
-                $results['nombre_completo'] = $this->getNombreCompleto($results['nombre'], $results['nroinstit'], $nombre_tipoinstit, $item_aux['dependencia_id'], $item_aux['nombre_dep']);
+                $results['nombre_completo'] = $this->getNombreCompleto($results['nombre'], $results['nroinstit'], $nombre_tipoinstit, $results['dependencia_id'], $results['nombre_dep']);
                 //$results['ultimo_ciclo'] = $this->getUltimoCiclo($item_aux['id']);
             }
 
