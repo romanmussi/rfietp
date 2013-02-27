@@ -541,7 +541,7 @@ class Instit extends AppModel {
                                 $nombre_tipoinstit = isset($tipoinstit['Tipoinstit']['name']) ? $tipoinstit['Tipoinstit']['name'] : '';
                             }
                         }*/
-                        $dependencia_id='';
+                        $dependencia_id = $nombre_dep = '';
                         if (!empty($item_aux['dependencia_id'])) {
                             $dependencia_id = $item_aux['dependencia_id'];
                         }
