@@ -541,8 +541,14 @@ class Instit extends AppModel {
                                 $nombre_tipoinstit = isset($tipoinstit['Tipoinstit']['name']) ? $tipoinstit['Tipoinstit']['name'] : '';
                             }
                         }*/
-
-                        $item_aux['nombre_completo'] = $this->getNombreCompleto($item_aux['nombre'], $item_aux['nroinstit'], $nombre_tipoinstit, $item_aux['dependencia_id'], $item_aux['nombre_dep']);
+                        $dependencia_id='';
+                        if (!empty($item_aux['dependencia_id'])) {
+                            $dependencia_id = $item_aux['dependencia_id'];
+                        }
+                        if (!empty($item_aux['nombre_dep'])) {
+                            $nombre_dep = $item_aux['nombre_dep'];
+                        }
+                        $item_aux['nombre_completo'] = $this->getNombreCompleto($item_aux['nombre'], $item_aux['nroinstit'], $nombre_tipoinstit, $dependencia_id, $nombre_dep);
                         //$item_aux['ultimo_ciclo'] = $this->getUltimoCiclo($item_aux['id']);
                     }
                     unset($item_aux);
