@@ -419,6 +419,8 @@ class FondoTemporal extends AppModel {
                        'enmyset',
                        'iseta',
                        'cepi',
+                       'bachillerato con orientación laboral polivalente',
+                       'escuela técnica y centro de formación profesional',
                        'centro ',
                 );
 
@@ -506,6 +508,8 @@ class FondoTemporal extends AppModel {
                        "ESCUELA DE NIVEL MEDIO Y SUPERIOR DE EDUCACIÓN TECNOLÓGICA (E.N.M.YS.E.T.)",
                        "INSTITUTO SUPERIOR EXPERIMENTAL DE TECNOLOGÍA ALIMENTARIA (I.S.E.T.A.)",
                        "CENTRO EDUCATIVO PROVINCIAL INTEGRAL (C.E.P.I.)",
+                       "BACHILLERATO CON ORIENTACIÓN LABORAL POLIVALENTE",
+                       "ESCUELA DE EDUCACIÓN TÉCNICA (E.E.T.) Y CENTRO DE FORMACIÓN PROFESIONAL (C.F.P.) ",
                        "centro "
                 );
 
