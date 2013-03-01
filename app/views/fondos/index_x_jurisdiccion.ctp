@@ -14,11 +14,11 @@
 <?php 
 
     $descripcionPlural = "Se presenta información sobre %u Planes de Mejora juridiccionales aprobados por un total de $%s. <br/>" .
-                         "Período: 2006-septiembre 2012. <br/>".
+                         "Período: 2006-2012. <br/>".
                          "Para mayor información consulte las <a href='#notas'>notas metodológicas</a> al final de la página. <br/>";
 
     $descripcionSingular = "Se presenta información sobre 1 Plan de Mejora juridiccional aprobado por un total de $%s. <br/>" .
-                           "Período: 2006-septiembre 2012. <br/>".
+                           "Período: 2006-2012. <br/>".
                            "Para mayor información consulte las <a href='#notas'>notas metodológicas</a> al final de la página. <br/>";
 
     define("DESCRIPCION_PLURAL", $descripcionPlural);
@@ -124,7 +124,7 @@
                         <h3>Notas Metodológicas</h3>
                         <ul>
                             <li>
-                                La información publicada corresponde a Planes de Mejora aprobados desde el año 2006 a septiembre de 2012 inclusive. La información será actualizada periódicamente.
+                                La información publicada corresponde a Planes de Mejora aprobados desde el año 2006 al 2012 inclusive. La información será actualizada periódicamente.
                             </li>
                             <li>
                                 Los Planes de Mejora correspondientes a Formularios F04A y F04B se presentan unificados bajo la línea de acción "F04 - Prácticas profesionalizantes".

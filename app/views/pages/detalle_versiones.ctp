@@ -1,7 +1,8 @@
 <h1>RFIETP - Novedades de la versión 1.7.15</h1>
 <br>
 <ul>
-	<li>A las instituciones con dependencia nacional se agregó a su nombre entre paréntesis el nombre de la dependencia</li>
+	<li>Se han publicado los Planes de Mejora del 4° trimestre de 2012</li>
+        <li>A las instituciones con dependencia nacional se agregó a su nombre entre paréntesis el nombre de la dependencia</li>
         <li>Se le asignaron permisos a los editores para poder ver los Planes de Mejora</li>
         <li>Se agrandó el pop-up de edición de tickets pendientes de la Unidad de Información</li>
 </ul>
