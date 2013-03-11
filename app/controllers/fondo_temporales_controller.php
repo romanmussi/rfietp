@@ -330,7 +330,19 @@ class FondoTemporalesController extends AppController {
 			$this->Session->setFlash(__('Invalid FondoTemporal', true));
 			$this->redirect(array('action'=>'index'));
 		}
+                
 		if (!empty($this->data)) {
+                    
+                        // se le asigna jurisdicción del nuevo instit, para evitar inconsistencia
+                        if (!empty($this->data['FondoTemporal']['instit_id'])) {
+                            $this->FondoTemporal->Instit->recursive = 0;
+                            $instit_imputada = $this->FondoTemporal->Instit->findById($this->data['FondoTemporal']['instit_id']);
+                            if (!empty($instit_imputada)) {
+                                $this->data['FondoTemporal']['jurisdiccion_id'] = $instit_imputada['Instit']['jurisdiccion_id'];
+                                $this->data['FondoTemporal']['jurisdiccion_name'] = $instit_imputada['Jurisdiccion']['name']; // no hace falta para migrar, no se utiliza
+                            }
+                        }
+                        
 			if ($this->FondoTemporal->save($this->data)) {
 				$this->Session->setFlash(__('The FondoTemporal has been saved', true));
 				$this->redirect(array('action'=>'checked_instits'));
