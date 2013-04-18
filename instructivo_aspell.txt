@@ -1,0 +1,11 @@
+Para poder utilizar el corrector ortográfico aspell se deben tener instalados en el servidor:
+- comando aspell (/usr/bin/ aspell)
+- diccionario en español (aspell-es)
+
+Crear un diccionario aparte con las palabras tecnicas usadas por la UI:
+- aspell --lang=es create master /usr/lib/aspell/tecnico.rws < /var/www/rfietp/app/config/tecnico.txt
+- agregar "add tecnico.rws" a /usr/lib/aspell/ es.multi
+
+
+Para backup del diccionario se debe guardar el archivo tecnico.rws o bien con el tecnico.txt
+Para que no sea tenido en cuenta, eliminar "add tecnico.rws" del archivo es.multi
