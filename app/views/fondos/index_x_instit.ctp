@@ -73,12 +73,7 @@
                         </div>
                         <dl>
                             <dt></dt>
-                        <dt>Memo:  <?php echo $fondo['Fondo']['memo']; ?></dt>
-                        <!--<dt>Resolucion:</dt>
-                        <dd><?php echo $fondo['Fondo']['resolucion']; ?></dd>
-                        <dt>Descripcion:</dt>
-                        <dd><?php echo $fondo['Fondo']['description']; ?></dd>
-                        -->
+                            <dt>Memo:  <?php echo $fondo['Fondo']['memo']; ?></dt>
                         </dl>
 
                          <h2 style="padding-left: 15px">Líneas de Acción</h2>

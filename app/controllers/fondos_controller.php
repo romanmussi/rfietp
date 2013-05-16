@@ -29,7 +29,7 @@ class FondosController extends AppController {
                 // fin de chequeo
 
                 $this->paginate['conditions']['Fondo.instit_id'] = $id;
-                $this->paginate['order'] = array('Fondo.anio DESC','Fondo.trimestre DESC','Fondo.jurisdiccion_id DESC');
+                $this->paginate['order'] = array('Fondo.anio DESC','Fondo.trimestre DESC','Fondo.memo DESC','Fondo.jurisdiccion_id DESC');
             }
             else {
                 $this->Session->setFlash(__('No especifica institución', true));
@@ -62,7 +62,7 @@ class FondosController extends AppController {
                 }
                 // fin de chequeo
 
-                $this->paginate = array('conditions'=>array('Fondo.instit_id'=> 0,'Fondo.jurisdiccion_id'=>$id),'order' => array('Fondo.anio DESC','Fondo.trimestre DESC','Fondo.jurisdiccion_id DESC'));
+                $this->paginate = array('conditions'=>array('Fondo.instit_id'=> 0,'Fondo.jurisdiccion_id'=>$id),'order' => array('Fondo.anio DESC','Fondo.trimestre DESC','Fondo.memo DESC','Fondo.jurisdiccion_id DESC'));
             }
             else {
                 $this->Session->setFlash(__('No especifica jurisdicción', true));
@@ -77,7 +77,10 @@ class FondosController extends AppController {
             $this->set('sumalineas',  $this->Fondo->FondosLineasDeAccion->find('sum', array('conditions'=>$condicion)) );
 
             $this->set('jurisdiccion', $this->Fondo->Jurisdiccion->read(null, $id));
-            $this->set('fondos', $this->paginate());
+            $this->paginate['limit'] = 20;
+            
+            $fondos=$this->paginate();
+            $this->set('fondos', $fondos);            
 	}
 
         function index()
