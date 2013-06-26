@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.cake.tests.cases.libs.controller.components
@@ -393,6 +393,7 @@ This is the body of the message
 
 </pre>
 MSGBLOC;
+
 		$this->Controller->EmailTest->sendAs = 'text';
 		$expect = str_replace('{CONTENTTYPE}', 'text/plain; charset=UTF-8', $message);
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
@@ -405,9 +406,10 @@ MSGBLOC;
 
 		// TODO: better test for format of message sent?
 		$this->Controller->EmailTest->sendAs = 'both';
-		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-"', $message);
-
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
+		$boundary = $this->Controller->EmailTest->getBoundary();
+
+		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-' . $boundary . '"', $message);
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
 	}
 /**
@@ -484,13 +486,23 @@ HTMLBLOC;
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
 
 		$this->Controller->EmailTest->sendAs = 'both';
-		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-"', $header);
-		$expect .= '--alt-' . "\n" . 'Content-Type: text/plain; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $text . "\n\n";
-		$expect .= '--alt-' . "\n" . 'Content-Type: text/html; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $html . "\n\n";
-		$expect = '<pre>' . $expect . '--alt---' . "\n\n" . '</pre>';
-
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
+		$boundary = $this->Controller->EmailTest->getBoundary();
+
+		$expect = str_replace('{CONTENTTYPE}', 'multipart/alternative; boundary="alt-' . $boundary . '"', $header);
+		$expect .= '--alt-' . $boundary . "\n" . 'Content-Type: text/plain; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $text . "\n\n";
+		$expect .= '--alt-' . $boundary . "\n" . 'Content-Type: text/html; charset=UTF-8' . "\n" . 'Content-Transfer-Encoding: 7bit' . "\n\n" . $html . "\n\n";
+		$expect = '<pre>' . $expect . "--alt-$boundary--" . "\n\n" . '</pre>';
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
+
+		$this->Controller->EmailTest->reset();
+		$this->Controller->EmailTest->to = 'postmaster@localhost';
+		$this->Controller->EmailTest->from = 'noreply@example.com';
+		$this->Controller->EmailTest->subject = 'Cake SMTP test';
+		$this->Controller->EmailTest->replyTo = 'noreply@example.com';
+
+		$this->Controller->EmailTest->delivery = 'debug';
+		$this->Controller->EmailTest->messageId = false;
 
 		$html = <<<HTMLBLOC
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
@@ -509,8 +521,11 @@ HTMLBLOC;
 HTMLBLOC;
 
 		$this->Controller->EmailTest->sendAs = 'html';
-		$expect = '<pre>' . str_replace('{CONTENTTYPE}', 'text/html; charset=UTF-8', $header) . $html . "\n" . '</pre>';
 		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message', 'default', 'thin'));
+
+		$boundary = $this->Controller->EmailTest->getBoundary();
+		$expect = str_replace('{CONTENTTYPE}', 'text/html; charset=UTF-8', $header) . $html;
+		$expect = '<pre>' . $expect . "\n</pre>";
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
 		
 		$result = ClassRegistry::getObject('view');
@@ -650,4 +665,186 @@ HTMLBLOC;
 		$this->Controller->EmailTest->reset();
 		$this->Controller->EmailTest->to = 'postmaster@localhost';
 		$this->Controller->EmailTest->from = 'noreply@example.com';
-		$this->Controller->EmailTest->subject = '
+		$this->Controller->EmailTest->subject = 'هذه رسالة بعنوان طويل مرسل للمستلم';
+		$this->Controller->EmailTest->replyTo = 'noreply@example.com';
+		$this->Controller->EmailTest->template = null;
+		$this->Controller->EmailTest->delivery = 'debug';
+
+		$subject = '=?UTF-8?B?2YfYsNmHINix2LPYp9mE2Kkg2KjYudmG2YjYp9mGINi32YjZitmEINmF2LE=?=' . "\r\n" . ' =?UTF-8?B?2LPZhCDZhNmE2YXYs9iq2YTZhQ==?=';
+
+		$this->Controller->EmailTest->sendAs = 'text';
+		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
+		preg_match('/Subject: (.*)Header:/s', $this->Controller->Session->read('Message.email.message'), $matches);
+		$this->assertEqual(trim($matches[1]), $subject);
+
+		$this->Controller->EmailTest->sendAs = 'html';
+		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
+		preg_match('/Subject: (.*)Header:/s', $this->Controller->Session->read('Message.email.message'), $matches);
+		$this->assertEqual(trim($matches[1]), $subject);
+
+		$this->Controller->EmailTest->sendAs = 'both';
+		$this->assertTrue($this->Controller->EmailTest->send('This is the body of the message'));
+		preg_match('/Subject: (.*)Header:/s', $this->Controller->Session->read('Message.email.message'), $matches);
+		$this->assertEqual(trim($matches[1]), $subject);
+	}
+/**
+ * undocumented function
+ *
+ * @return void
+ * @access public
+ */
+	function testSendAsIsNotIgnoredIfAttachmentsPresent() {
+		$this->Controller->EmailTest->reset();
+		$this->Controller->EmailTest->to = 'postmaster@localhost';
+		$this->Controller->EmailTest->from = 'noreply@example.com';
+		$this->Controller->EmailTest->subject = 'Attachment Test';
+		$this->Controller->EmailTest->replyTo = 'noreply@example.com';
+		$this->Controller->EmailTest->template = null;
+		$this->Controller->EmailTest->delivery = 'debug';
+		$this->Controller->EmailTest->attachments = array(__FILE__);
+		$body = '<p>This is the body of the message</p>';
+
+		$this->Controller->EmailTest->sendAs = 'html';
+		$this->assertTrue($this->Controller->EmailTest->send($body));
+		$msg = $this->Controller->Session->read('Message.email.message');
+		$this->assertNoPattern('/text\/plain/', $msg);
+		$this->assertPattern('/text\/html/', $msg);
+
+		$this->Controller->EmailTest->sendAs = 'text';
+		$this->assertTrue($this->Controller->EmailTest->send($body));
+		$msg = $this->Controller->Session->read('Message.email.message');
+		$this->assertPattern('/text\/plain/', $msg);
+		$this->assertNoPattern('/text\/html/', $msg);
+
+		$this->Controller->EmailTest->sendAs = 'both';
+		$this->assertTrue($this->Controller->EmailTest->send($body));
+		$msg = $this->Controller->Session->read('Message.email.message');
+
+		$this->assertNoPattern('/text\/plain/', $msg);
+		$this->assertNoPattern('/text\/html/', $msg);
+		$this->assertPattern('/multipart\/alternative/', $msg);
+	}
+/**
+ * undocumented function
+ *
+ * @return void
+ * @access public
+ */
+	function testNoDoubleNewlinesInHeaders() {
+		$this->Controller->EmailTest->reset();
+		$this->Controller->EmailTest->to = 'postmaster@localhost';
+		$this->Controller->EmailTest->from = 'noreply@example.com';
+		$this->Controller->EmailTest->subject = 'Attachment Test';
+		$this->Controller->EmailTest->replyTo = 'noreply@example.com';
+		$this->Controller->EmailTest->template = null;
+		$this->Controller->EmailTest->delivery = 'debug';
+		$body = '<p>This is the body of the message</p>';
+
+		$this->Controller->EmailTest->sendAs = 'both';
+		$this->assertTrue($this->Controller->EmailTest->send($body));
+		$msg = $this->Controller->Session->read('Message.email.message');
+
+		$this->assertNoPattern('/\n\nContent-Transfer-Encoding/', $msg);
+		$this->assertPattern('/\nContent-Transfer-Encoding/', $msg);
+	}
+/**
+ * testReset method
+ *
+ * @access public
+ * @return void
+ */
+	function testReset() {
+		$this->Controller->EmailTest->template = 'test_template';
+		$this->Controller->EmailTest->to = 'test.recipient@example.com';
+		$this->Controller->EmailTest->from = 'test.sender@example.com';
+		$this->Controller->EmailTest->replyTo = 'test.replyto@example.com';
+		$this->Controller->EmailTest->return = 'test.return@example.com';
+		$this->Controller->EmailTest->cc = array('cc1@example.com', 'cc2@example.com');
+		$this->Controller->EmailTest->bcc = array('bcc1@example.com', 'bcc2@example.com');
+		$this->Controller->EmailTest->date = 'Today!';
+		$this->Controller->EmailTest->subject = 'Test subject';
+		$this->Controller->EmailTest->additionalParams = 'X-additional-header';
+		$this->Controller->EmailTest->delivery = 'smtp';
+		$this->Controller->EmailTest->smtpOptions['host'] = 'blah';
+		$this->Controller->EmailTest->attachments = array('attachment1', 'attachment2');
+
+		$this->assertFalse($this->Controller->EmailTest->send('Should not work'));
+
+		$this->Controller->EmailTest->reset();
+
+		$this->assertNull($this->Controller->EmailTest->template);
+		$this->assertNull($this->Controller->EmailTest->to);
+		$this->assertNull($this->Controller->EmailTest->from);
+		$this->assertNull($this->Controller->EmailTest->replyTo);
+		$this->assertNull($this->Controller->EmailTest->return);
+		$this->assertIdentical($this->Controller->EmailTest->cc, array());
+		$this->assertIdentical($this->Controller->EmailTest->bcc, array());
+		$this->assertNull($this->Controller->EmailTest->date);
+		$this->assertNull($this->Controller->EmailTest->subject);
+		$this->assertNull($this->Controller->EmailTest->additionalParams);
+		$this->assertIdentical($this->Controller->EmailTest->getHeaders(), array());
+		$this->assertNull($this->Controller->EmailTest->getBoundary());
+		$this->assertIdentical($this->Controller->EmailTest->getMessage(), array());
+		$this->assertNull($this->Controller->EmailTest->smtpError);
+		$this->assertIdentical($this->Controller->EmailTest->attachments, array());
+	}
+/**
+ * osFix method
+ *
+ * @param string $string
+ * @access private
+ * @return string
+ */
+	function __osFix($string) {
+		return str_replace(array("\r\n", "\r"), "\n", $string);
+	}
+
+/**
+ * Test that _formatName doesn't jack up email addresses with alias parts.
+ *
+ * @return void
+ */
+	function testFormatAddressAliases() {
+		$result = $this->Controller->EmailTest->formatAddress('email@example.com');
+		$this->assertEqual($result, 'email@example.com');
+
+		$result = $this->Controller->EmailTest->formatAddress('alias <email@example.com>');
+		$this->assertEqual($result, 'alias <email@example.com>');
+		
+		$result = $this->Controller->EmailTest->formatAddress('alias<email@example.com>');
+		$this->assertEqual($result, 'alias <email@example.com>');
+
+		$result = $this->Controller->EmailTest->formatAddress('email@example.com');
+		$this->assertEqual($result, 'email@example.com');
+
+		$result = $this->Controller->EmailTest->formatAddress('<email@example.com>');
+		$this->assertEqual($result, '<email@example.com>');
+
+		$result = $this->Controller->EmailTest->formatAddress('email@example.com', true);
+		$this->assertEqual($result, '<email@example.com>');
+
+		$result = $this->Controller->EmailTest->formatAddress('<email@example.com>', true);
+		$this->assertEqual($result, '<email@example.com>');
+
+		$result = $this->Controller->EmailTest->formatAddress('alias name <email@example.com>', true);
+		$this->assertEqual($result, '<email@example.com>');
+	}
+
+/**
+ * test formatting addresses with multibyte chars
+ *
+ * @return void
+ */
+	function testFormatAddressMultibyte() {
+		$this->Controller->EmailTest->charset = 'UTF-8';
+		$result = $this->Controller->EmailTest->formatAddress('ÄÖÜTest <email@domain.de>');
+		$this->assertEqual($result, '=?UTF-8?B?w4TDlsOcVGVzdCA=?= <email@domain.de>');
+		
+		$result = $this->Controller->EmailTest->formatAddress('ÄÖÜTest<email@domain.de>');
+		$this->assertEqual($result, '=?UTF-8?B?w4TDlsOcVGVzdA==?= <email@domain.de>');
+
+		$result = $this->Controller->EmailTest->formatAddress('ÄÖÜTest <email@domain.de>', true);
+		$this->assertEqual($result, '<email@domain.de>');
+	}
+}
+?>

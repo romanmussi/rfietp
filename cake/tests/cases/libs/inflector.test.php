@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -183,7 +183,7 @@ class InflectorTest extends CakeTestCase {
 		$expected = 'Foo+Bar+Not+just+for+breakfast+any+more';
 		$this->assertEqual($result, $expected);
 
-		$result = Inflector::slug('Äpfel Über Öl grün ärgert groß öko', '-');
+		$result = Inflector::slug('Ã„pfel Ãœber Ã–l grÃ¼n Ã¤rgert groÃŸ Ã¶ko', '-');
 		$expected = 'Aepfel-Ueber-Oel-gruen-aergert-gross-oeko';
 		$this->assertEqual($result, $expected);
 
@@ -195,7 +195,7 @@ class InflectorTest extends CakeTestCase {
 		$expected = 'The-truth-and-more-news';
 		$this->assertEqual($result, $expected);
 
-		$result = Inflector::slug('La langue française est un attribut de souveraineté en France', '-');
+		$result = Inflector::slug('La langue franÃ§aise est un attribut de souverainetÃ© en France', '-');
 		$expected = 'La-langue-francaise-est-un-attribut-de-souverainete-en-France';
 		$this->assertEqual($result, $expected);
 

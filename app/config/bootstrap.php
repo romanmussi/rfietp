@@ -311,7 +311,7 @@ function ordenarPlanesPorEtapaOrden($planes)
     }
 
     // ordeno por Orden
-    ksort(&$arrayOrdenKeys);
+    ksort($arrayOrdenKeys);
 
     // armo el array de Planes para devolver, desagrupandolos del arrayOrden
     foreach ($arrayOrdenKeys as $ops) {

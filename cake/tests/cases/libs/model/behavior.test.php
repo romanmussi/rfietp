@@ -877,3 +877,194 @@ class BehaviorTest extends CakeTestCase {
 	/**
  * testBehaviorOnErrorCallback method
  *
+ * @access public
+ * @return void
+ */
+	function testBehaviorOnErrorCallback() {
+		$Apple = new Apple();
+
+		$Apple->Behaviors->attach('Test', array('beforeFind' => 'off', 'onError' => 'on'));
+		if (ob_start()) {
+			$Apple->Behaviors->Test->onError($Apple);
+			$this->assertIdentical(trim(ob_get_clean()), 'onError trigger success');
+		}
+
+		if (ob_start()) {
+			$Apple->del(99);
+			//$this->assertIdentical(trim(ob_get_clean()), 'onError trigger success');
+		}
+	}
+	/**
+ * testBehaviorValidateCallback method
+ *
+ * @access public
+ * @return void
+ */
+	function testBehaviorValidateCallback() {
+		$Apple = new Apple();
+
+		$Apple->Behaviors->attach('Test');
+		$this->assertIdentical($Apple->validates(), true);
+
+		$Apple->Behaviors->attach('Test', array('validate' => 'on'));
+		$this->assertIdentical($Apple->validates(), false);
+		$this->assertIdentical($Apple->validationErrors, array('name' => true));
+
+		$Apple->Behaviors->attach('Test', array('validate' => 'stop'));
+		$this->assertIdentical($Apple->validates(), false);
+		$this->assertIdentical($Apple->validationErrors, array('name' => true));
+
+		$Apple->Behaviors->attach('Test', array('validate' => 'whitelist'));
+		$Apple->validates();
+		$this->assertIdentical($Apple->whitelist, array());
+
+		$Apple->whitelist = array('unknown');
+		$Apple->validates();
+		$this->assertIdentical($Apple->whitelist, array('unknown', 'name'));
+	}
+/**
+ * testBehaviorValidateMethods method
+ *
+ * @access public
+ * @return void
+ */
+	function testBehaviorValidateMethods() {
+		$Apple = new Apple();
+		$Apple->Behaviors->attach('Test');
+		$Apple->validate['color'] = 'validateField';
+
+		$result = $Apple->save(array('name' => 'Genetically Modified Apple', 'color' => 'Orange'));
+		$this->assertEqual(array_keys($result['Apple']), array('name', 'color', 'modified', 'created'));
+
+		$Apple->create();
+		$result = $Apple->save(array('name' => 'Regular Apple', 'color' => 'Red'));
+		$this->assertFalse($result);
+	}
+/**
+ * testBehaviorMethodDispatching method
+ *
+ * @access public
+ * @return void
+ */
+	function testBehaviorMethodDispatching() {
+		$Apple = new Apple();
+		$Apple->Behaviors->attach('Test');
+
+		$expected = 'working';
+		$this->assertEqual($Apple->testMethod(), $expected);
+		$this->assertEqual($Apple->Behaviors->dispatchMethod($Apple, 'testMethod'), $expected);
+
+		$result = $Apple->Behaviors->dispatchMethod($Apple, 'wtf');
+		$this->assertEqual($result, array('unhandled'));
+
+		$result = $Apple->{'look for the remote'}('in the couch');
+		$expected = "Item.name = 'the remote' AND Location.name = 'the couch'";
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * testBehaviorMethodDispatchingWithData method
+ *
+ * @access public
+ * @return void
+ */
+	function testBehaviorMethodDispatchingWithData() {
+		$Apple = new Apple();
+		$Apple->Behaviors->attach('Test');
+
+		$Apple->set('field', 'value');
+		$this->assertTrue($Apple->testData());
+		$this->assertTrue($Apple->data['Apple']['field_2']);
+
+		$this->assertTrue($Apple->testData('one', 'two', 'three', 'four', 'five', 'six'));
+	}
+/**
+ * testBehaviorTrigger method
+ *
+ * @access public
+ * @return void
+ */
+	function testBehaviorTrigger() {
+		$Apple =& new Apple();
+		$Apple->Behaviors->attach('Test');
+		$Apple->Behaviors->attach('Test2');
+		$Apple->Behaviors->attach('Test3');
+
+		$Apple->beforeTestResult = array();
+		$Apple->Behaviors->trigger($Apple, 'beforeTest');
+		$expected = array('testbehavior', 'test2behavior', 'test3behavior');
+		$this->assertIdentical($Apple->beforeTestResult, $expected);
+
+		$Apple->beforeTestResult = array();
+		$Apple->Behaviors->trigger($Apple, 'beforeTest', array(), array('break' => true, 'breakOn' => 'test2behavior'));
+		$expected = array('testbehavior', 'test2behavior');
+		$this->assertIdentical($Apple->beforeTestResult, $expected);
+
+		$Apple->beforeTestResult = array();
+		$Apple->Behaviors->trigger($Apple, 'beforeTest', array(), array('break' => true, 'breakOn' => array('test2behavior', 'test3behavior')));
+		$expected = array('testbehavior', 'test2behavior');
+		$this->assertIdentical($Apple->beforeTestResult, $expected);
+	}
+/**
+ * undocumented function
+ *
+ * @return void
+ * @access public
+ */
+	function testBindModelCallsInBehaviors() {
+		$this->loadFixtures('Article', 'Comment');
+
+		// hasMany
+		$Article = new Article();
+		$Article->unbindModel(array('hasMany' => array('Comment')));
+		$result = $Article->find('first');
+		$this->assertFalse(array_key_exists('Comment', $result));
+
+		$Article->Behaviors->attach('Test4');
+		$result = $Article->find('first');
+		$this->assertTrue(array_key_exists('Comment', $result));
+
+		// belongsTo
+		$Article->unbindModel(array('belongsTo' => array('User')));
+		$result = $Article->find('first');
+		$this->assertFalse(array_key_exists('User', $result));
+
+		$Article->Behaviors->attach('Test5');
+		$result = $Article->find('first');
+		$this->assertTrue(array_key_exists('User', $result));
+
+		// hasAndBelongsToMany
+		$Article->unbindModel(array('hasAndBelongsToMany' => array('Tag')));
+		$result = $Article->find('first');
+		$this->assertFalse(array_key_exists('Tag', $result));
+
+		$Article->Behaviors->attach('Test6');
+		$result = $Article->find('first');
+		$this->assertTrue(array_key_exists('Comment', $result));
+
+		// hasOne
+		$Comment = new Comment();
+		$Comment->unbindModel(array('hasOne' => array('Attachment')));
+		$result = $Comment->find('first');
+		$this->assertFalse(array_key_exists('Attachment', $result));
+
+		$Comment->Behaviors->attach('Test7');
+		$result = $Comment->find('first');
+		$this->assertTrue(array_key_exists('Attachment', $result));
+	}
+/**
+ * Test attach and detaching
+ *
+ * @access public
+ * @return void
+ **/
+	function testBehaviorAttachAndDetach() {
+		$Sample =& new Sample();
+		$Sample->actsAs = array('Test3' => array('bar'), 'Test2' => array('foo', 'bar'));
+		$Sample->Behaviors->init($Sample->alias, $Sample->actsAs);
+		$Sample->Behaviors->attach('Test2');
+		$Sample->Behaviors->detach('Test3');
+
+		$Sample->Behaviors->trigger($Sample, 'beforeTest');
+	}
+}
+?>

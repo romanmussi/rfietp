@@ -6,6 +6,7 @@ app/tmp/tests/*
 app/config/database.php
 app/config/config.email.php
 nbproject/*
+*.sublime-*
 !empty
 
 

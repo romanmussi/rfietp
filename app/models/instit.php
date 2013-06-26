@@ -1715,7 +1715,7 @@ class Instit extends AppModel {
                             }
                         }
                         if (!$existe) {
-                             array_unshift(&$c['ciclo'], max(array_keys($ciclos_disponibles)));
+                             array_unshift($c['ciclo'], max(array_keys($ciclos_disponibles)));
                         }
                         $existe = false;
                     }

@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -73,7 +73,7 @@ class TextHelperTest extends CakeTestCase {
 		$text4 = '<img src="mypic.jpg"> This image tag is not XHTML conform!<br><hr/><b>But the following image tag should be conform <img src="mypic.jpg" alt="Me, myself and I" /></b><br />Great, or?';
 		$text5 = '0<b>1<i>2<span class="myclass">3</span>4<u>5</u>6</i>7</b>8<b>9</b>0';
         $text6 = '<p><strong>Extra dates have been announced for this year\'s tour.</strong></p><p>Tickets for the new shows in</p>';
-        $text7 = 'El moÒo est· en el lugar correcto. Eso fue lo que dijo la niÒa, øhabr· dicho la verdad?';
+        $text7 = 'El mo√±o est√° en el lugar correcto. Eso fue lo que dijo la ni√±a, ¬øhabr√° dicho la verdad?';
         $text8 = 'Vive la R'.chr(195).chr(169).'publique de France';
 
 		$this->assertIdentical($this->Text->{$m}($text1, 15), 'The quick br...');
@@ -97,7 +97,7 @@ class TextHelperTest extends CakeTestCase {
 		$this->assertIdentical($this->Text->{$m}($text5, 20, '', true, true), $text5);
 		$this->assertIdentical($this->Text->{$m}($text6, 57, '...', false, true), "<p><strong>Extra dates have been announced for this year's...</strong></p>");
 		$this->assertIdentical($this->Text->{$m}($text7, 255), $text7);
-		$this->assertIdentical($this->Text->{$m}($text7, 15), 'El moÒo est·...');
+		$this->assertIdentical($this->Text->{$m}($text7, 15), 'El mo√±o est√°...');
 		$this->assertIdentical($this->Text->{$m}($text8, 15), 'Vive la R'.chr(195).chr(169).'pu...');
 		$this->assertIdentical($this->Text->{$m}($text1, 25, 'Read more'), 'The quick brown Read more');
 		$this->assertIdentical($this->Text->{$m}($text1, 25, '<a href="http://www.google.com/">Read more</a>', true, true), 'The quick brown <a href="http://www.google.com/">Read more</a>');
@@ -125,9 +125,14 @@ class TextHelperTest extends CakeTestCase {
 		$result = $this->Text->highlight($text, $phrases, '<b>\1</b>');
 		$this->assertEqual($result, $text);
 
-		$text = 'Ich saﬂ in einem CafÈ am ‹bergang';
-		$expected = 'Ich <b>saﬂ</b> in einem <b>CafÈ</b> am <b>‹bergang</b>';
-		$phrases = array('saﬂ', 'cafÈ', '¸bergang');
+		$text = 'This is a (test) text';
+		$phrases = '(test';
+		$result = $this->Text->highlight($text, $phrases, '<b>\1</b>');
+		$this->assertEqual('This is a <b>(test</b>) text', $result);
+
+		$text = 'Ich sa√ü in einem Caf√© am √úbergang';
+		$expected = 'Ich <b>sa√ü</b> in einem <b>Caf√©</b> am <b>√úbergang</b>';
+		$phrases = array('sa√ü', 'caf√©', '√ºbergang');
 		$result = $this->Text->highlight($text, $phrases, '<b>\1</b>');
 		$this->assertEqual($result, $expected);
 	}
@@ -299,6 +304,17 @@ class TextHelperTest extends CakeTestCase {
 		$result = $this->Text->autoLinkEmails($text, array('class' => 'link'));
 		$this->assertPattern('#^' . $expected . '$#', $result);
 	}
+/**
+ * test invalid email addresses.
+ *
+ * @return void
+ */
+	function testAutoLinkEmailInvalid() {
+		$result = $this->Text->autoLinkEmails('this is a myaddress@gmx-de test');
+		$expected = 'this is a myaddress@gmx-de test';
+		$this->assertEqual($expected, $result);
+	}
+
 /**
  * testHighlightCaseInsensitivity method
  *

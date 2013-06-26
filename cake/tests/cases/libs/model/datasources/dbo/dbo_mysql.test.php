@@ -6,12 +6,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
@@ -582,4 +582,15 @@ class DboMysqlTest extends CakeTestCase {
 	function testBlobSaving() {
 		$this->db->cacheSources = false;
 		$data = "GIF87ab 
-		 �   4A���
+		 Ò   4A¿¿¿ˇˇˇ   ,    b 
+		  ¢îè©ÀÌ#¥⁄ã≥ﬁ:¯Ü‚Héá¶jV∂ÓúÎL≥çÀóËıÎ…>ï ≈ vFE%ÒâLFI<†µw˝±≈£7˘ç^H“≤«>ÉÃ¢*∑Ç nÖA•Ù|ﬂêèj£:=ÿ6óUàµ5'∂®àA¬ñ∆ˆGE(gt’≈àÚyÁó«7	‚VìöÇ√˙Ç™
+		k”:;kÀAõ{*¡€Î˚˚[  ;;";
+
+		$model =& new AppModel(array('name' => 'BinaryTest', 'ds' => 'test_suite'));
+		$model->save(compact('data'));
+
+		$result = $model->find('first');
+		$this->assertEqual($result['BinaryTest']['data'], $data);
+	}
+}
+?>

@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.cake.tests.cases.libs.controller.components
@@ -1112,4 +1112,154 @@ class AuthTest extends CakeTestCase {
 			'argSeparator' => ':', 'namedArgs' => array()
 		)));
 		$this->Controller->data['AuthUser'] = array('username' => 'felix', 'password' => 'cake');
-		$this->Controller->params['url']['url'] = substr($ur
+		$this->Controller->params['url']['url'] = substr($url, 1);
+		$this->Controller->Auth->initialize($this->Controller);
+		$this->Controller->Auth->loginAction = array('controller' => 'people', 'action' => 'login');
+		$this->Controller->Auth->userModel = 'AuthUser';
+
+		$this->Controller->Auth->startup($this->Controller);
+		$user = $this->Controller->Auth->user();
+		$this->assertTrue(!!$user);
+	}
+/**
+ * testCustomField method
+ *
+ * @access public
+ * @return void
+ */
+	function testCustomField() {
+		Router::reload();
+
+		$this->AuthUserCustomField =& new AuthUserCustomField();
+		$user = array(
+			'id' => 1, 'email' => 'harking@example.com',
+			'password' => Security::hash(Configure::read('Security.salt') . 'cake'
+		));
+		$user = $this->AuthUserCustomField->save($user, false);
+
+		Router::connect('/', array('controller' => 'people', 'action' => 'login'));
+		$url = '/';
+		$this->Controller->params = Router::parse($url);
+		Router::setRequestInfo(array($this->Controller->passedArgs, array(
+			'base' => null, 'here' => $url, 'webroot' => '/', 'passedArgs' => array(),
+			'argSeparator' => ':', 'namedArgs' => array()
+		)));
+		$this->Controller->data['AuthUserCustomField'] = array('email' => 'harking@example.com', 'password' => 'cake');
+		$this->Controller->params['url']['url'] = substr($url, 1);
+		$this->Controller->Auth->initialize($this->Controller);
+        $this->Controller->Auth->fields = array('username' => 'email', 'password' => 'password');
+		$this->Controller->Auth->loginAction = array('controller' => 'people', 'action' => 'login');
+		$this->Controller->Auth->userModel = 'AuthUserCustomField';
+
+		$this->Controller->Auth->startup($this->Controller);
+		$user = $this->Controller->Auth->user();
+		$this->assertTrue(!!$user);
+    }
+/**
+ * testAdminRoute method
+ *
+ * @access public
+ * @return void
+ */
+	function testAdminRoute() {
+		$admin = Configure::read('Routing.admin');
+		Configure::write('Routing.admin', 'admin');
+		Router::reload();
+
+		$url = '/admin/auth_test/add';
+		$this->Controller->params = Router::parse($url);
+		$this->Controller->params['url']['url'] = ltrim($url, '/');
+		Router::setRequestInfo(array(
+			array(
+				'pass' => array(), 'action' => 'add', 'plugin' => null,
+				'controller' => 'auth_test', 'admin' => true,
+				'url' => array('url' => $this->Controller->params['url']['url'])
+			),
+			array(
+				'base' => null, 'here' => $url,
+				'webroot' => '/', 'passedArgs' => array(),
+			)
+		));
+		$this->Controller->Auth->initialize($this->Controller);
+
+		$this->Controller->Auth->loginAction = array(
+			'admin' => true, 'controller' => 'auth_test', 'action' => 'login'
+		);
+		$this->Controller->Auth->userModel = 'AuthUser';
+
+		$this->Controller->Auth->startup($this->Controller);
+		$this->assertEqual($this->Controller->testUrl, '/admin/auth_test/login');
+
+		Configure::write('Routing.admin', $admin);
+	}
+/**
+ * testAjaxLogin method
+ *
+ * @access public
+ * @return void
+ */
+	function testAjaxLogin() {
+		Configure::write('viewPaths', array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views'. DS));
+		$_SERVER['HTTP_X_REQUESTED_WITH'] = "XMLHttpRequest";
+
+		if (!class_exists('dispatcher')) {
+			require CAKE . 'dispatcher.php';
+		}
+
+		ob_start();
+		$Dispatcher =& new Dispatcher();
+		$Dispatcher->dispatch('/ajax_auth/add', array('return' => 1));
+		$result = ob_get_clean();
+		$this->assertEqual("Ajax!\nthis is the test element", $result);
+		unset($_SERVER['HTTP_X_REQUESTED_WITH']);
+	}
+/**
+ * testLoginActionRedirect method
+ *
+ * @access public
+ * @return void
+ */
+	function testLoginActionRedirect() {
+		$admin = Configure::read('Routing.admin');
+		Configure::write('Routing.admin', 'admin');
+		Router::reload();
+
+		$url = '/admin/auth_test/login';
+		$this->Controller->params = Router::parse($url);
+		$this->Controller->params['url']['url'] = ltrim($url, '/');
+		Router::setRequestInfo(array(
+			array(
+				'pass' => array(), 'action' => 'admin_login', 'plugin' => null, 'controller' => 'auth_test',
+				'admin' => true, 'url' => array('url' => $this->Controller->params['url']['url']),
+			),
+			array(
+				'base' => null, 'here' => $url,
+				'webroot' => '/', 'passedArgs' => array(),
+			)
+		));
+
+		$this->Controller->Auth->initialize($this->Controller);
+
+		$this->Controller->Auth->loginAction = array('admin' => true, 'controller' => 'auth_test', 'action' => 'login');
+		$this->Controller->Auth->userModel = 'AuthUser';
+
+		$this->Controller->Auth->startup($this->Controller);
+
+		$this->assertNull($this->Controller->testUrl);
+
+		Configure::write('Routing.admin', $admin);
+	}
+/**
+ * Tests that shutdown destroys the redirect session var
+ *
+ * @access public
+ * @return void
+ */
+	function testShutDown() {
+		$this->Controller->Session->write('Auth.redirect', 'foo');
+		$this->Controller->Auth->_loggedIn = true;
+		$this->Controller->Auth->shutdown($this->Controller);
+		$this->assertFalse($this->Controller->Session->read('Auth.redirect'));
+	}
+}
+?>

@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components
@@ -525,6 +525,25 @@ DIGEST;
 		);
 		$this->assertTrue($this->Controller->Security->validatePost($this->Controller));
 	}
+/**
+ * Test that validatePost fails if you are missing the session information.
+ *
+ * @return void
+ */
+	function testValidatePostNoSession() {
+		$this->Controller->Security->startup($this->Controller);
+		$this->Controller->Session->delete('_Token');
+
+		$key = $this->Controller->params['_Token']['key'];
+		$fields = 'a5475372b40f6e3ccbf9f8af191f20e1642fd877%3AModel.valid';
+
+		$this->Controller->data = array(
+			'Model' => array('username' => 'nate', 'password' => 'foo', 'valid' => '0'),
+			'_Token' => compact('key', 'fields')
+		);
+		$this->assertFalse($this->Controller->Security->validatePost($this->Controller));
+	}
+
 /**
  * test that validatePost fails if any of its required fields are missing.
  *
@@ -1112,4 +1131,100 @@ DIGEST;
 
 		$this->Controller->data = array(
 			'MyModel' => array('name' => 'some data'),
-			'
+			'_Token' => compact('key', 'fields')
+		);
+
+		$result = $this->Controller->Security->validatePost($this->Controller);
+		$this->assertTrue($result);
+	}
+/**
+ * testRadio method
+ *
+ * @access public
+ * @return void
+ */
+	function testRadio() {
+		$this->Controller->Security->startup($this->Controller);
+		$key = $this->Controller->params['_Token']['key'];
+		$fields = '575ef54ca4fc8cab468d6d898e9acd3a9671c17e%3An%3A0%3A%7B%7D';
+
+		$this->Controller->data = array(
+			'_Token' => compact('key', 'fields')
+		);
+		$result = $this->Controller->Security->validatePost($this->Controller);
+		$this->assertFalse($result);
+
+		$this->Controller->data = array(
+			'_Token' => compact('key', 'fields'),
+			'Test' => array('test' => '')
+		);
+		$result = $this->Controller->Security->validatePost($this->Controller);
+		$this->assertTrue($result);
+
+		$this->Controller->data = array(
+			'_Token' => compact('key', 'fields'),
+			'Test' => array('test' => '1')
+		);
+		$result = $this->Controller->Security->validatePost($this->Controller);
+		$this->assertTrue($result);
+
+		$this->Controller->data = array(
+			'_Token' => compact('key', 'fields'),
+			'Test' => array('test' => '2')
+		);
+		$result = $this->Controller->Security->validatePost($this->Controller);
+		$this->assertTrue($result);
+	}
+/**
+ * testInvalidAuthHeaders method
+ *
+ * @access public
+ * @return void
+ */
+	function testInvalidAuthHeaders() {
+		$this->Controller->Security->blackHoleCallback = null;
+		$_SERVER['PHP_AUTH_USER'] = 'admin';
+		$_SERVER['PHP_AUTH_PW'] = 'password';
+		$realm = 'cakephp.org';
+		$loginData = array('type' => 'basic', 'realm' => $realm);
+		$this->Controller->Security->requireLogin($loginData);
+		$this->Controller->Security->startup($this->Controller);
+
+		$expected = 'WWW-Authenticate: Basic realm="'.$realm.'"';
+		$this->assertEqual(count($this->Controller->testHeaders), 1);
+		$this->assertEqual(current($this->Controller->testHeaders), $expected);
+	}
+
+/**
+ * test that a requestAction's controller will have the _Token appended to
+ * the params.
+ *
+ * @return void
+ * @see http://cakephp.lighthouseapp.com/projects/42648/tickets/68
+ */
+	function testSettingTokenForRequestAction() {
+		$this->Controller->Security->startup($this->Controller);
+		$key = $this->Controller->params['_Token']['key'];
+
+		$this->Controller->params['requested'] = 1;
+		unset($this->Controller->params['_Token']);
+
+		$this->Controller->Security->startup($this->Controller);
+		$this->assertEqual($this->Controller->params['_Token']['key'], $key);
+	}
+
+/**
+ * test that blackhole doesn't delete the _Token session key so repeat data submissions
+ * stay blackholed.
+ *
+ * @link http://cakephp.lighthouseapp.com/projects/42648/tickets/214
+ * @return void
+ */
+	function testBlackHoleNotDeletingSessionInformation() {
+		$this->Controller->Security->startup($this->Controller);
+
+		$this->Controller->Security->blackHole($this->Controller, 'auth');
+		$this->assertTrue($this->Controller->Security->Session->check('_Token'), '_Token was deleted by blackHole %s');
+	}
+}
+?>

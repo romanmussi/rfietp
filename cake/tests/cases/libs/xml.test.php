@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -697,4 +697,888 @@ class XmlTest extends CakeTestCase {
 			array(
 				'Project' => array('id' => 1, 'title' => null, 'client_id' => 1, 'show' => 1, 'is_spotlight' => null, 'style_id' => 0, 'job_type_id' => 1, 'industry_id' => 1, 'modified' => null, 'created' => null),
 				'Style' => array('id' => null, 'name' => null),
-				'JobType' => 
+				'JobType' => array('id' => 1, 'name' => 'Touch Screen Kiosk'),
+				'Industry' => array('id' => 1, 'name' => 'Financial')
+			),
+			array(
+				'Project' => array('id' => 2, 'title' => null, 'client_id' => 2, 'show' => 1, 'is_spotlight' => null, 'style_id' => 0, 'job_type_id' => 2, 'industry_id' => 2, 'modified' => '2007-11-26 14:48:36', 'created' => null),
+				'Style' => array('id' => null, 'name' => null),
+				'JobType' => array('id' => 2, 'name' => 'Awareness Campaign'),
+				'Industry' => array('id' => 2, 'name' => 'Education'),
+			)
+		);
+		$expected = '<project><id>1</id><title /><client_id>1</client_id><show>1</show><is_spotlight /><style_id>0</style_id><job_type_id>1</job_type_id><industry_id>1</industry_id><modified /><created /><style><id /><name /></style><job_type><id>1</id><name>Touch Screen Kiosk</name></job_type><industry><id>1</id><name>Financial</name></industry></project><project><id>2</id><title /><client_id>2</client_id><show>1</show><is_spotlight /><style_id>0</style_id><job_type_id>2</job_type_id><industry_id>2</industry_id><modified>2007-11-26 14:48:36</modified><created /><style><id /><name /></style><job_type><id>2</id><name>Awareness Campaign</name></job_type><industry><id>2</id><name>Education</name></industry></project>';
+
+		$xml = new Xml(Set::map($input), array('format' => 'tags'));
+		$result = $xml->toString(array('header' => false, 'cdata' => false));
+		$this->assertEqual($expected, $result);
+	}
+/**
+ * ensure that normalize does not add _name_ elements that come from Set::map sometimes.
+ *
+ * @return void
+ */
+	function testNormalizeNotAdding_name_Element() {
+		$input = array(
+			'output' => array(
+				'Vouchers' => array(
+					array('Voucher' => array('id' => 1)),
+					array('Voucher' => array('id' => 2)),
+				),
+			)
+		);
+		$xml = new Xml($input, array('attributes' => false, 'format' => 'tags'));
+		$this->assertFalse(isset($xml->children[0]->children[0]->children[1]), 'Too many children %s');
+		$this->assertEqual($xml->children[0]->children[0]->children[0]->name, 'voucher');
+	}
+/**
+ * testSimpleParsing method
+ *
+ * @access public
+ * @return void
+ */
+	function testSimpleParsing() {
+		$source = '<response><hello><![CDATA[happy world]]></hello><goodbye><![CDATA[cruel world]]></goodbye></response>';
+		$xml = new Xml($source);
+		$result = $xml->toString();
+		$this->assertEqual($source, $result);
+	}
+/**
+ * test that elements with empty tag values do not collapse and corrupt data structures
+ *
+ * @access public
+ * @return void
+ **/
+	function testElementCollapsing() {
+		$xmlDataThatFails = '<resultpackage>
+		<result qid="46b1c46ed6208"><![CDATA[46b1c46ed3af9]]></result>
+		<result qid="46b1c46ed332a"><![CDATA[]]></result>
+		<result qid="46b1c46ed90e6"><![CDATA[46b1c46ed69d8]]></result>
+		<result qid="46b1c46ed71a7"><![CDATA[46b1c46ed5a38]]></result>
+		<result qid="46b1c46ed8146"><![CDATA[46b1c46ed98b6]]></result>
+		<result qid="46b1c46ed7978"><![CDATA[]]></result>
+		<result qid="46b1c46ed4a98"><![CDATA[]]></result>
+		<result qid="46b1c46ed42c8"><![CDATA[]]></result>
+		<result qid="46b1c46ed5268"><![CDATA[46b1c46ed8917]]></result>
+		</resultpackage>';
+
+		$Xml = new Xml();
+		$Xml->load('<?xml version="1.0" encoding="UTF-8" ?>' . $xmlDataThatFails);
+		$result = $Xml->toArray(false);
+
+		$this->assertTrue(is_array($result));
+		$expected = array(
+			'resultpackage' => array(
+				'result' => array(
+					0 => array(
+						'value' => '46b1c46ed3af9',
+						'qid' => '46b1c46ed6208'),
+					1 => array(
+						'qid' => '46b1c46ed332a'),
+					2 => array(
+						'value' => '46b1c46ed69d8',
+						'qid' => '46b1c46ed90e6'),
+					3 => array(
+						'value' => '46b1c46ed5a38',
+						'qid' => '46b1c46ed71a7'),
+					4 => array(
+						'value' => '46b1c46ed98b6',
+						'qid' => '46b1c46ed8146'),
+					5 => array(
+						'qid' => '46b1c46ed7978'),
+					6 => array(
+						'qid' => '46b1c46ed4a98'),
+					7 => array(
+						'qid' => '46b1c46ed42c8'),
+					8 => array(
+						'value' => '46b1c46ed8917',
+						'qid' => '46b1c46ed5268'),
+				)
+		));
+		$this->assertEqual(
+			count($result['resultpackage']['result']), count($expected['resultpackage']['result']),
+			'Incorrect array length %s');
+
+		$this->assertFalse(
+			isset($result['resultpackage']['result'][0][0]['qid']), 'Nested array exists, data is corrupt. %s');
+
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * test that empty values do not casefold collapse
+ *
+ * @see http://code.cakephp.org/tickets/view/8
+ * @return void
+ **/
+	function testCaseFoldingWithEmptyValues() {
+		$filledValue = '<method name="set_user_settings">
+			<title>update user information</title>
+			<user>1</user>
+			<User>
+				<id>1</id>
+				<name>varchar(45)</name>
+			</User>
+		</method>';
+		$xml =& new XML($filledValue);
+		$expected = array(
+			'Method' => array(
+				'name' => 'set_user_settings',
+				'title' => 'update user information',
+				'user' => '1',
+				'User' => array(
+					'id' => 1,
+					'name' => 'varchar(45)',
+				),
+			)
+		);
+		$result = $xml->toArray();
+		$this->assertEqual($result, $expected);
+
+		$emptyValue ='<method name="set_user_settings">
+			<title>update user information</title>
+			<user></user>
+			<User>
+				<id>1</id>
+				<name>varchar(45)</name>
+			</User>
+		</method>';
+
+		$xml =& new XML($emptyValue);
+		$expected = array(
+			'Method' => array(
+				'name' => 'set_user_settings',
+				'title' => 'update user information',
+				'user' => array(),
+				'User' => array(
+					'id' => 1,
+					'name' => 'varchar(45)',
+				),
+			)
+		);
+		$result = $xml->toArray();
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * testMixedParsing method
+ *
+ * @access public
+ * @return void
+ */
+	function testMixedParsing() {
+		$source = '<response><body><hello><![CDATA[happy world]]></hello><![CDATA[in between]]><goodbye><![CDATA[cruel world]]></goodbye></body></response>';
+		$xml = new Xml($source);
+		$result = $xml->toString();
+		$this->assertEqual($source, $result);
+	}
+/**
+ * testComplexParsing method
+ *
+ * @access public
+ * @return void
+ */
+	function testComplexParsing() {
+		$source = '<projects><project><id>1</id><title /><client_id>1</client_id><show>1</show><is_spotlight /><style_id>0</style_id><job_type_id>1</job_type_id><industry_id>1</industry_id><modified /><created /><style><id /><name /></style><job_type><id>1</id><name>Touch Screen Kiosk</name></job_type><industry><id>1</id><name>Financial</name></industry></project><project><id>2</id><title /><client_id>2</client_id><show>1</show><is_spotlight /><style_id>0</style_id><job_type_id>2</job_type_id><industry_id>2</industry_id><modified>2007-11-26 14:48:36</modified><created /><style><id /><name /></style><job_type><id>2</id><name>Awareness Campaign</name></job_type><industry><id>2</id><name>Education</name></industry></project></projects>';
+		$xml = new Xml($source);
+		$result = $xml->toString(array('cdata' => false));
+		$this->assertEqual($source, $result);
+	}
+/**
+ * testNamespaceParsing method
+ *
+ * @access public
+ * @return void
+ */
+	function testNamespaceParsing() {
+		$source = '<a:container xmlns:a="http://example.com/a" xmlns:b="http://example.com/b" xmlns:c="http://example.com/c" xmlns:d="http://example.com/d" xmlns:e="http://example.com/e"><b:rule test=""><c:result>value</c:result></b:rule><d:rule test=""><e:result>value</e:result></d:rule></a:container>';
+		$xml = new Xml($source);
+
+		$result = $xml->toString(array('cdata' => false));
+		$this->assertEqual($source, $result);
+
+		$children = $xml->children('container');
+		$this->assertEqual($children[0]->namespace, 'a');
+
+		$children = $children[0]->children('rule');
+		$this->assertEqual($children[0]->namespace, 'b');
+	}
+/**
+ * testNamespaces method
+ *
+ * @access public
+ * @return void
+ */
+	function testNamespaces() {
+		$source = '<a:container xmlns:a="http://example.com/a" xmlns:b="http://example.com/b" xmlns:c="http://example.com/c" xmlns:d="http://example.com/d" xmlns:e="http://example.com/e"><b:rule test=""><c:result>value</c:result></b:rule><d:rule test=""><e:result>value</e:result></d:rule></a:container>';
+		$xml = new Xml($source);
+
+		$expects = '<a:container xmlns:a="http://example.com/a" xmlns:b="http://example.com/b" xmlns:c="http://example.com/c" xmlns:d="http://example.com/d" xmlns:e="http://example.com/e" xmlns:f="http://example.com/f"><b:rule test=""><c:result>value</c:result></b:rule><d:rule test=""><e:result>value</e:result></d:rule></a:container>';
+
+		$_xml = XmlManager::getInstance();
+		$xml->addNamespace('f', 'http://example.com/f');
+		$result = $xml->toString(array('cdata' => false));
+		$this->assertEqual($expects, $result);
+	}
+/**
+ * testEscapeCharSerialization method
+ *
+ * @access public
+ * @return void
+ */
+	function testEscapeCharSerialization() {
+		$xml = new Xml(array('text' => 'JavaScript & DHTML'), array('attributes' => false, 'format' => 'attributes'));
+
+		$result = $xml->toString(false);
+		$expected = '<std_class text="JavaScript &amp; DHTML" />';
+		$this->assertEqual($expected, $result);
+	}
+/**
+ * testCompleteEscapeCharSerialization method
+ *
+ * @access public
+ * @return void
+ */
+	function testCompleteEscapeCharSerialization() {
+		$xml = new Xml(array('text' => '<>&"\''), array('attributes' => false, 'format' => 'attributes'));
+
+		$result = $xml->toString(false);
+		$expected = '<std_class text="&lt;&gt;&amp;&quot;&#039;" />';
+		$this->assertEqual($expected, $result);
+	}
+/**
+ * testToArray method
+ *
+ * @access public
+ * @return void
+ */
+	function testToArray() {
+		App::import('Set');
+		$string = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+		<rss version="2.0">
+		<channel>
+			<title>Cake PHP Google Group</title>
+			<link>http://groups.google.com/group/cake-php</link>
+			<description>Search this group before posting anything. There are over 20,000 posts and it&amp;#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.</description>
+			<language>en</language>
+			<item>
+				<title>constructng result array when using findall</title>
+				<link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
+				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</guid>
+				<author>bmil...@gmail.com(bpscrugs)</author>
+				<pubDate>Fri, 28 Dec 2007 00:44:14 UT</pubDate>
+			</item>
+			<item>
+				<title>Re: share views between actions?</title>
+				<link>http://groups.google.com/group/cake-php/msg/8b350d898707dad8</link>
+				<description>Then perhaps you might do us all a favour and refrain from replying to &lt;br&gt; things you do not understand. That goes especially for asinine comments. &lt;br&gt; Indeed. &lt;br&gt; To sum up: &lt;br&gt; No comment. &lt;br&gt; In my day, a simple &amp;quot;RTFM&amp;quot; would suffice. I&#39;ll keep in mind to ignore any &lt;br&gt; further responses from you. &lt;br&gt; You (and I) were referring to the *online documentation*, not other</description>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/8b350d898707dad8</guid>
+				<author>subtropolis.z...@gmail.com(subtropolis zijn)</author>
+				<pubDate>Fri, 28 Dec 2007 00:45:01 UT</pubDate>
+			</item>
+		</channel>
+		</rss>';
+		$xml = new Xml($string);
+		$result = $xml->toArray();
+		$expected = array('Rss' => array(
+			'version' => '2.0',
+			'Channel' => array(
+				'title' => 'Cake PHP Google Group',
+				'link' => 'http://groups.google.com/group/cake-php',
+				'description' => 'Search this group before posting anything. There are over 20,000 posts and it&#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.',
+				'language' => 'en',
+				'Item' => array(
+					array(
+						'title' => 'constructng result array when using findall',
+						'link' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f',
+						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br><p>Array( <br> [0] =&gt; Array(",
+						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f'),
+						'author' => 'bmil...@gmail.com(bpscrugs)',
+						'pubDate' => 'Fri, 28 Dec 2007 00:44:14 UT',
+					),
+					array(
+						'title' => 'Re: share views between actions?',
+						'link' => 'http://groups.google.com/group/cake-php/msg/8b350d898707dad8',
+						'description' => 'Then perhaps you might do us all a favour and refrain from replying to <br> things you do not understand. That goes especially for asinine comments. <br> Indeed. <br> To sum up: <br> No comment. <br> In my day, a simple &quot;RTFM&quot; would suffice. I\'ll keep in mind to ignore any <br> further responses from you. <br> You (and I) were referring to the *online documentation*, not other',
+						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/8b350d898707dad8'),
+						'author' => 'subtropolis.z...@gmail.com(subtropolis zijn)',
+						'pubDate' => 'Fri, 28 Dec 2007 00:45:01 UT'
+					)
+				)
+			)
+		));
+		$this->assertEqual($result, $expected);
+
+		$string ='<data><post title="Title of this post" description="cool"/></data>';
+		$xml = new Xml($string);
+		$result = $xml->toArray();
+		$expected = array('Data' => array('Post' => array('title' => 'Title of this post', 'description' => 'cool')));
+		$this->assertEqual($result, $expected);
+
+		$xml = new Xml('<example><item><title>An example of a correctly reversed XMLNode</title><desc/></item></example>');
+		$result = Set::reverse($xml);
+		$expected = array(
+			'Example' => array(
+				'Item' => array(
+					'title' => 'An example of a correctly reversed XMLNode',
+					'desc' => array(),
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+
+		$xml = new Xml('<example><item attr="123"><titles><title>title1</title><title>title2</title></titles></item></example>');
+		$result = $xml->toArray();
+		$expected = array(
+			'Example' => array(
+				'Item' => array(
+					'attr' => '123',
+					'Titles' => array(
+						'Title' => array('title1', 'title2')
+					)
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+
+		$xml = new Xml('<example attr="ex_attr"><item attr="123"><titles>list</titles>textforitems</item></example>');
+		$result = $xml->toArray();
+		$expected = array(
+			'Example' => array(
+				'attr' => 'ex_attr',
+				'Item' => array(
+					'attr' => '123',
+					'titles' => 'list',
+					'value'  => 'textforitems'
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+
+		$xml = new Xml('<example attr="ex_attr"><item attr="123"><titles>list</titles>textforitems</item></example>');
+		$example = $xml->child('example');
+		$item = $example->child('item');
+		$result = $item->toArray();
+
+		$expected = array(
+			'attr' => '123',
+			'titles' => 'list',
+			'value'  => 'textforitems'
+		);
+		$this->assertIdentical($result, $expected);
+
+		$string = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+		<rss version="2.0">
+		<channel>
+			<title>Cake PHP Google Group</title>
+			<link>http://groups.google.com/group/cake-php</link>
+			<description>Search this group before posting anything. There are over 20,000 posts and it&amp;#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.</description>
+			<language>en</language>
+			<item>
+				<title>constructng result array when using findall</title>
+				<link>http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</link>
+				<description>i&#39;m using cakephp to construct a logical data model array that will be &lt;br&gt; passed to a flex app. I have the following model association: &lt;br&gt; ServiceDay-&amp;gt;(hasMany)ServiceTi me-&amp;gt;(hasMany)ServiceTimePrice. So what &lt;br&gt; the current output from my findall is something like this example: &lt;br&gt; &lt;p&gt;Array( &lt;br&gt; [0] =&amp;gt; Array(</description>
+				<dc:creator>cakephp</dc:creator>
+				<category><![CDATA[cakephp]]></category>
+				<category><![CDATA[model]]></category>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f</guid>
+				<author>bmil...@gmail.com(bpscrugs)</author>
+				<pubDate>Fri, 28 Dec 2007 00:44:14 UT</pubDate>
+			</item>
+			<item>
+				<title>Re: share views between actions?</title>
+				<link>http://groups.google.com/group/cake-php/msg/8b350d898707dad8</link>
+				<description>Then perhaps you might do us all a favour and refrain from replying to &lt;br&gt; things you do not understand. That goes especially for asinine comments. &lt;br&gt; Indeed. &lt;br&gt; To sum up: &lt;br&gt; No comment. &lt;br&gt; In my day, a simple &amp;quot;RTFM&amp;quot; would suffice. I&#39;ll keep in mind to ignore any &lt;br&gt; further responses from you. &lt;br&gt; You (and I) were referring to the *online documentation*, not other</description>
+				<dc:creator>cakephp</dc:creator>
+				<category><![CDATA[cakephp]]></category>
+				<category><![CDATA[model]]></category>
+				<guid isPermaLink="true">http://groups.google.com/group/cake-php/msg/8b350d898707dad8</guid>
+				<author>subtropolis.z...@gmail.com(subtropolis zijn)</author>
+				<pubDate>Fri, 28 Dec 2007 00:45:01 UT</pubDate>
+			</item>
+		</channel>
+		</rss>';
+
+		$xml = new Xml($string);
+		$result = $xml->toArray();
+
+		$expected = array('Rss' => array(
+			'version' => '2.0',
+			'Channel' => array(
+				'title' => 'Cake PHP Google Group',
+				'link' => 'http://groups.google.com/group/cake-php',
+				'description' => 'Search this group before posting anything. There are over 20,000 posts and it&#39;s very likely your question was answered before. Visit the IRC channel #cakephp at irc.freenode.net for live chat with users and developers of Cake. If you post, tell us the version of Cake, PHP, and database.',
+				'language' => 'en',
+				'Item' => array(
+					array(
+						'title' => 'constructng result array when using findall',
+						'link' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f',
+						'description' => "i'm using cakephp to construct a logical data model array that will be <br> passed to a flex app. I have the following model association: <br> ServiceDay-&gt;(hasMany)ServiceTi me-&gt;(hasMany)ServiceTimePrice. So what <br> the current output from my findall is something like this example: <br><p>Array( <br> [0] =&gt; Array(",
+						'creator' => 'cakephp',
+						'Category' => array('cakephp', 'model'),
+						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/49bc00f3bc651b4f'),
+						'author' => 'bmil...@gmail.com(bpscrugs)',
+						'pubDate' => 'Fri, 28 Dec 2007 00:44:14 UT',
+					),
+					array(
+						'title' => 'Re: share views between actions?',
+						'link' => 'http://groups.google.com/group/cake-php/msg/8b350d898707dad8',
+						'description' => 'Then perhaps you might do us all a favour and refrain from replying to <br> things you do not understand. That goes especially for asinine comments. <br> Indeed. <br> To sum up: <br> No comment. <br> In my day, a simple &quot;RTFM&quot; would suffice. I\'ll keep in mind to ignore any <br> further responses from you. <br> You (and I) were referring to the *online documentation*, not other',
+						'creator' => 'cakephp',
+						'Category' => array('cakephp', 'model'),
+						'guid' => array('isPermaLink' => 'true', 'value' => 'http://groups.google.com/group/cake-php/msg/8b350d898707dad8'),
+						'author' => 'subtropolis.z...@gmail.com(subtropolis zijn)',
+						'pubDate' => 'Fri, 28 Dec 2007 00:45:01 UT'
+					)
+				)
+			)
+		));
+		$this->assertEqual($result, $expected);
+
+		$text = "<?xml version='1.0' encoding='utf-8'?>
+		          <course>
+		            <comps>
+		              <comp>1</comp>
+		              <comp>2</comp>
+		              <comp>3</comp>
+		              <comp>4</comp>
+		            </comps>
+		          </course>";
+		$xml = new Xml($text);
+		$result = $xml->toArray();
+
+		$expected = array('Course' => array(
+			'Comps' => array(
+				'Comp' => array(
+					1, 2, 3, 4
+				)
+			)
+		));
+
+		$this->assertEqual($result, $expected);
+
+		$text = '<?xml version="1.0" encoding="UTF-8"?>
+		<XRDS xmlns="xri://$xrds">
+		<XRD xml:id="oauth" xmlns="xri://$XRD*($v*2.0)" version="2.0">
+			<Type>xri://$xrds*simple</Type>
+			<Expires>2008-04-13T07:34:58Z</Expires>
+			<Service>
+				<Type>http://oauth.net/core/1.0/endpoint/authorize</Type>
+				<Type>http://oauth.net/core/1.0/parameters/auth-header</Type>
+				<Type>http://oauth.net/core/1.0/parameters/uri-query</Type>
+				<URI priority="10">https://ma.gnolia.com/oauth/authorize</URI>
+				<URI priority="20">http://ma.gnolia.com/oauth/authorize</URI>
+			</Service>
+		</XRD>
+		<XRD xmlns="xri://$XRD*($v*2.0)" version="2.0">
+			<Type>xri://$xrds*simple</Type>
+				<Service priority="10">
+					<Type>http://oauth.net/discovery/1.0</Type>
+					<URI>#oauth</URI>
+				</Service>
+		</XRD>
+		</XRDS>';
+
+		$xml = new Xml($text);
+		$result = $xml->toArray();
+
+		$expected = array('XRDS' => array(
+			'xmlns' => 'xri://$xrds',
+			'XRD' => array(
+				array(
+					'xml:id' => 'oauth',
+					'xmlns' => 'xri://$XRD*($v*2.0)',
+					'version' => '2.0',
+					'Type' => 'xri://$xrds*simple',
+					'Expires' => '2008-04-13T07:34:58Z',
+					'Service' => array(
+						'Type' => array(
+							'http://oauth.net/core/1.0/endpoint/authorize',
+							'http://oauth.net/core/1.0/parameters/auth-header',
+							'http://oauth.net/core/1.0/parameters/uri-query'
+						),
+						'URI' => array(
+							array(
+								'value' => 'https://ma.gnolia.com/oauth/authorize',
+								'priority' => '10',
+							),
+							array(
+								'value' => 'http://ma.gnolia.com/oauth/authorize',
+								'priority' => '20'
+							)
+						)
+					)
+				),
+				array(
+					'xmlns' => 'xri://$XRD*($v*2.0)',
+					'version' => '2.0',
+					'Type' => 'xri://$xrds*simple',
+					'Service' => array(
+						'priority' => '10',
+						'Type' => 'http://oauth.net/discovery/1.0',
+						'URI' => '#oauth'
+					)
+				)
+			)
+		));
+		$this->assertEqual($result, $expected);
+
+		$text = '<?xml version="1.0" encoding="UTF-8"?>
+		<root>
+			<child id="1" other="1" />
+			<child id="2" other="1" />
+			<child id="3" other="1" />
+			<child id="4" other="1" />
+			<child id="5" other="1" />
+		</root>';
+		$xml = new Xml($text);
+		$result = $xml->toArray();
+		$expected = array(
+			'Root' => array(
+				'Child' => array(
+					array('id' => 1, 'other' => 1),
+					array('id' => 2, 'other' => 1),
+					array('id' => 3, 'other' => 1),
+					array('id' => 4, 'other' => 1),
+					array('id' => 5, 'other' => 1)
+				)
+			)
+		);
+		$this->assertEqual($result, $expected);
+
+		$text = '<main><first label="first type node 1" /><first label="first type node 2" /><second label="second type node" /></main>';
+		$xml =  new Xml($text);
+		$result = $xml->toArray();
+		$expected = array(
+		    'Main' => array(
+		        'First' => array(
+		            array('label' => 'first type node 1'),
+		            array('label' => 'first type node 2')
+		        ),
+		        'Second' => array('label'=>'second type node')
+		    )
+		);
+		$this->assertIdentical($result,$expected);
+
+		$text = '<main><first label="first type node 1" /><first label="first type node 2" /><second label="second type node" /><collection><fifth label="fifth type node"/><third label="third type node 1"/><third label="third type node 2"/><third label="third type node 3"/><fourth label="fourth type node"/></collection></main>';
+		$xml =  new Xml($text);
+		$result = $xml->toArray();
+		$expected = array(
+		    'Main' => array(
+		        'First' => array(
+		            array('label' => 'first type node 1'),
+		            array('label' => 'first type node 2')
+		        ),
+		        'Second' => array('label'=>'second type node'),
+				'Collection' => array(
+					'Fifth' => array('label' => 'fifth type node'),
+					'Third' => array(
+						array('label' => 'third type node 1'),
+						array('label' => 'third type node 2'),
+						array('label' => 'third type node 3'),
+					),
+					'Fourth' => array('label' => 'fourth type node'),
+				)
+		    )
+		);
+		$this->assertIdentical($result,$expected);
+	}
+/**
+ * testAppend method
+ *
+ * @access public
+ * @return void
+ */
+	function testAppend() {
+		$parentNode = new XmlNode('ourParentNode');
+		$parentNode->append( new XmlNode('ourChildNode'));
+		$first =& $parentNode->first();
+		$this->assertEqual($first->name, 'ourChildNode');
+
+		$string = 'ourChildNode';
+		$parentNode = new XmlNode('ourParentNode');
+		$parentNode->append($string);
+		$last =& $parentNode->last();
+		$this->assertEqual($last->name, 'ourChildNode');
+
+		$this->expectError();
+		$parentNode->append($parentNode);
+	}
+/**
+ * testNamespacing method
+ *
+ * @access public
+ * @return void
+ */
+	function testNamespacing() {
+		$node = new Xml('<xml></xml>');
+		$node->addNamespace('cake', 'http://cakephp.org');
+		$this->assertEqual($node->toString(), '<xml xmlns:cake="http://cakephp.org" />');
+
+		$this->assertTrue($node->removeNamespace('cake'));
+		$this->assertEqual($node->toString(), '<xml />');
+
+
+		$node = new Xml('<xml xmlns:cake="http://cakephp.org" />');
+		$this->assertTrue($node->removeNamespace('cake'));
+		$this->assertEqual($node->toString(), '<xml />');
+
+		$node->addNamespace('cake', 'http://cakephp.org');
+		$this->assertEqual($node->toString(), '<xml xmlns:cake="http://cakephp.org" />');
+	}
+/**
+ * testCamelize method
+ *
+ * @access public
+ * @return void
+ */
+	function testCamelize() {
+		$xmlString = '<methodCall><methodName>examples.getStateName</methodName>' .
+			'<params><param><value><i4>41</i4></value></param></params></methodCall>';
+
+		$Xml = new Xml($xmlString);
+		$expected = array(
+			'methodCall' => array(
+				'methodName' => 'examples.getStateName',
+					'params' => array(
+						'param' => array('value' => array('i4' => 41)))));
+		$this->assertEqual($expected, $Xml->toArray(false));
+
+		$Xml = new Xml($xmlString);
+		$expected = array(
+			'MethodCall' => array(
+				'methodName' => 'examples.getStateName',
+					'Params' => array(
+						'Param' => array('Value' => array('i4' => 41)))));
+		$this->assertEqual($expected, $Xml->toArray());
+	}
+/**
+ * testNumericDataHandling method
+ *
+ * @access public
+ * @return void
+ */
+	function testNumericDataHandling() {
+		$data = '<xml><data>012345</data></xml>';
+
+		$node = new Xml();
+		$node->load($data);
+		$node->parse();
+
+		$result = $node->first();
+		$result = $result->children("data");
+
+		$result = $result[0]->first();
+		$this->assertEqual($result->value, '012345');
+	}
+
+/**
+ * test that creating an xml object does not leak memory
+ *
+ * @return void
+ */
+	function testMemoryLeakInConstructor() {
+		if ($this->skipIf(!function_exists('memory_get_usage'), 'Cannot test memory leaks without memory_get_usage')) {
+			return;
+		}
+		$data = '<?xml version="1.0" encoding="UTF-8"?><content>TEST</content>';
+		$start = memory_get_usage();
+		for ($i = 0; $i <= 300; $i++) {
+			$test =& new XML($data);
+			$test->__destruct();
+			unset($test);
+		}
+		$end = memory_get_usage();
+		$this->assertWithinMargin($start, $end, 3600, 'Memory leaked %s');
+	}
+
+/**
+ * Test toArray with alternate inputs.
+ *
+ * @return void
+ */
+	function testToArrayAlternate() {
+		$sXml = 
+		'<t1>
+		 	<t2>A</t2>
+      		<t2><t3>AAA</t3>B</t2>
+	  		<t2>C</t2>
+		</t1>';
+		$xml = new Xml($sXml);
+		$result = $xml->toArray();
+		$expected = array(
+			'T1' => array(
+				'T2' => array(
+					'A',
+					array('t3' => 'AAA', 'value' => 'B'),
+					'C'
+			)
+		)
+		);
+		$this->assertIdentical($result, $expected);
+		$result = $xml->toArray(false);
+		$expected = array(
+			't1' => array(
+				't2' => array(
+					'A',
+					array('t3' => 'AAA', 'value' => 'B'),
+					'C'
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+		
+		$sXml = 
+		'<t1>
+		 	<t2>A</t2>
+	  		<t2>B</t2>
+      		<t2>
+	         	<t3>CCC</t3>
+	      	</t2>
+		</t1>';
+		$xml = new Xml($sXml);
+		$result = $xml->toArray();
+		$expected = array(
+			'T1' => array(
+				'T2' => array(
+					'A',
+					'B',
+					array('t3' => 'CCC'),
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+		$result = $xml->toArray(false);
+		$expected = array(
+			't1' => array(
+				't2' => array(
+					'A',
+					'B',
+					array('t3' => 'CCC'),
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+		
+		$sXml = 
+		'<t1>
+		 <t2>A</t2>
+		 <t2></t2>
+		 <t2>C</t2>
+		</t1>';
+		$xml = new Xml($sXml);
+		$result = $xml->toArray();
+		$expected = array(
+			'T1' => array(
+				'T2' => array(
+					'A',
+					array(),
+					'C'
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+
+		$result = $xml->toArray(false);
+		$expected = array(
+			't1' => array(
+				't2' => array(
+					'A',
+					array(),
+					'C'
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+		
+		$sXml = 
+		'<stuff>
+    <foo name="abc-16" profile-id="Default" />
+    <foo name="abc-17" profile-id="Default" >
+        <bar id="HelloWorld" />
+    </foo>
+    <foo name="abc-asdf" profile-id="Default" />
+    <foo name="cba-1A" profile-id="Default">
+        <bar id="Baz" />
+    </foo>
+    <foo name="cba-2A" profile-id="Default">
+        <bar id="Baz" />
+    </foo>
+    <foo name="qa" profile-id="Default" />
+</stuff>';
+		$xml = new Xml($sXml);
+		$result = $xml->toArray();
+		$expected = array(
+			'Stuff' => array(
+				'Foo' => array(
+					array('name' => 'abc-16', 'profile-id' => 'Default'),
+					array('name' => 'abc-17', 'profile-id' => 'Default', 
+						'Bar' => array('id' => 'HelloWorld')),
+					array('name' => 'abc-asdf', 'profile-id' => 'Default'),
+					array('name' => 'cba-1A', 'profile-id' => 'Default', 
+						'Bar' => array('id' => 'Baz')),
+					array('name' => 'cba-2A', 'profile-id' => 'Default', 
+						'Bar' => array('id' => 'Baz')),
+					array('name' => 'qa', 'profile-id' => 'Default'),
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+		$result = $xml->toArray(false);
+		$expected = array(
+			'stuff' => array(
+				'foo' => array(
+					array('name' => 'abc-16', 'profile-id' => 'Default'),
+					array('name' => 'abc-17', 'profile-id' => 'Default', 
+						'bar' => array('id' => 'HelloWorld')),
+					array('name' => 'abc-asdf', 'profile-id' => 'Default'),
+					array('name' => 'cba-1A', 'profile-id' => 'Default', 
+						'bar' => array('id' => 'Baz')),
+					array('name' => 'cba-2A', 'profile-id' => 'Default', 
+						'bar' => array('id' => 'Baz')),
+					array('name' => 'qa', 'profile-id' => 'Default'),
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+		
+		
+		$sXml = 
+		'<root>
+  <node name="first" />
+  <node name="second"><subnode name="first sub" /><subnode name="second sub" /></node>
+  <node name="third" />
+</root>';
+		$xml = new Xml($sXml);
+		$result = $xml->toArray();
+		$expected = array(
+			'Root' => array(
+				'Node' => array(
+					array('name' => 'first'),
+					array('name' => 'second', 
+						'Subnode' => array(
+							array('name' => 'first sub'), 
+							array('name' => 'second sub'))),
+					array('name' => 'third'),
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+		
+		$result = $xml->toArray(false);
+		$expected = array(
+			'root' => array(
+				'node' => array(
+					array('name' => 'first'),
+					array('name' => 'second', 
+						'subnode' => array(
+							array('name' => 'first sub'), 
+							array('name' => 'second sub'))),
+					array('name' => 'third'),
+				)
+			)
+		);
+		$this->assertIdentical($result, $expected);
+	}
+	
+}
+?>

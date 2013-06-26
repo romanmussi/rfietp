@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller
@@ -1026,4 +1026,185 @@ class ControllerTest extends CakeTestCase {
 		$this->assertIdentical($result, $expected);
 
 		$Controller->webroot .= '/';
-		$_SERVER['HTTP_REFERER'] = FULL_BASE_URL.$Controller->webroot.'
+		$_SERVER['HTTP_REFERER'] = FULL_BASE_URL.$Controller->webroot.'/some/path';
+		$result = $Controller->referer(null, false);
+		$expected = '/some/path';
+		$this->assertIdentical($result, $expected);
+
+		$_SERVER['HTTP_REFERER'] = FULL_BASE_URL.$Controller->webroot.'some/path';
+		$result = $Controller->referer(null, false);
+		$expected = '/some/path';
+		$this->assertIdentical($result, $expected);
+
+		$Controller->webroot = '/recipe/';
+
+		$_SERVER['HTTP_REFERER'] = FULL_BASE_URL.$Controller->webroot.'recipes/add';
+		$result = $Controller->referer();
+		$expected = '/recipes/add';
+		$this->assertIdentical($result, $expected);
+	}
+/**
+ * testSetAction method
+ *
+ * @access public
+ * @return void
+ */
+	function testSetAction() {
+		$TestController =& new TestController();
+		$TestController->setAction('index', 1, 2);
+		$expected = array('testId' => 1, 'test2Id' => 2);
+		$this->assertidentical($TestController->data, $expected);
+	}
+/**
+ * testUnimplementedIsAuthorized method
+ *
+ * @access public
+ * @return void
+ */
+	function testUnimplementedIsAuthorized() {
+		$TestController =& new TestController();
+		$TestController->isAuthorized();
+		$this->assertError();
+	}
+/**
+ * testValidateErrors method
+ *
+ * @access public
+ * @return void
+ */
+	function testValidateErrors() {
+		$TestController =& new TestController();
+		$TestController->constructClasses();
+		$this->assertFalse($TestController->validateErrors());
+		$this->assertEqual($TestController->validate(), 0);
+
+		$TestController->ControllerComment->invalidate('some_field', 'error_message');
+		$TestController->ControllerComment->invalidate('some_field2', 'error_message2');
+		$comment =& new ControllerComment();
+		$comment->set('someVar', 'data');
+		$result = $TestController->validateErrors($comment);
+		$expected = array('some_field' => 'error_message', 'some_field2' => 'error_message2');
+		$this->assertIdentical($result, $expected);
+		$this->assertEqual($TestController->validate($comment), 2);
+	}
+/**
+ * test that validateErrors works with any old model.
+ *
+ * @return void
+ */
+	function testValidateErrorsOnArbitraryModels() {
+		$TestController =& new TestController();
+
+		$Post = new ControllerPost();
+		$Post->validate = array('title' => 'notEmpty');
+		$Post->set('title', '');
+		$result = $TestController->validateErrors($Post);
+
+		$expected = array('title' => 'This field cannot be left blank');
+		$this->assertEqual($result, $expected);
+	}
+
+/**
+ * testPostConditions method
+ *
+ * @access public
+ * @return void
+ */
+	function testPostConditions() {
+		$Controller =& new Controller();
+
+
+		$data = array(
+			'Model1' => array('field1' => '23'),
+			'Model2' => array('field2' => 'string'),
+			'Model3' => array('field3' => '23'),
+		);
+		$expected = array(
+			'Model1.field1' => '23',
+			'Model2.field2' => 'string',
+			'Model3.field3' => '23',
+		);
+		$result = $Controller->postConditions($data);
+		$this->assertIdentical($result, $expected);
+
+
+		$data = array();
+		$Controller->data = array(
+			'Model1' => array('field1' => '23'),
+			'Model2' => array('field2' => 'string'),
+			'Model3' => array('field3' => '23'),
+		);
+		$expected = array(
+			'Model1.field1' => '23',
+			'Model2.field2' => 'string',
+			'Model3.field3' => '23',
+		);
+		$result = $Controller->postConditions($data);
+		$this->assertIdentical($result, $expected);
+
+
+		$data = array();
+		$Controller->data = array();
+		$result = $Controller->postConditions($data);
+		$this->assertNull($result);
+
+
+		$data = array();
+		$Controller->data = array(
+			'Model1' => array('field1' => '23'),
+			'Model2' => array('field2' => 'string'),
+			'Model3' => array('field3' => '23'),
+		);
+		$ops = array(
+			'Model1.field1' => '>',
+			'Model2.field2' => 'LIKE',
+			'Model3.field3' => '<=',
+		);
+		$expected = array(
+			'Model1.field1 >' => '23',
+			'Model2.field2 LIKE' => "%string%",
+			'Model3.field3 <=' => '23',
+		);
+		$result = $Controller->postConditions($data, $ops);
+		$this->assertIdentical($result, $expected);
+	}
+/**
+ * testRequestHandlerPrefers method
+ *
+ * @access public
+ * @return void
+ */
+	function testRequestHandlerPrefers(){
+		Configure::write('debug', 2);
+		$Controller =& new Controller();
+		$Controller->components = array("RequestHandler");
+		$Controller->modelClass='ControllerPost';
+		$Controller->params['url']['ext'] = 'rss';
+		$Controller->constructClasses();
+		$Controller->Component->initialize($Controller);
+		$Controller->beforeFilter();
+		$Controller->Component->startup($Controller);
+
+		$this->assertEqual($Controller->RequestHandler->prefers(), 'rss');
+		unset($Controller);
+	}
+
+/**
+ * Tests that the correct alias is selected
+ *
+ * @return void
+ */
+	function testValidateSortAlias() {
+		$Controller =& new Controller();
+		$Controller->uses = array('ControllerPost', 'ControllerComment');
+		$Controller->passedArgs[] = '1';
+		$Controller->params['url'] = array();
+		$Controller->constructClasses();
+		$Controller->passedArgs = array('sort' => 'Derp.id', 'direction' => 'asc');
+		$results = Set::extract($Controller->paginate('ControllerPost'), '{n}.ControllerPost.id');
+		$this->assertEqual($Controller->params['paging']['ControllerPost']['page'], 1);
+		$this->assertEqual($results, array(1, 2, 3));
+	}
+
+}
+?>

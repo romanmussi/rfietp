@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -981,4 +981,427 @@ class HttpSocketTest extends CakeTestCase {
 		$r = $this->Socket->buildUri(array('host' => 'www.cakephp.org', 'path' => '/foo'));
 		$this->assertIdentical($r, 'http://www.cakephp.org/foo');
 
-		$r = $this->S
+		$r = $this->Socket->buildUri(array('host' => 'www.cakephp.org', 'path' => '/search', 'query' => array('q' => 'HttpSocket')));
+		$this->assertIdentical($r, 'http://www.cakephp.org/search?q=HttpSocket');
+
+		$r = $this->Socket->buildUri(array('host' => 'www.cakephp.org', 'fragment' => 'bar'));
+		$this->assertIdentical($r, 'http://www.cakephp.org/#bar');
+
+		$r = $this->Socket->buildUri(array(
+			'scheme' => 'https',
+			'host' => 'www.cakephp.org',
+			'port' => 25,
+			'user' => 'bob',
+			'pass' => 'secret',
+			'path' => '/cool',
+			'query' => array('foo' => 'bar'),
+			'fragment' => 'comment'
+		));
+		$this->assertIdentical($r, 'https://bob:secret@www.cakephp.org:25/cool?foo=bar#comment');
+
+		$r = $this->Socket->buildUri(array('host' => 'www.cakephp.org', 'fragment' => 'bar'), '%fragment?%host');
+		$this->assertIdentical($r, 'bar?www.cakephp.org');
+
+		$r = $this->Socket->buildUri(array('host' => 'www.cakephp.org'), '%fragment???%host');
+		$this->assertIdentical($r, '???www.cakephp.org');
+
+		$r = $this->Socket->buildUri(array('path' => '*'), '/%path?%query');
+		$this->assertIdentical($r, '*');
+
+		$r = $this->Socket->buildUri(array('scheme' => 'foo', 'host' => 'www.cakephp.org'));
+		$this->assertIdentical($r, 'foo://www.cakephp.org:80/');
+	}
+/**
+ * Asserts that HttpSocket::parseQuery is working properly
+ *
+ * @access public
+ * @return void
+ */
+	function testParseQuery() {
+		$this->Socket->reset();
+
+		$query = $this->Socket->parseQuery(array('framework' => 'cakephp'));
+		$this->assertIdentical($query, array('framework' => 'cakephp'));
+
+		$query = $this->Socket->parseQuery('');
+		$this->assertIdentical($query, array());
+
+		$query = $this->Socket->parseQuery('framework=cakephp');
+		$this->assertIdentical($query, array('framework' => 'cakephp'));
+
+		$query = $this->Socket->parseQuery('?framework=cakephp');
+		$this->assertIdentical($query, array('framework' => 'cakephp'));
+
+		$query = $this->Socket->parseQuery('a&b&c');
+		$this->assertIdentical($query, array('a' => '', 'b' => '', 'c' => ''));
+
+		$query = $this->Socket->parseQuery('value=12345');
+		$this->assertIdentical($query, array('value' => '12345'));
+
+		$query = $this->Socket->parseQuery('a[0]=foo&a[1]=bar&a[2]=cake');
+		$this->assertIdentical($query, array('a' => array(0 => 'foo', 1 => 'bar', 2 => 'cake')));
+
+		$query = $this->Socket->parseQuery('a[]=foo&a[]=bar&a[]=cake');
+		$this->assertIdentical($query, array('a' => array(0 => 'foo', 1 => 'bar', 2 => 'cake')));
+
+		$query = $this->Socket->parseQuery('a]][[=foo&[]=bar&]]][]=cake');
+		$this->assertIdentical($query, array('a]][[' => 'foo', 0 => 'bar', ']]]' => array('cake')));
+
+		$query = $this->Socket->parseQuery('a[][]=foo&a[][]=bar&a[][]=cake');
+		$expectedQuery = array(
+			'a' => array(
+				0 => array(
+					0 => 'foo'
+				),
+				1 => array(
+					0 => 'bar'
+				),
+				array(
+					0 => 'cake'
+				)
+			)
+		);
+		$this->assertIdentical($query, $expectedQuery);
+
+		$query = $this->Socket->parseQuery('a[][]=foo&a[bar]=php&a[][]=bar&a[][]=cake');
+		$expectedQuery = array(
+			'a' => array(
+				0 => array(
+					0 => 'foo'
+				),
+				'bar' => 'php',
+				1 => array(
+					0 => 'bar'
+				),
+				array(
+					0 => 'cake'
+				)
+			)
+		);
+		$this->assertIdentical($query, $expectedQuery);
+
+		$query = $this->Socket->parseQuery('user[]=jim&user[3]=tom&user[]=bob');
+		$expectedQuery = array(
+			'user' => array(
+				0 => 'jim',
+				3 => 'tom',
+				4 => 'bob'
+			)
+		);
+		$this->assertIdentical($query, $expectedQuery);
+
+		$queryStr = 'user[0]=foo&user[0][items][]=foo&user[0][items][]=bar&user[][name]=jim&user[1][items][personal][]=book&user[1][items][personal][]=pen&user[1][items][]=ball&user[count]=2&empty';
+		$query = $this->Socket->parseQuery($queryStr);
+		$expectedQuery = array(
+			'user' => array(
+				0 => array(
+					'items' => array(
+						'foo',
+						'bar'
+					)
+				),
+				1 => array(
+					'name' => 'jim',
+					'items' => array(
+						'personal' => array(
+							'book'
+							, 'pen'
+						),
+						'ball'
+					)
+				),
+				'count' => '2'
+			),
+			'empty' => ''
+		);
+		$this->assertIdentical($query, $expectedQuery);
+	}
+/**
+ * Tests that HttpSocket::buildHeader can turn a given $header array into a proper header string according to
+ * HTTP 1.1 specs.
+ *
+ * @access public
+ * @return void
+ */
+	function testBuildHeader() {
+		$this->Socket->reset();
+
+		$r = $this->Socket->buildHeader(true);
+		$this->assertIdentical($r, false);
+
+		$r = $this->Socket->buildHeader('My raw header');
+		$this->assertIdentical($r, 'My raw header');
+
+		$r = $this->Socket->buildHeader(array('Host' => 'www.cakephp.org'));
+		$this->assertIdentical($r, "Host: www.cakephp.org\r\n");
+
+		$r = $this->Socket->buildHeader(array('Host' => 'www.cakephp.org', 'Connection' => 'Close'));
+		$this->assertIdentical($r, "Host: www.cakephp.org\r\nConnection: Close\r\n");
+
+		$r = $this->Socket->buildHeader(array('People' => array('Bob', 'Jim', 'John')));
+		$this->assertIdentical($r, "People: Bob,Jim,John\r\n");
+
+		$r = $this->Socket->buildHeader(array('Multi-Line-Field' => "This is my\r\nMulti Line field"));
+		$this->assertIdentical($r, "Multi-Line-Field: This is my\r\n Multi Line field\r\n");
+
+		$r = $this->Socket->buildHeader(array('Multi-Line-Field' => "This is my\r\n Multi Line field"));
+		$this->assertIdentical($r, "Multi-Line-Field: This is my\r\n Multi Line field\r\n");
+
+		$r = $this->Socket->buildHeader(array('Multi-Line-Field' => "This is my\r\n\tMulti Line field"));
+		$this->assertIdentical($r, "Multi-Line-Field: This is my\r\n\tMulti Line field\r\n");
+
+		$r = $this->Socket->buildHeader(array('Test@Field' => "My value"));
+		$this->assertIdentical($r, "Test\"@\"Field: My value\r\n");
+
+	}
+/**
+ * Test that HttpSocket::parseHeader can take apart a given (and valid) $header string and turn it into an array.
+ *
+ * @access public
+ * @return void
+ */
+	function testParseHeader() {
+		$this->Socket->reset();
+
+		$r = $this->Socket->parseHeader(array('foo' => 'Bar', 'fOO-bAr' => 'quux'));
+		$this->assertIdentical($r, array('Foo' => 'Bar', 'Foo-Bar' => 'quux'));
+
+		$r = $this->Socket->parseHeader(true);
+		$this->assertIdentical($r, false);
+
+		$header = "Host: cakephp.org\t\r\n";
+		$r = $this->Socket->parseHeader($header);
+		$expected = array(
+			'Host' => 'cakephp.org'
+		);
+		$this->assertIdentical($r, $expected);
+
+		$header = "Date:Sat, 07 Apr 2007 10:10:25 GMT\r\nX-Powered-By: PHP/5.1.2\r\n";
+		$r = $this->Socket->parseHeader($header);
+		$expected = array(
+			'Date' => 'Sat, 07 Apr 2007 10:10:25 GMT'
+			, 'X-Powered-By' =>  'PHP/5.1.2'
+		);
+		$this->assertIdentical($r, $expected);
+
+		$header = "people: Jim,John\r\nfoo-LAND: Bar\r\ncAKe-PHP: rocks\r\n";
+		$r = $this->Socket->parseHeader($header);
+		$expected = array(
+			'People' => 'Jim,John'
+			, 'Foo-Land' => 'Bar'
+			, 'Cake-Php' =>  'rocks'
+		);
+		$this->assertIdentical($r, $expected);
+
+		$header = "People: Jim,John,Tim\r\nPeople: Lisa,Tina,Chelsea\r\n";
+		$r = $this->Socket->parseHeader($header);
+		$expected = array(
+			'People' =>  array('Jim,John,Tim', 'Lisa,Tina,Chelsea')
+		);
+		$this->assertIdentical($r, $expected);
+
+		$header = "Multi-Line: I am a \r\nmulti line\t\r\nfield value.\r\nSingle-Line: I am not\r\n";
+		$r = $this->Socket->parseHeader($header);
+		$expected = array(
+			'Multi-Line' => "I am a\r\nmulti line\r\nfield value."
+			, 'Single-Line' => 'I am not'
+		);
+		$this->assertIdentical($r, $expected);
+
+		$header = "Esc\"@\"ped: value\r\n";
+		$r = $this->Socket->parseHeader($header);
+		$expected = array(
+			'Esc@ped' => 'value'
+		);
+		$this->assertIdentical($r, $expected);
+	}
+/**
+ * testParseCookies method
+ *
+ * @access public
+ * @return void
+ */
+	function testParseCookies() {
+		$header = array(
+			'Set-Cookie' => array(
+				'foo=bar',
+				'people=jim,jack,johnny";";Path=/accounts',
+				'google=not=nice'
+			),
+			'Transfer-Encoding' => 'chunked',
+			'Date' => 'Sun, 18 Nov 2007 18:57:42 GMT',
+		);
+		$cookies = $this->Socket->parseCookies($header);
+		$expected = array(
+			'foo' => array(
+				'value' => 'bar'
+			),
+			'people' => array(
+				'value' => 'jim,jack,johnny";"',
+				'path' => '/accounts',
+			),
+			'google' => array(
+				'value' => 'not=nice',
+			)
+		);
+		$this->assertEqual($cookies, $expected);
+
+		$header['Set-Cookie'][] = 'cakephp=great; Secure';
+		$expected['cakephp'] = array('value' => 'great', 'secure' => true);
+		$cookies = $this->Socket->parseCookies($header);
+		$this->assertEqual($cookies, $expected);
+
+		$header['Set-Cookie'] = 'foo=bar';
+		unset($expected['people'], $expected['cakephp'], $expected['google']);
+		$cookies = $this->Socket->parseCookies($header);
+		$this->assertEqual($cookies, $expected);
+	}
+/**
+ * testBuildCookies method
+ *
+ * @return void
+ * @access public
+ * @todo Test more scenarios
+ */
+	function testBuildCookies() {
+		$cookies = array(
+			'foo' => array(
+				'value' => 'bar'
+			),
+			'people' => array(
+				'value' => 'jim,jack,johnny;',
+				'path' => '/accounts'
+			)
+		);
+		$expect = "Cookie: foo=bar; people=jim,jack,johnny\";\"\r\n";
+		$result = $this->Socket->buildCookies($cookies);
+		$this->assertEqual($result, $expect);
+	}
+/**
+ * Tests that HttpSocket::__tokenEscapeChars() returns the right characters.
+ *
+ * @access public
+ * @return void
+ */
+	function testTokenEscapeChars() {
+		$this->Socket->reset();
+
+		$expected = array(
+			'\x22','\x28','\x29','\x3c','\x3e','\x40','\x2c','\x3b','\x3a','\x5c','\x2f','\x5b','\x5d','\x3f','\x3d','\x7b',
+			'\x7d','\x20','\x00','\x01','\x02','\x03','\x04','\x05','\x06','\x07','\x08','\x09','\x0a','\x0b','\x0c','\x0d',
+			'\x0e','\x0f','\x10','\x11','\x12','\x13','\x14','\x15','\x16','\x17','\x18','\x19','\x1a','\x1b','\x1c','\x1d',
+			'\x1e','\x1f','\x7f'
+		);
+		$r = $this->Socket->__tokenEscapeChars();
+		$this->assertEqual($r, $expected);
+
+		foreach ($expected as $key => $char) {
+			$expected[$key] = chr(hexdec(substr($char, 2)));
+		}
+
+		$r = $this->Socket->__tokenEscapeChars(false);
+		$this->assertEqual($r, $expected);
+	}
+/**
+ * Test that HttpSocket::escapeToken is escaping all characters as descriped in RFC 2616 (HTTP 1.1 specs)
+ *
+ * @access public
+ * @return void
+ */
+	function testEscapeToken() {
+		$this->Socket->reset();
+
+		$this->assertIdentical($this->Socket->escapeToken('Foo'), 'Foo');
+
+		$escape = $this->Socket->__tokenEscapeChars(false);
+		foreach ($escape as $char) {
+			$token = 'My-special-'.$char.'-Token';
+			$escapedToken = $this->Socket->escapeToken($token);
+			$expectedToken = 'My-special-"'.$char.'"-Token';
+
+			$this->assertIdentical($escapedToken, $expectedToken, 'Test token escaping for ASCII '.ord($char));
+		}
+
+		$token = 'Extreme-:Token-	-"@-test';
+		$escapedToken = $this->Socket->escapeToken($token);
+		$expectedToken = 'Extreme-":"Token-"	"-""""@"-test';
+		$this->assertIdentical($expectedToken, $escapedToken);
+	}
+/**
+ * Test that escaped token strings are properly unescaped by HttpSocket::unescapeToken
+ *
+ * @access public
+ * @return void
+ */
+	function testUnescapeToken() {
+		$this->Socket->reset();
+
+		$this->assertIdentical($this->Socket->unescapeToken('Foo'), 'Foo');
+
+		$escape = $this->Socket->__tokenEscapeChars(false);
+		foreach ($escape as $char) {
+			$token = 'My-special-"'.$char.'"-Token';
+			$unescapedToken = $this->Socket->unescapeToken($token);
+			$expectedToken = 'My-special-'.$char.'-Token';
+
+			$this->assertIdentical($unescapedToken, $expectedToken, 'Test token unescaping for ASCII '.ord($char));
+		}
+
+		$token = 'Extreme-":"Token-"	"-""""@"-test';
+		$escapedToken = $this->Socket->unescapeToken($token);
+		$expectedToken = 'Extreme-:Token-	-"@-test';
+		$this->assertIdentical($expectedToken, $escapedToken);
+	}
+/**
+ * This tests asserts HttpSocket::reset() resets a HttpSocket instance to it's initial state (before Object::__construct
+ * got executed)
+ *
+ * @access public
+ * @return void
+ */
+	function testReset() {
+		$this->Socket->reset();
+
+		$initialState = get_class_vars('HttpSocket');
+		foreach ($initialState as $property => $value) {
+			$this->Socket->{$property} = 'Overwritten';
+		}
+
+		$return = $this->Socket->reset();
+
+		foreach ($initialState as $property => $value) {
+			$this->assertIdentical($this->Socket->{$property}, $value);
+		}
+
+		$this->assertIdentical($return, true);
+	}
+/**
+ * This tests asserts HttpSocket::reset(false) resets certain HttpSocket properties to their initial state (before
+ * Object::__construct got executed).
+ *
+ * @access public
+ * @return void
+ */
+	function testPartialReset() {
+		$this->Socket->reset();
+
+		$partialResetProperties = array('request', 'response');
+		$initialState = get_class_vars('HttpSocket');
+
+		foreach ($initialState as $property => $value) {
+			$this->Socket->{$property} = 'Overwritten';
+		}
+
+		$return = $this->Socket->reset(false);
+
+		foreach ($initialState as $property => $originalValue) {
+			if (in_array($property, $partialResetProperties)) {
+				$this->assertIdentical($this->Socket->{$property}, $originalValue);
+			} else {
+				$this->assertIdentical($this->Socket->{$property}, 'Overwritten');
+			}
+		}
+		$this->assertIdentical($return, true);
+	}
+}
+?>

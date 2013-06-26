@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
@@ -1045,4 +1045,763 @@ class NumberTreeTest extends CakeTestCase {
 		$this->assertEqual($direct, $expects);
 
 		$total = $this->Tree->children(null, null, array('id', 'name', $parentField, $leftField, $rightField));
-		$expects = array(array($modelClass => array('id' => 2, '
+		$expects = array(array($modelClass => array('id' => 2, 'name' => '1.1', $parentField => 1, $leftField => 2, $rightField => 7)),
+			array($modelClass => array('id' => 3, 'name' => '1.1.1', $parentField => 2, $leftField => 3, $rightField => 4)),
+			array($modelClass => array('id' => 4, 'name' => '1.1.2', $parentField => 2, $leftField => 5, $rightField => 6)),
+			array($modelClass => array('id' => 5, 'name' => '1.2', $parentField => 1, $leftField => 8, $rightField => 13)),
+			array($modelClass => array( 'id' => 6, 'name' => '1.2.1', $parentField => 5, $leftField => 9, $rightField => 10)),
+			array($modelClass => array('id' => 7, 'name' => '1.2.2', $parentField => 5, $leftField => 11, $rightField => 12)));
+		$this->assertEqual($total, $expects);
+
+		$this->assertEqual(array(), $this->Tree->children(10000));
+	}
+/**
+ * testCountChildren method
+ *
+ * @access public
+ * @return void
+ */
+	function testCountChildren() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1. Root'));
+		$this->Tree->id = $data[$modelClass]['id'];
+
+		$direct = $this->Tree->childCount(null, true);
+		$this->assertEqual($direct, 2);
+
+		$total = $this->Tree->childCount();
+		$this->assertEqual($total, 6);
+	}
+/**
+ * testGetParentNode method
+ *
+ * @access public
+ * @return void
+ */
+	function testGetParentNode() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1.2.2'));
+		$this->Tree->id= $data[$modelClass]['id'];
+
+		$result = $this->Tree->getparentNode(null, array('name'));
+		$expects = array($modelClass => array('name' => '1.2'));
+		$this->assertIdentical($result, $expects);
+	}
+/**
+ * testGetPath method
+ *
+ * @access public
+ * @return void
+ */
+	function testGetPath() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1.2.2'));
+		$this->Tree->id= $data[$modelClass]['id'];
+
+		$result = $this->Tree->getPath(null, array('name'));
+		$expects = array(array($modelClass => array('name' => '1. Root')),
+			array($modelClass => array('name' => '1.2')),
+			array($modelClass => array('name' => '1.2.2')));
+		$this->assertIdentical($result, $expects);
+	}
+/**
+ * testNoAmbiguousColumn method
+ *
+ * @access public
+ * @return void
+ */
+	function testNoAmbiguousColumn() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->bindModel(array('belongsTo' => array('Dummy' =>
+			array('className' => $modelClass, 'foreignKey' => $parentField, 'conditions' => array('Dummy.id' => null)))), false);
+		$this->Tree->initialize(2, 2);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1. Root'));
+		$this->Tree->id= $data[$modelClass]['id'];
+
+		$direct = $this->Tree->children(null, true, array('id', 'name', $parentField, $leftField, $rightField));
+		$expects = array(array($modelClass => array('id' => 2, 'name' => '1.1', $parentField => 1, $leftField => 2, $rightField => 7)),
+			array($modelClass => array('id' => 5, 'name' => '1.2', $parentField => 1, $leftField => 8, $rightField => 13)));
+		$this->assertEqual($direct, $expects);
+
+		$total = $this->Tree->children(null, null, array('id', 'name', $parentField, $leftField, $rightField));
+		$expects = array(
+			array($modelClass => array('id' => 2, 'name' => '1.1', $parentField => 1, $leftField => 2, $rightField => 7)),
+			array($modelClass => array('id' => 3, 'name' => '1.1.1', $parentField => 2, $leftField => 3, $rightField => 4)),
+			array($modelClass => array('id' => 4, 'name' => '1.1.2', $parentField => 2, $leftField => 5, $rightField => 6)),
+			array($modelClass => array('id' => 5, 'name' => '1.2', $parentField => 1, $leftField => 8, $rightField => 13)),
+			array($modelClass => array( 'id' => 6, 'name' => '1.2.1', $parentField => 5, $leftField => 9, $rightField => 10)),
+			array($modelClass => array('id' => 7, 'name' => '1.2.2', $parentField => 5, $leftField => 11, $rightField => 12))
+		);
+		$this->assertEqual($total, $expects);
+	}
+/**
+ * testReorderTree method
+ *
+ * @access public
+ * @return void
+ */
+	function testReorderTree() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(3, 3);
+		$nodes = $this->Tree->find('list', array('order' => $leftField));
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1.1'), array('id'));
+		$this->Tree->moveDown($data[$modelClass]['id']);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1.2.1'), array('id'));
+		$this->Tree->moveDown($data[$modelClass]['id']);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1.3.2.2'), array('id'));
+		$this->Tree->moveDown($data[$modelClass]['id']);
+
+		$unsortedNodes = $this->Tree->find('list', array('order' => $leftField));
+		$this->assertNotIdentical($nodes, $unsortedNodes);
+
+		$this->Tree->reorder();
+		$sortedNodes = $this->Tree->find('list', array('order' => $leftField));
+		$this->assertIdentical($nodes, $sortedNodes);
+	}
+/**
+ * test reordering large-ish trees with cacheQueries = true.
+ * This caused infinite loops when moving down elements as stale data is returned
+ * from the memory cache
+ *
+ * @access public
+ * @return void
+ */
+	function testReorderBigTreeWithQueryCaching() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 10);
+
+		$original = $this->Tree->cacheQueries;
+		$this->Tree->cacheQueries = true;
+		$this->Tree->reorder(array('field' => 'name', 'direction' => 'DESC'));
+		$this->assertTrue($this->Tree->cacheQueries, 'cacheQueries was not restored after reorder(). %s');
+		$this->Tree->cacheQueries = $original;
+	}
+/**
+ * testGenerateTreeListWithSelfJoin method
+ *
+ * @access public
+ * @return void
+ */
+	function testGenerateTreeListWithSelfJoin() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->bindModel(array('belongsTo' => array('Dummy' =>
+			array('className' => $modelClass, 'foreignKey' => $parentField, 'conditions' => array('Dummy.id' => null)))), false);
+		$this->Tree->initialize(2, 2);
+
+		$result = $this->Tree->generateTreeList();
+		$expected = array(1 => '1. Root', 2 => '_1.1', 3 => '__1.1.1', 4 => '__1.1.2', 5 => '_1.2', 6 => '__1.2.1', 7 => '__1.2.2');
+		$this->assertIdentical($result, $expected);
+	}
+/**
+ * testArraySyntax method
+ *
+ * @access public
+ * @return void
+ */
+	function testArraySyntax() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(3, 3);
+		$this->assertIdentical($this->Tree->childCount(2), $this->Tree->childCount(array('id' => 2)));
+		$this->assertIdentical($this->Tree->getParentNode(2), $this->Tree->getParentNode(array('id' => 2)));
+		$this->assertIdentical($this->Tree->getPath(4), $this->Tree->getPath(array('id' => 4)));
+	}
+}
+/**
+ * ScopedTreeTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.model.behaviors
+ */
+class ScopedTreeTest extends NumberTreeTest {
+/**
+ * settings property
+ *
+ * @var array
+ * @access public
+ */
+	var $settings = array(
+		'modelClass' => 'FlagTree',
+		'leftField' => 'lft',
+		'rightField' => 'rght',
+		'parentField' => 'parent_id'
+	);
+/**
+ * fixtures property
+ *
+ * @var array
+ * @access public
+ */
+	var $fixtures = array('core.flag_tree', 'core.ad', 'core.campaign', 'core.translate', 'core.number_tree_two');
+/**
+ * testStringScope method
+ *
+ * @access public
+ * @return void
+ */
+	function testStringScope() {
+		$this->Tree =& new FlagTree();
+		$this->Tree->initialize(2, 3);
+
+		$this->Tree->id = 1;
+		$this->Tree->saveField('flag', 1);
+		$this->Tree->id = 2;
+		$this->Tree->saveField('flag', 1);
+
+		$result = $this->Tree->children();
+		$expected = array(
+			array('FlagTree' => array('id' => '3', 'name' => '1.1.1', 'parent_id' => '2', 'lft' => '3', 'rght' => '4', 'flag' => '0')),
+			array('FlagTree' => array('id' => '4', 'name' => '1.1.2', 'parent_id' => '2', 'lft' => '5', 'rght' => '6', 'flag' => '0')),
+			array('FlagTree' => array('id' => '5', 'name' => '1.1.3', 'parent_id' => '2', 'lft' => '7', 'rght' => '8', 'flag' => '0'))
+		);
+		$this->assertEqual($result, $expected);
+
+		$this->Tree->Behaviors->attach('Tree', array('scope' => 'FlagTree.flag = 1'));
+		$this->assertEqual($this->Tree->children(), array());
+
+		$this->Tree->id = 1;
+		$this->Tree->Behaviors->attach('Tree', array('scope' => 'FlagTree.flag = 1'));
+
+		$result = $this->Tree->children();
+		$expected = array(array('FlagTree' => array('id' => '2', 'name' => '1.1', 'parent_id' => '1', 'lft' => '2', 'rght' => '9', 'flag' => '1')));
+		$this->assertEqual($result, $expected);
+
+		$this->assertTrue($this->Tree->delete());
+		$this->assertEqual($this->Tree->find('count'), 11);
+	}
+/**
+ * testArrayScope method
+ *
+ * @access public
+ * @return void
+ */
+	function testArrayScope() {
+		$this->Tree =& new FlagTree();
+		$this->Tree->initialize(2, 3);
+
+		$this->Tree->id = 1;
+		$this->Tree->saveField('flag', 1);
+		$this->Tree->id = 2;
+		$this->Tree->saveField('flag', 1);
+
+		$result = $this->Tree->children();
+		$expected = array(
+			array('FlagTree' => array('id' => '3', 'name' => '1.1.1', 'parent_id' => '2', 'lft' => '3', 'rght' => '4', 'flag' => '0')),
+			array('FlagTree' => array('id' => '4', 'name' => '1.1.2', 'parent_id' => '2', 'lft' => '5', 'rght' => '6', 'flag' => '0')),
+			array('FlagTree' => array('id' => '5', 'name' => '1.1.3', 'parent_id' => '2', 'lft' => '7', 'rght' => '8', 'flag' => '0'))
+		);
+		$this->assertEqual($result, $expected);
+
+		$this->Tree->Behaviors->attach('Tree', array('scope' => array('FlagTree.flag' => 1)));
+		$this->assertEqual($this->Tree->children(), array());
+
+		$this->Tree->id = 1;
+		$this->Tree->Behaviors->attach('Tree', array('scope' => array('FlagTree.flag' => 1)));
+
+		$result = $this->Tree->children();
+		$expected = array(array('FlagTree' => array('id' => '2', 'name' => '1.1', 'parent_id' => '1', 'lft' => '2', 'rght' => '9', 'flag' => '1')));
+		$this->assertEqual($result, $expected);
+
+		$this->assertTrue($this->Tree->delete());
+		$this->assertEqual($this->Tree->find('count'), 11);
+	}
+/**
+ * testMoveUpWithScope method
+ *
+ * @access public
+ * @return void
+ */
+	function testMoveUpWithScope() {
+		$this->Ad =& new Ad();
+		$this->Ad->Behaviors->attach('Tree', array('scope'=>'Campaign'));
+		$this->Ad->moveUp(6);
+
+		$this->Ad->id = 4;
+		$result = $this->Ad->children();
+		$this->assertEqual(Set::extract('/Ad/id', $result), array(6, 5));
+		$this->assertEqual(Set::extract('/Campaign/id', $result), array(2, 2));
+	}
+/**
+ * testMoveDownWithScope method
+ *
+ * @access public
+ * @return void
+ */
+	function testMoveDownWithScope() {
+		$this->Ad =& new Ad();
+		$this->Ad->Behaviors->attach('Tree', array('scope' => 'Campaign'));
+		$this->Ad->moveDown(6);
+
+		$this->Ad->id = 4;
+		$result = $this->Ad->children();
+		$this->assertEqual(Set::extract('/Ad/id', $result), array(5, 6));
+		$this->assertEqual(Set::extract('/Campaign/id', $result), array(2, 2));
+	}
+/**
+ * Tests the interaction (non-interference) between TreeBehavior and other behaviors with respect
+ * to callback hooks
+ *
+ * @access public
+ * @return void
+ */
+	function testTranslatingTree() {
+		$this->Tree =& new FlagTree();
+		$this->Tree->cacheQueries = false;
+		$this->Tree->translateModel = 'TranslateTreeTestModel';
+		$this->Tree->Behaviors->attach('Translate', array('name'));
+
+		//Save
+		$this->Tree->locale = 'eng';
+		$data = array('FlagTree' => array(
+			'name' => 'name #1',
+			'locale' => 'eng',
+			'parent_id' => null,
+		));
+		$this->Tree->save($data);
+		$result = $this->Tree->find('all');
+		$expected = array(array('FlagTree' => array(
+			'id' => 1,
+			'name' => 'name #1',
+			'parent_id' => null,
+			'lft' => 1,
+			'rght' => 2,
+			'flag' => 0,
+			'locale' => 'eng',
+		)));
+		$this->assertEqual($result, $expected);
+
+		//update existing record, same locale
+		$this->Tree->create();
+		$data['FlagTree']['name'] = 'Named 2';
+		$this->Tree->id = 1;
+		$this->Tree->save($data);
+		$result = $this->Tree->find('all');
+		$expected = array(array('FlagTree' => array(
+			'id' => 1,
+			'name' => 'Named 2',
+			'parent_id' => null,
+			'lft' => 1,
+			'rght' => 2,
+			'flag' => 0,
+			'locale' => 'eng',
+		)));
+		$this->assertEqual($result, $expected);
+
+		//update different locale, same record
+		$this->Tree->create();
+		$this->Tree->locale = 'deu';
+		$this->Tree->id = 1;
+		$data = array('FlagTree' => array(
+			'id' => 1,
+			'parent_id' => null,
+			'name' => 'namen #1',
+			'locale' => 'deu',
+		));
+		$this->Tree->save($data);
+
+		$this->Tree->locale = 'deu';
+		$result = $this->Tree->find('all');
+		$expected = array(array('FlagTree' => array(
+			'id' => 1,
+			'name' => 'namen #1',
+			'parent_id' => null,
+			'lft' => 1,
+			'rght' => 2,
+			'flag' => 0,
+			'locale' => 'deu',
+		)));
+		$this->assertEqual($result, $expected);
+
+		//Save with bindTranslation
+		$this->Tree->locale = 'eng';
+		$data = array(
+			'name' => array('eng' => 'New title', 'spa' => 'Nuevo leyenda'),
+			'parent_id' => null
+		);
+		$this->Tree->create($data);
+		$this->Tree->save();
+
+		$this->Tree->unbindTranslation();
+		$translations = array('name' => 'Name');
+		$this->Tree->bindTranslation($translations, false);
+		$this->Tree->locale = array('eng', 'spa');
+
+		$result = $this->Tree->read();
+		$expected = array(
+			'FlagTree' => array('id' => 2, 'parent_id' => null, 'locale' => 'eng', 'name' => 'New title', 'flag' => 0, 'lft' => 3, 'rght' => 4),
+			'Name' => array(
+			array('id' => 21, 'locale' => 'eng', 'model' => 'FlagTree', 'foreign_key' => 2, 'field' => 'name', 'content' => 'New title'),
+			array('id' => 22, 'locale' => 'spa', 'model' => 'FlagTree', 'foreign_key' => 2, 'field' => 'name', 'content' => 'Nuevo leyenda')
+			),
+		);
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * testGenerateTreeListWithSelfJoin method
+ *
+ * @return void
+ * @access public
+ */
+	function testAliasesWithScopeInTwoTreeAssociations() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+
+		$this->TreeTwo =& new NumberTreeTwo();
+
+		$record = $this->Tree->find('first');
+
+		$this->Tree->bindModel(array(
+			'hasMany' => array(
+				'SecondTree' => array(
+					'className' => 'NumberTreeTwo',
+					'foreignKey' => 'number_tree_id'
+				)
+			)
+		));
+		$this->TreeTwo->bindModel(array(
+			'belongsTo' => array(
+				'FirstTree' => array(
+					'className' => $modelClass,
+					'foreignKey' => 'number_tree_id'
+				)
+			)
+		));
+		$this->TreeTwo->Behaviors->attach('Tree', array(
+			'scope' => 'FirstTree'
+		));
+
+		$data = array(
+			'NumberTreeTwo' => array(
+				'name' => 'First',
+				'number_tree_id' => $record['FlagTree']['id']
+			)
+		);
+		$this->TreeTwo->create();
+		$this->assertTrue($this->TreeTwo->save($data));
+
+		$result = $this->TreeTwo->find('first');
+		$expected = array('NumberTreeTwo' => array(
+			'id' => 1,
+			'name' => 'First',
+			'number_tree_id' => $record['FlagTree']['id'],
+			'parent_id' => null,
+			'lft' => 1,
+			'rght' => 2
+		));
+		$this->assertEqual($result, $expected);
+	}
+}
+/**
+ * AfterTreeTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.model.behaviors
+ */
+class AfterTreeTest extends NumberTreeTest {
+/**
+ * settings property
+ *
+ * @var array
+ * @access public
+ */
+	var $settings = array(
+		'modelClass' => 'AfterTree',
+		'leftField' => 'lft',
+		'rightField' => 'rght',
+		'parentField' => 'parent_id'
+	);
+/**
+ * fixtures property
+ *
+ * @var array
+ * @access public
+ */
+	var $fixtures = array('core.after_tree');
+/**
+ * Tests the afterSave callback in the model
+ *
+ * @access public
+ * @return void
+ */
+	function testAftersaveCallback() {
+		$this->Tree =& new AfterTree();
+
+		$expected = array('AfterTree' => array('name' => 'Six and One Half Changed in AfterTree::afterSave() but not in database', 'parent_id' => 6, 'lft' => 11, 'rght' => 12));
+		$result = $this->Tree->save(array('AfterTree' => array('name' => 'Six and One Half', 'parent_id' => 6)));
+		$this->assertEqual($result, $expected);
+
+		$expected = array('AfterTree' => array('name' => 'Six and One Half', 'parent_id' => 6, 'lft' => 11, 'rght' => 12, 'id' => 8));
+		$result = $this->Tree->find('all');
+		$this->assertEqual($result[7], $expected);
+	}
+}
+/**
+ * UnconventionalTreeTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.model.behaviors
+ */
+class UnconventionalTreeTest extends NumberTreeTest {
+/**
+ * settings property
+ *
+ * @var array
+ * @access public
+ */
+	var $settings = array(
+		'modelClass' => 'UnconventionalTree',
+		'leftField' => 'left',
+		'rightField' => 'right',
+		'parentField' => 'join'
+	);
+/**
+ * fixtures property
+ *
+ * @var array
+ * @access public
+ */
+	var $fixtures = array('core.unconventional_tree');
+}
+/**
+ * UuidTreeTest class
+ *
+ * @package       cake
+ * @subpackage    cake.tests.cases.libs.model.behaviors
+ */
+class UuidTreeTest extends NumberTreeTest {
+/**
+ * settings property
+ *
+ * @var array
+ * @access public
+ */
+	var $settings = array(
+		'modelClass' => 'UuidTree',
+		'leftField' => 'lft',
+		'rightField' => 'rght',
+		'parentField' => 'parent_id'
+	);
+/**
+ * fixtures property
+ *
+ * @var array
+ * @access public
+ */
+	var $fixtures = array('core.uuid_tree');
+/**
+ * testMovePromote method
+ *
+ * @return void
+ * @access public
+ */
+	function testMovePromote() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+		$this->Tree->id = null;
+
+		$parent = $this->Tree->find(array($modelClass . '.name' => '1. Root'));
+		$parent_id = $parent[$modelClass]['id'];
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1.1.1'), array('id'));
+		$this->Tree->id= $data[$modelClass]['id'];
+		$this->Tree->saveField($parentField, $parent_id);
+		$direct = $this->Tree->children($parent_id, true, array('name', $leftField, $rightField));
+		$expects = array(array($modelClass => array('name' => '1.1', $leftField => 2, $rightField => 5)),
+			array($modelClass => array('name' => '1.2', $leftField => 6, $rightField => 11)),
+			array($modelClass => array('name' => '1.1.1', $leftField => 12, $rightField => 13)));
+		$this->assertEqual($direct, $expects);
+		$validTree = $this->Tree->verify();
+		$this->assertIdentical($validTree, true);
+	}
+/**
+ * testMoveWithWhitelist method
+ *
+ * @return void
+ * @access public
+ */
+	function testMoveWithWhitelist() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+		$this->Tree->id = null;
+
+		$parent = $this->Tree->find(array($modelClass . '.name' => '1. Root'));
+		$parent_id = $parent[$modelClass]['id'];
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1.1.1'), array('id'));
+		$this->Tree->id = $data[$modelClass]['id'];
+		$this->Tree->whitelist = array($parentField, 'name', 'description');
+		$this->Tree->saveField($parentField, $parent_id);
+
+		$result = $this->Tree->children($parent_id, true, array('name', $leftField, $rightField));
+		$expected = array(array($modelClass => array('name' => '1.1', $leftField => 2, $rightField => 5)),
+			array($modelClass => array('name' => '1.2', $leftField => 6, $rightField => 11)),
+			array($modelClass => array('name' => '1.1.1', $leftField => 12, $rightField => 13)));
+		$this->assertEqual($result, $expected);
+		$this->assertTrue($this->Tree->verify());
+	}
+/**
+ * testRemoveNoChildren method
+ *
+ * @return void
+ * @access public
+ */
+	function testRemoveNoChildren() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+		$initialCount = $this->Tree->find('count');
+
+		$result = $this->Tree->findByName('1.1.1');
+		$this->Tree->removeFromTree($result[$modelClass]['id']);
+
+		$laterCount = $this->Tree->find('count');
+		$this->assertEqual($initialCount, $laterCount);
+
+		$nodes = $this->Tree->find('list', array('order' => $leftField));
+		$expects = array(
+			'1. Root',
+			'1.1',
+			'1.1.2',
+			'1.2',
+			'1.2.1',
+			'1.2.2',
+			'1.1.1',
+		);
+
+		$this->assertEqual(array_values($nodes), $expects);
+
+		$validTree = $this->Tree->verify();
+		$this->assertIdentical($validTree, true);
+	}
+/**
+ * testRemoveAndDeleteNoChildren method
+ *
+ * @return void
+ * @access public
+ */
+	function testRemoveAndDeleteNoChildren() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+		$initialCount = $this->Tree->find('count');
+
+		$result = $this->Tree->findByName('1.1.1');
+		$this->Tree->removeFromTree($result[$modelClass]['id'], true);
+
+		$laterCount = $this->Tree->find('count');
+		$this->assertEqual($initialCount - 1, $laterCount);
+
+		$nodes = $this->Tree->find('list', array('order' => $leftField));
+		$expects = array(
+			'1. Root',
+			'1.1',
+			'1.1.2',
+			'1.2',
+			'1.2.1',
+			'1.2.2',
+		);
+		$this->assertEqual(array_values($nodes), $expects);
+
+		$validTree = $this->Tree->verify();
+		$this->assertIdentical($validTree, true);
+	}
+/**
+ * testChildren method
+ *
+ * @return void
+ * @access public
+ */
+	function testChildren() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1. Root'));
+		$this->Tree->id = $data[$modelClass]['id'];
+
+		$direct = $this->Tree->children(null, true, array('name', $leftField, $rightField));
+		$expects = array(array($modelClass => array('name' => '1.1', $leftField => 2, $rightField => 7)),
+			array($modelClass => array('name' => '1.2', $leftField => 8, $rightField => 13)));
+		$this->assertEqual($direct, $expects);
+
+		$total = $this->Tree->children(null, null, array('name', $leftField, $rightField));
+		$expects = array(array($modelClass => array('name' => '1.1', $leftField => 2, $rightField => 7)),
+			array($modelClass => array('name' => '1.1.1', $leftField => 3, $rightField => 4)),
+			array($modelClass => array('name' => '1.1.2', $leftField => 5, $rightField => 6)),
+			array($modelClass => array('name' => '1.2', $leftField => 8, $rightField => 13)),
+			array($modelClass => array('name' => '1.2.1', $leftField => 9, $rightField => 10)),
+			array($modelClass => array('name' => '1.2.2', $leftField => 11, $rightField => 12)));
+		$this->assertEqual($total, $expects);
+	}
+/**
+ * testNoAmbiguousColumn method
+ *
+ * @return void
+ * @access public
+ */
+	function testNoAmbiguousColumn() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->initialize(2, 2);
+
+		$this->Tree->bindModel(array('belongsTo' => array('Dummy' =>
+			array('className' => $modelClass, 'foreignKey' => $parentField, 'conditions' => array('Dummy.id' => null)))), false);
+
+		$data = $this->Tree->find(array($modelClass . '.name' => '1. Root'));
+		$this->Tree->id = $data[$modelClass]['id'];
+
+		$direct = $this->Tree->children(null, true, array('name', $leftField, $rightField));
+		$expects = array(array($modelClass => array('name' => '1.1', $leftField => 2, $rightField => 7)),
+			array($modelClass => array('name' => '1.2', $leftField => 8, $rightField => 13)));
+		$this->assertEqual($direct, $expects);
+
+		$total = $this->Tree->children(null, null, array('name', $leftField, $rightField));
+		$expects = array(
+			array($modelClass => array('name' => '1.1', $leftField => 2, $rightField => 7)),
+			array($modelClass => array('name' => '1.1.1', $leftField => 3, $rightField => 4)),
+			array($modelClass => array('name' => '1.1.2', $leftField => 5, $rightField => 6)),
+			array($modelClass => array('name' => '1.2', $leftField => 8, $rightField => 13)),
+			array($modelClass => array('name' => '1.2.1', $leftField => 9, $rightField => 10)),
+			array($modelClass => array('name' => '1.2.2', $leftField => 11, $rightField => 12))
+		);
+		$this->assertEqual($total, $expects);
+	}
+/**
+ * testGenerateTreeListWithSelfJoin method
+ *
+ * @return void
+ * @access public
+ */
+	function testGenerateTreeListWithSelfJoin() {
+		extract($this->settings);
+		$this->Tree =& new $modelClass();
+		$this->Tree->bindModel(array('belongsTo' => array('Dummy' =>
+			array('className' => $modelClass, 'foreignKey' => $parentField, 'conditions' => array('Dummy.id' => null)))), false);
+		$this->Tree->initialize(2, 2);
+
+		$result = $this->Tree->generateTreeList();
+		$expected = array('1. Root', '_1.1', '__1.1.1', '__1.1.2', '_1.2', '__1.2.1', '__1.2.2');
+		$this->assertIdentical(array_values($result), $expected);
+	}
+}
+?>

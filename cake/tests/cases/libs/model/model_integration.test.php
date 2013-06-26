@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -1088,4 +1088,800 @@ class ModelIntegrationTest extends BaseModelTest {
 		$expected = array('AssociationTest2' => array(
 				'unique' => false,
 				'joinTable' => 'join_as_join_bs',
-				'foreignKey' => false
+				'foreignKey' => false,
+				'className' => 'AssociationTest2',
+				'with' => 'JoinAsJoinB',
+				'associationForeignKey' => 'join_b_id',
+				'conditions' => '', 'fields' => '', 'order' => '', 'limit' => '', 'offset' => '',
+				'finderQuery' => '', 'deleteQuery' => '', 'insertQuery' => ''
+		));
+		$this->assertEqual($result, $expected);
+
+		// Tests related to ticket https://trac.cakephp.org/ticket/5594
+		$TestModel =& new ArticleFeatured();
+		$TestFakeModel =& new ArticleFeatured(array('table' => false));
+
+		$expected = array(
+			'User' => array(
+				'className' => 'User', 'foreignKey' => 'user_id',
+				'conditions' => '', 'fields' => '', 'order' => '', 'counterCache' => ''
+			),
+			'Category' => array(
+				'className' => 'Category', 'foreignKey' => 'category_id',
+				'conditions' => '', 'fields' => '', 'order' => '', 'counterCache' => ''
+			)
+		);
+		$this->assertIdentical($TestModel->belongsTo, $expected);
+		$this->assertIdentical($TestFakeModel->belongsTo, $expected);
+
+		$this->assertEqual($TestModel->User->name, 'User');
+		$this->assertEqual($TestFakeModel->User->name, 'User');
+		$this->assertEqual($TestModel->Category->name, 'Category');
+		$this->assertEqual($TestFakeModel->Category->name, 'Category');
+
+		$expected = array(
+			'Featured' => array(
+				'className' => 'Featured',
+				'foreignKey' => 'article_featured_id',
+				'conditions' => '',
+				'fields' => '',
+				'order' => '',
+				'dependent' => ''
+		));
+
+		$this->assertIdentical($TestModel->hasOne, $expected);
+		$this->assertIdentical($TestFakeModel->hasOne, $expected);
+
+		$this->assertEqual($TestModel->Featured->name, 'Featured');
+		$this->assertEqual($TestFakeModel->Featured->name, 'Featured');
+
+		$expected = array(
+			'Comment' => array(
+				'className' => 'Comment',
+				'dependent' => true,
+				'foreignKey' => 'article_featured_id',
+				'conditions' => '',
+				'fields' => '',
+				'order' => '',
+				'limit' => '',
+				'offset' => '',
+				'exclusive' => '',
+				'finderQuery' => '',
+				'counterQuery' => ''
+		));
+
+		$this->assertIdentical($TestModel->hasMany, $expected);
+		$this->assertIdentical($TestFakeModel->hasMany, $expected);
+
+		$this->assertEqual($TestModel->Comment->name, 'Comment');
+		$this->assertEqual($TestFakeModel->Comment->name, 'Comment');
+
+		$expected = array(
+			'Tag' => array(
+				'className' => 'Tag',
+				'joinTable' => 'article_featureds_tags',
+				'with' => 'ArticleFeaturedsTag',
+				'foreignKey' => 'article_featured_id',
+				'associationForeignKey' => 'tag_id',
+				'conditions' => '',
+				'fields' => '',
+				'order' => '',
+				'limit' => '',
+				'offset' => '',
+				'unique' => true,
+				'finderQuery' => '',
+				'deleteQuery' => '',
+				'insertQuery' => ''
+		));
+
+		$this->assertIdentical($TestModel->hasAndBelongsToMany, $expected);
+		$this->assertIdentical($TestFakeModel->hasAndBelongsToMany, $expected);
+
+		$this->assertEqual($TestModel->Tag->name, 'Tag');
+		$this->assertEqual($TestFakeModel->Tag->name, 'Tag');
+	}
+/**
+ * test Model::__construct
+ *
+ * ensure that $actsAS and $_findMethods are merged.
+ *
+ * @return void
+ **/
+	function testConstruct() {
+		$this->loadFixtures('Post', 'Comment');
+
+		$TestModel =& ClassRegistry::init('MergeVarPluginPost');
+		$this->assertEqual($TestModel->actsAs, array('Containable', 'Tree'));
+		$this->assertTrue(isset($TestModel->Behaviors->Containable));
+		$this->assertTrue(isset($TestModel->Behaviors->Tree));
+
+		$TestModel =& ClassRegistry::init('MergeVarPluginComment');
+		$expected = array('Containable', 'Containable' => array('some_settings'));
+		$this->assertEqual($TestModel->actsAs, $expected);
+		$this->assertTrue(isset($TestModel->Behaviors->Containable));
+	}
+/**
+ * test Model::__construct
+ *
+ * ensure that $actsAS and $_findMethods are merged.
+ *
+ * @return void
+ **/
+	function testConstructWithAlternateDataSource() {
+		$TestModel =& ClassRegistry::init(array(
+			'class' => 'DoesntMatter', 'ds' => 'test_suite', 'table' => false
+		));
+		$this->assertEqual('test_suite', $TestModel->useDbConfig);
+
+		//deprecated but test it anyway
+		$NewVoid =& new TheVoid(null, false, 'other');
+		$this->assertEqual('other', $NewVoid->useDbConfig);
+	}
+/**
+ * testColumnTypeFetching method
+ *
+ * @access public
+ * @return void
+ */
+	function testColumnTypeFetching() {
+		$model =& new Test();
+		$this->assertEqual($model->getColumnType('id'), 'integer');
+		$this->assertEqual($model->getColumnType('notes'), 'text');
+		$this->assertEqual($model->getColumnType('updated'), 'datetime');
+		$this->assertEqual($model->getColumnType('unknown'), null);
+
+		$model =& new Article();
+		$this->assertEqual($model->getColumnType('User.created'), 'datetime');
+		$this->assertEqual($model->getColumnType('Tag.id'), 'integer');
+		$this->assertEqual($model->getColumnType('Article.id'), 'integer');
+	}
+/**
+ * testHabtmUniqueKey method
+ *
+ * @access public
+ * @return void
+ */
+	function testHabtmUniqueKey() {
+		$model =& new Item();
+		$this->assertFalse($model->hasAndBelongsToMany['Portfolio']['unique']);
+	}
+/**
+ * testIdentity method
+ *
+ * @access public
+ * @return void
+ */
+	function testIdentity() {
+		$TestModel =& new Test();
+		$result = $TestModel->alias;
+		$expected = 'Test';
+		$this->assertEqual($result, $expected);
+
+		$TestModel =& new TestAlias();
+		$result = $TestModel->alias;
+		$expected = 'TestAlias';
+		$this->assertEqual($result, $expected);
+
+		$TestModel =& new Test(array('alias' => 'AnotherTest'));
+		$result = $TestModel->alias;
+		$expected = 'AnotherTest';
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * testWithAssociation method
+ *
+ * @access public
+ * @return void
+ */
+	function testWithAssociation() {
+		$this->loadFixtures('Something', 'SomethingElse', 'JoinThing');
+		$TestModel =& new Something();
+		$result = $TestModel->SomethingElse->find('all');
+
+		$expected = array(
+			array(
+				'SomethingElse' => array(
+					'id' => '1',
+					'title' => 'First Post',
+					'body' => 'First Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:39:23',
+					'updated' => '2007-03-18 10:41:31'
+				),
+				'Something' => array(
+					array(
+						'id' => '3',
+						'title' => 'Third Post',
+						'body' => 'Third Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:43:23',
+						'updated' => '2007-03-18 10:45:31',
+						'JoinThing' => array(
+							'id' => '3',
+							'something_id' => '3',
+							'something_else_id' => '1',
+							'doomed' => '1',
+							'created' => '2007-03-18 10:43:23',
+							'updated' => '2007-03-18 10:45:31'
+			)))),
+			array(
+				'SomethingElse' => array(
+					'id' => '2',
+					'title' => 'Second Post',
+					'body' => 'Second Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:41:23',
+					'updated' => '2007-03-18 10:43:31'
+				),
+				'Something' => array(
+					array(
+						'id' => '1',
+						'title' => 'First Post',
+						'body' => 'First Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:39:23',
+						'updated' => '2007-03-18 10:41:31',
+						'JoinThing' => array(
+							'id' => '1',
+							'something_id' => '1',
+							'something_else_id' => '2',
+							'doomed' => '1',
+							'created' => '2007-03-18 10:39:23',
+							'updated' => '2007-03-18 10:41:31'
+			)))),
+			array(
+				'SomethingElse' => array(
+					'id' => '3',
+					'title' => 'Third Post',
+					'body' => 'Third Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:43:23',
+					'updated' => '2007-03-18 10:45:31'
+				),
+				'Something' => array(
+					array(
+						'id' => '2',
+						'title' => 'Second Post',
+						'body' => 'Second Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:41:23',
+						'updated' => '2007-03-18 10:43:31',
+						'JoinThing' => array(
+							'id' => '2',
+							'something_id' => '2',
+							'something_else_id' => '3',
+							'doomed' => '0',
+							'created' => '2007-03-18 10:41:23',
+							'updated' => '2007-03-18 10:43:31'
+		)))));
+		$this->assertEqual($result, $expected);
+
+		$result = $TestModel->find('all');
+		$expected = array(
+			array(
+				'Something' => array(
+					'id' => '1',
+					'title' => 'First Post',
+					'body' => 'First Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:39:23',
+					'updated' => '2007-03-18 10:41:31'
+				),
+				'SomethingElse' => array(
+					array(
+						'id' => '2',
+						'title' => 'Second Post',
+						'body' => 'Second Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:41:23',
+						'updated' => '2007-03-18 10:43:31',
+						'JoinThing' => array(
+							'doomed' => '1',
+							'something_id' => '1',
+							'something_else_id' => '2'
+			)))),
+			array(
+				'Something' => array(
+					'id' => '2',
+					'title' => 'Second Post',
+					'body' => 'Second Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:41:23',
+					'updated' => '2007-03-18 10:43:31'
+				),
+				'SomethingElse' => array(
+					array(
+						'id' => '3',
+						'title' => 'Third Post',
+						'body' => 'Third Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:43:23',
+						'updated' => '2007-03-18 10:45:31',
+						'JoinThing' => array(
+							'doomed' => '0',
+							'something_id' => '2',
+							'something_else_id' => '3'
+			)))),
+			array(
+				'Something' => array(
+					'id' => '3',
+					'title' => 'Third Post',
+					'body' => 'Third Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:43:23',
+					'updated' => '2007-03-18 10:45:31'
+				),
+				'SomethingElse' => array(
+					array(
+						'id' => '1',
+						'title' => 'First Post',
+						'body' => 'First Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:39:23',
+						'updated' => '2007-03-18 10:41:31',
+						'JoinThing' => array(
+							'doomed' => '1',
+							'something_id' => '3',
+							'something_else_id' => '1'
+		)))));
+		$this->assertEqual($result, $expected);
+
+		$result = $TestModel->findById(1);
+		$expected = array(
+			'Something' => array(
+				'id' => '1',
+				'title' => 'First Post',
+				'body' => 'First Post Body',
+				'published' => 'Y',
+				'created' => '2007-03-18 10:39:23',
+				'updated' => '2007-03-18 10:41:31'
+			),
+			'SomethingElse' => array(
+				array(
+					'id' => '2',
+					'title' => 'Second Post',
+					'body' => 'Second Post Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:41:23',
+					'updated' => '2007-03-18 10:43:31',
+					'JoinThing' => array(
+						'doomed' => '1',
+						'something_id' => '1',
+						'something_else_id' => '2'
+		))));
+		$this->assertEqual($result, $expected);
+
+		$expected = $TestModel->findById(1);
+		$TestModel->set($expected);
+		$TestModel->save();
+		$result = $TestModel->findById(1);
+		$this->assertEqual($result, $expected);
+
+		$TestModel->hasAndBelongsToMany['SomethingElse']['unique'] = false;
+		$TestModel->create(array(
+			'Something' => array('id' => 1),
+			'SomethingElse' => array(3, array(
+				'something_else_id' => 1,
+				'doomed' => '1'
+		))));
+
+		$ts = date('Y-m-d H:i:s');
+		$TestModel->save();
+
+		$TestModel->hasAndBelongsToMany['SomethingElse']['order'] = 'SomethingElse.id ASC';
+		$result = $TestModel->findById(1);
+		$expected = array(
+			'Something' => array(
+				'id' => '1',
+				'title' => 'First Post',
+				'body' => 'First Post Body',
+				'published' => 'Y',
+				'created' => '2007-03-18 10:39:23',
+				'updated' => $ts),
+				'SomethingElse' => array(
+					array(
+						'id' => '1',
+						'title' => 'First Post',
+						'body' => 'First Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:39:23',
+						'updated' => '2007-03-18 10:41:31',
+						'JoinThing' => array(
+							'doomed' => '1',
+							'something_id' => '1',
+							'something_else_id' => '1'
+					)),
+					array(
+						'id' => '2',
+						'title' => 'Second Post',
+						'body' => 'Second Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:41:23',
+						'updated' => '2007-03-18 10:43:31',
+						'JoinThing' => array(
+							'doomed' => '1',
+							'something_id' => '1',
+							'something_else_id' => '2'
+					)),
+					array(
+						'id' => '3',
+						'title' => 'Third Post',
+						'body' => 'Third Post Body',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:43:23',
+						'updated' => '2007-03-18 10:45:31',
+						'JoinThing' => array(
+							'doomed' => '0',
+							'something_id' => '1',
+							'something_else_id' => '3'
+		))));
+
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * testFindSelfAssociations method
+ *
+ * @access public
+ * @return void
+ */
+	function testFindSelfAssociations() {
+		$this->loadFixtures('Person');
+
+		$TestModel =& new Person();
+		$TestModel->recursive = 2;
+		$result = $TestModel->read(null, 1);
+		$expected = array(
+			'Person' => array(
+				'id' => 1,
+				'name' => 'person',
+				'mother_id' => 2,
+				'father_id' => 3
+			),
+			'Mother' => array(
+				'id' => 2,
+				'name' => 'mother',
+				'mother_id' => 4,
+				'father_id' => 5,
+				'Mother' => array(
+					'id' => 4,
+					'name' => 'mother - grand mother',
+					'mother_id' => 0,
+					'father_id' => 0
+				),
+				'Father' => array(
+					'id' => 5,
+					'name' => 'mother - grand father',
+					'mother_id' => 0,
+					'father_id' => 0
+			)),
+			'Father' => array(
+				'id' => 3,
+				'name' => 'father',
+				'mother_id' => 6,
+				'father_id' => 7,
+				'Father' => array(
+					'id' => 7,
+					'name' => 'father - grand father',
+					'mother_id' => 0,
+					'father_id' => 0
+				),
+				'Mother' => array(
+					'id' => 6,
+					'name' => 'father - grand mother',
+					'mother_id' => 0,
+					'father_id' => 0
+		)));
+
+		$this->assertEqual($result, $expected);
+
+		$TestModel->recursive = 3;
+		$result = $TestModel->read(null, 1);
+		$expected = array(
+			'Person' => array(
+				'id' => 1,
+				'name' => 'person',
+				'mother_id' => 2,
+				'father_id' => 3
+			),
+			'Mother' => array(
+				'id' => 2,
+				'name' => 'mother',
+				'mother_id' => 4,
+				'father_id' => 5,
+				'Mother' => array(
+					'id' => 4,
+					'name' => 'mother - grand mother',
+					'mother_id' => 0,
+					'father_id' => 0,
+					'Mother' => array(),
+					'Father' => array()),
+				'Father' => array(
+					'id' => 5,
+					'name' => 'mother - grand father',
+					'mother_id' => 0,
+					'father_id' => 0,
+					'Father' => array(),
+					'Mother' => array()
+			)),
+			'Father' => array(
+				'id' => 3,
+				'name' => 'father',
+				'mother_id' => 6,
+				'father_id' => 7,
+				'Father' => array(
+					'id' => 7,
+					'name' => 'father - grand father',
+					'mother_id' => 0,
+					'father_id' => 0,
+					'Father' => array(),
+					'Mother' => array()
+				),
+				'Mother' => array(
+					'id' => 6,
+					'name' => 'father - grand mother',
+					'mother_id' => 0,
+					'father_id' => 0,
+					'Mother' => array(),
+					'Father' => array()
+		)));
+
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * testDynamicAssociations method
+ *
+ * @access public
+ * @return void
+ */
+	function testDynamicAssociations() {
+		$this->loadFixtures('Article', 'Comment');
+		$TestModel =& new Article();
+
+		$TestModel->belongsTo = $TestModel->hasAndBelongsToMany = $TestModel->hasOne = array();
+		$TestModel->hasMany['Comment'] = array_merge($TestModel->hasMany['Comment'], array(
+			'foreignKey' => false,
+			'conditions' => array('Comment.user_id =' => '2')
+		));
+		$result = $TestModel->find('all');
+		$expected = array(
+			array(
+				'Article' => array(
+					'id' => '1',
+					'user_id' => '1',
+					'title' => 'First Article',
+					'body' => 'First Article Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:39:23',
+					'updated' => '2007-03-18 10:41:31'
+				),
+				'Comment' => array(
+					array(
+						'id' => '1',
+						'article_id' => '1',
+						'user_id' => '2',
+						'comment' => 'First Comment for First Article',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:45:23',
+						'updated' => '2007-03-18 10:47:31'
+					),
+					array(
+						'id' => '6',
+						'article_id' => '2',
+						'user_id' => '2',
+						'comment' => 'Second Comment for Second Article',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:55:23',
+						'updated' => '2007-03-18 10:57:31'
+			))),
+			array(
+				'Article' => array(
+					'id' => '2',
+					'user_id' => '3',
+					'title' => 'Second Article',
+					'body' => 'Second Article Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:41:23',
+					'updated' => '2007-03-18 10:43:31'
+				),
+				'Comment' => array(
+					array(
+						'id' => '1',
+						'article_id' => '1',
+						'user_id' => '2',
+						'comment' => 'First Comment for First Article',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:45:23',
+						'updated' => '2007-03-18 10:47:31'
+					),
+					array(
+						'id' => '6',
+						'article_id' => '2',
+						'user_id' => '2',
+						'comment' => 'Second Comment for Second Article',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:55:23',
+						'updated' => '2007-03-18 10:57:31'
+			))),
+			array(
+				'Article' => array(
+					'id' => '3',
+					'user_id' => '1',
+					'title' => 'Third Article',
+					'body' => 'Third Article Body',
+					'published' => 'Y',
+					'created' => '2007-03-18 10:43:23',
+					'updated' => '2007-03-18 10:45:31'
+				),
+				'Comment' => array(
+					array(
+						'id' => '1',
+						'article_id' => '1',
+						'user_id' => '2',
+						'comment' => 'First Comment for First Article',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:45:23',
+						'updated' => '2007-03-18 10:47:31'
+					),
+					array(
+						'id' => '6',
+						'article_id' => '2',
+						'user_id' => '2',
+						'comment' => 'Second Comment for Second Article',
+						'published' => 'Y',
+						'created' => '2007-03-18 10:55:23',
+						'updated' => '2007-03-18 10:57:31'
+		))));
+
+		$this->assertEqual($result, $expected);
+	}
+/**
+ * testCreation method
+ *
+ * @access public
+ * @return void
+ */
+	function testCreation() {
+		$this->loadFixtures('Article');
+		$TestModel =& new Test();
+		$result = $TestModel->create();
+		$expected = array('Test' => array('notes' => 'write some notes here'));
+		$this->assertEqual($result, $expected);
+		$TestModel =& new User();
+		$result = $TestModel->schema();
+
+		if (isset($this->db->columns['primary_key']['length'])) {
+			$intLength = $this->db->columns['primary_key']['length'];
+		} elseif (isset($this->db->columns['integer']['length'])) {
+			$intLength = $this->db->columns['integer']['length'];
+		} else {
+			$intLength = 11;
+		}
+		foreach (array('collate', 'charset') as $type) {
+			unset($result['user'][$type]);
+			unset($result['password'][$type]);
+		}
+
+		$expected = array(
+			'id' => array(
+				'type' => 'integer',
+				'null' => false,
+				'default' => null,
+				'length' => $intLength,
+				'key' => 'primary'
+			),
+			'user' => array(
+				'type' => 'string',
+				'null' => false,
+				'default' => '',
+				'length' => 255
+			),
+			'password' => array(
+				'type' => 'string',
+				'null' => false,
+				'default' => '',
+				'length' => 255
+			),
+			'created' => array(
+				'type' => 'datetime',
+				'null' => true,
+				'default' => null,
+				'length' => null
+			),
+			'updated'=> array(
+				'type' => 'datetime',
+				'null' => true,
+				'default' => null,
+				'length' => null
+		));
+
+		$this->assertEqual($result, $expected);
+
+		$TestModel =& new Article();
+		$result = $TestModel->create();
+		$expected = array('Article' => array('published' => 'N'));
+		$this->assertEqual($result, $expected);
+
+		$FeaturedModel =& new Featured();
+		$data = array(
+			'article_featured_id' => 1,
+			'category_id' => 1,
+			'published_date' => array(
+				'year' => 2008,
+				'month' => 06,
+				'day' => 11
+			),
+			'end_date' => array(
+				'year' => 2008,
+				'month' => 06,
+				'day' => 20
+		));
+
+		$expected = array(
+			'Featured' => array(
+				'article_featured_id' => 1,
+				'category_id' => 1,
+				'published_date' => '2008-6-11 00:00:00',
+				'end_date' => '2008-6-20 00:00:00'
+		));
+
+		$this->assertEqual($FeaturedModel->create($data), $expected);
+
+		$data = array(
+			'published_date' => array(
+				'year' => 2008,
+				'month' => 06,
+				'day' => 11
+			),
+			'end_date' => array(
+				'year' => 2008,
+				'month' => 06,
+				'day' => 20
+			),
+			'article_featured_id' => 1,
+			'category_id' => 1
+		);
+
+		$expected = array(
+			'Featured' => array(
+				'published_date' => '2008-6-11 00:00:00',
+				'end_date' => '2008-6-20 00:00:00',
+				'article_featured_id' => 1,
+				'category_id' => 1
+		));
+
+		$this->assertEqual($FeaturedModel->create($data), $expected);
+	}
+
+/**
+ * testEscapeField to prove it escapes the field well even when it has part of the alias on it
+ * @see ttp://cakephp.lighthouseapp.com/projects/42648-cakephp-1x/tickets/473-escapefield-doesnt-consistently-prepend-modelname
+ *
+ * @access public
+ * @return void
+ */
+	function testEscapeField() {
+		$TestModel =& new Test();
+		$db =& $TestModel->getDataSource();
+
+		$result = $TestModel->escapeField('test_field');
+		$expected = $db->name('Test.test_field');
+		$this->assertEqual($result, $expected);
+
+		$result = $TestModel->escapeField('TestField');
+		$expected = $db->name('Test.TestField');
+		$this->assertEqual($result, $expected);
+
+		$result = $TestModel->escapeField('DomainHandle', 'Domain');
+		$expected = $db->name('Domain.DomainHandle');
+		$this->assertEqual($result, $expected);
+
+		ConnectionManager::create('mock', array('driver' => 'mock'));
+		$TestModel->setDataSource('mock');
+		$db =& $TestModel->getDataSource();
+
+		$result = $TestModel->escapeField('DomainHandle', 'Domain');
+		$expected = $db->name('Domain.DomainHandle');
+		$this->assertEqual($result, $expected);
+	}
+}
+?>

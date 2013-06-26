@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc.
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -787,7 +787,7 @@ class JavascriptTest extends CakeTestCase {
 		$data['mystring'] = "simple string";
 		$this->assertEqual(json_encode($data), $this->Javascript->object($data));
 
-		$data['mystring'] = "strïng with spécial chârs";
+		$data['mystring'] = "strÃ¯ng with spÃ©cial chÃ¢rs";
 		$this->assertEqual(json_encode($data), $this->Javascript->object($data));
 
 		$data['mystring'] = "a two lines\nstring";

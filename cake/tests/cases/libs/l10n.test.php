@@ -8,12 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -768,4 +768,171 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->catalog(array('p', 'pl'));
 		$expected = array(
 			'p' => array('language' => 'Polish', 'locale' => 'pol', 'localeFallback' => 'pol', 'charset' => 'utf-8'),
-			'pl' => array('language' => 'Polish', 'locale' => 'pol', 'localeFallbac
+			'pl' => array('language' => 'Polish', 'locale' => 'pol', 'localeFallback' => 'pol', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('pt', 'pt-br'));
+		$expected = array(
+			'pt' => array('language' => 'Portuguese (Portugal)', 'locale' => 'por', 'localeFallback' => 'por', 'charset' => 'utf-8'),
+			'pt-br' => array('language' => 'Portuguese (Brazil)', 'locale' => 'pt_br', 'localeFallback' => 'por', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('rm'));
+		$expected = array(
+			'rm' => array('language' => 'Rhaeto-Romanic', 'locale' => 'roh', 'localeFallback' => 'roh', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('ro', 'ro-mo'));
+		$expected = array(
+			'ro' => array('language' => 'Romanian', 'locale' => 'rum', 'localeFallback' => 'rum', 'charset' => 'utf-8'),
+			'ro-mo' => array('language' => 'Romanian (Moldavia)', 'locale' => 'ro_mo', 'localeFallback' => 'rum', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sb'));
+		$expected = array(
+			'sb' => array('language' => 'Sorbian', 'locale' => 'wen', 'localeFallback' => 'wen', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sk'));
+		$expected = array(
+			'sk' => array('language' => 'Slovak', 'locale' => 'slo', 'localeFallback' => 'slo', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sl'));
+		$expected = array(
+			'sl' => array('language' => 'Slovenian', 'locale' => 'slv', 'localeFallback' => 'slv', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sq'));
+		$expected = array(
+			'sq' => array('language' => 'Albanian', 'locale' => 'alb', 'localeFallback' => 'alb', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sr'));
+		$expected = array(
+			'sr' => array('language' => 'Serbian', 'locale' => 'scc', 'localeFallback' => 'scc', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sv', 'sv-fi'));
+		$expected = array(
+			'sv' => array('language' => 'Swedish', 'locale' => 'swe', 'localeFallback' => 'swe', 'charset' => 'utf-8'),
+			'sv-fi' => array('language' => 'Swedish (Finland)', 'locale' => 'sv_fi', 'localeFallback' => 'swe', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sx'));
+		$expected = array(
+			'sx' => array('language' => 'Sutu', 'locale' => 'sx', 'localeFallback' => 'sx', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('sz'));
+		$expected = array(
+			'sz' => array('language' => 'Sami (Lappish)', 'locale' => 'smi', 'localeFallback' => 'smi', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('th'));
+		$expected = array(
+			'th' => array('language' => 'Thai', 'locale' => 'tha', 'localeFallback' => 'tha', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('tn'));
+		$expected = array(
+			'tn' => array('language' => 'Tswana', 'locale' => 'tsn', 'localeFallback' => 'tsn', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('tr'));
+		$expected = array(
+			'tr' => array('language' => 'Turkish', 'locale' => 'tur', 'localeFallback' => 'tur', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('ts'));
+		$expected = array(
+			'ts' => array('language' => 'Tsonga', 'locale' => 'tso', 'localeFallback' => 'tso', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('uk'));
+		$expected = array(
+			'uk' => array('language' => 'Ukrainian', 'locale' => 'ukr', 'localeFallback' => 'ukr', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('ur'));
+		$expected = array(
+			'ur' => array('language' => 'Urdu', 'locale' => 'urd', 'localeFallback' => 'urd', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('ve'));
+		$expected = array(
+			've' => array('language' => 'Venda', 'locale' => 'ven', 'localeFallback' => 'ven', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('vi'));
+		$expected = array(
+			'vi' => array('language' => 'Vietnamese', 'locale' => 'vie', 'localeFallback' => 'vie', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('cy'));
+		$expected = array(
+			'cy' => array('language' => 'Welsh', 'locale' => 'cym', 'localeFallback' => 'cym', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('xh'));
+		$expected = array(
+			'xh' => array('language' => 'Xhosa', 'locale' => 'xho', 'localeFallback' => 'xho', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('yi'));
+		$expected = array(
+			'yi' => array('language' => 'Yiddish', 'locale' => 'yid', 'localeFallback' => 'yid', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('zh', 'zh-cn', 'zh-hk', 'zh-sg', 'zh-tw'));
+		$expected = array(
+			'zh' => array('language' => 'Chinese', 'locale' => 'chi', 'localeFallback' => 'chi', 'charset' => 'utf-8'),
+			'zh-cn' => array('language' => 'Chinese (PRC)', 'locale' => 'zh_cn', 'localeFallback' => 'chi', 'charset' => 'GB2312'),
+			'zh-hk' => array('language' => 'Chinese (Hong Kong)', 'locale' => 'zh_hk', 'localeFallback' => 'chi', 'charset' => 'utf-8'),
+			'zh-sg' => array('language' => 'Chinese (Singapore)', 'locale' => 'zh_sg', 'localeFallback' => 'chi', 'charset' => 'utf-8'),
+			'zh-tw' => array('language' => 'Chinese (Taiwan)', 'locale' => 'zh_tw', 'localeFallback' => 'chi', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('zu'));
+		$expected = array(
+			'zu' => array('language' => 'Zulu', 'locale' => 'zul', 'localeFallback' => 'zul', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('en-nz', 'es-do', 'sz', 'ar-lb', 'zh-hk', 'pt-br'));
+		$expected = array(
+			'en-nz' => array('language' => 'English (New Zealand)', 'locale' => 'en_nz', 'localeFallback' => 'eng', 'charset' => 'utf-8'),
+			'es-do' => array('language' => 'Spanish (Dominican Republic)', 'locale' => 'es_do', 'localeFallback' => 'spa', 'charset' => 'utf-8'),
+			'sz' => array('language' => 'Sami (Lappish)', 'locale' => 'smi', 'localeFallback' => 'smi', 'charset' => 'utf-8'),
+			'ar-lb' => array('language' => 'Arabic (Lebanon)', 'locale' => 'ar_lb', 'localeFallback' => 'ara', 'charset' => 'utf-8'),
+			'zh-hk' => array('language' => 'Chinese (Hong Kong)', 'locale' => 'zh_hk', 'localeFallback' => 'chi', 'charset' => 'utf-8'),
+			'pt-br' => array('language' => 'Portuguese (Brazil)', 'locale' => 'pt_br', 'localeFallback' => 'por', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+	}
+}
+?>
