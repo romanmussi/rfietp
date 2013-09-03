@@ -11,18 +11,6 @@ class FondoTemporalesController extends AppController {
         var $lineasDeAccion=NULL;
         var $components = array('RequestHandler');
 
-        /*function beforeFilter() {
-            parent::beforeFilter();
-            
-            $this->Instits = ClassRegistry::init("Instit");
-            $this->Instits->recursive = 1;
-            $this->instits = $this->Instits->find("all", array(
-                        'limit'=>'50', // SACAR!
-                        'fields'=> array('cue','nombre','nroinstit')));
-
-            //$this->tipoInstits = $this->Instits->Tipoinstit->find("all", array(
-            //            'limit'=>'5')); // SACAR!
-        }*/
 
 	function index() {
 		$this->FondoTemporal->recursive = 0;
@@ -102,6 +90,11 @@ class FondoTemporalesController extends AppController {
                                   $fondo['FondoTemporal']['f08'] +
                                   $fondo['FondoTemporal']['f09'] +
                                   $fondo['FondoTemporal']['f10'] +
+                                  $fondo['FondoTemporal']['c1'] +
+                                  $fondo['FondoTemporal']['c2'] +
+                                  $fondo['FondoTemporal']['c3'] +
+                                  $fondo['FondoTemporal']['c4'] +
+                                  $fondo['FondoTemporal']['c5'] +
                                   $fondo['FondoTemporal']['aula_movil'] +
                                   $fondo['FondoTemporal']['equipinf'] +
                                   $fondo['FondoTemporal']['refaccion'] -
@@ -134,7 +127,7 @@ class FondoTemporalesController extends AppController {
                 $fondoError = '';
                 $i = 1;
 
-                $report = "anio|trimestre|tipo|cuecompleto|linea|difference|f01|f02a|f02b|f02c|f03a|f03b|f04|f05|f06a|f06b|f06c|f07a|f07b|f07c|f08|f09|f10|equipinf|refaccion|aula_movil|total\r\n";
+                $report = "anio|trimestre|tipo|cuecompleto|linea|difference|f01|f02a|f02b|f02c|f03a|f03b|f04|f05|f06a|f06b|f06c|f07a|f07b|f07c|f08|f09|f10|c1|c2|c3|c4|c5|equipinf|refaccion|aula_movil|total\r\n";
 
          	$this->FondoTemporal->recursive = 0;
 
@@ -158,6 +151,11 @@ class FondoTemporalesController extends AppController {
                                   $fondo['FondoTemporal']['f08'] +
                                   $fondo['FondoTemporal']['f09'] +
                                   $fondo['FondoTemporal']['f10'] +
+                                  $fondo['FondoTemporal']['c1'] +
+                                  $fondo['FondoTemporal']['c2'] +
+                                  $fondo['FondoTemporal']['c3'] +
+                                  $fondo['FondoTemporal']['c4'] +
+                                  $fondo['FondoTemporal']['c5'] +
                                   $fondo['FondoTemporal']['equipinf'] +
                                   $fondo['FondoTemporal']['refaccion'] +
                                   $fondo['FondoTemporal']['aula_movil']-
@@ -186,6 +184,11 @@ class FondoTemporalesController extends AppController {
                                   $fondo['FondoTemporal']['f08'] . "|".
                                   $fondo['FondoTemporal']['f09'] . "|".
                                   $fondo['FondoTemporal']['f10'] . "|".
+                                  $fondo['FondoTemporal']['c1']  . "|".
+                                  $fondo['FondoTemporal']['c2']  . "|".
+                                  $fondo['FondoTemporal']['c3']  . "|".
+                                  $fondo['FondoTemporal']['c4']  . "|".
+                                  $fondo['FondoTemporal']['c5']  . "|".
                                   $fondo['FondoTemporal']['equipinf'] . "|".
                                   $fondo['FondoTemporal']['refaccion'] . "|".
                                   $fondo['FondoTemporal']['aula_movil']. "|".
@@ -211,7 +214,8 @@ class FondoTemporalesController extends AppController {
                                                     +"FondoTemporal"."f03a"+"FondoTemporal"."f03b"+"FondoTemporal"."f04"+"FondoTemporal"."f05"
                                                     +"FondoTemporal"."f06a"+"FondoTemporal"."f06b"+"FondoTemporal"."f06c"+"FondoTemporal"."f07a"
                                                     +"FondoTemporal"."f07b"+"FondoTemporal"."f07c"+"FondoTemporal"."f08"+"FondoTemporal"."f09"
-                                                    +"FondoTemporal"."f10"+"FondoTemporal"."equipinf"+"FondoTemporal"."refaccion"+"FondoTemporal"."aula_movil") - "FondoTemporal"."total")
+                                                    +"FondoTemporal"."f10"+"FondoTemporal"."c1"+"FondoTemporal"."c2"+"FondoTemporal"."c3"+
+                                                    "FondoTemporal"."c4"+"FondoTemporal"."c5"+"FondoTemporal"."equipinf"+"FondoTemporal"."refaccion"+"FondoTemporal"."aula_movil") - "FondoTemporal"."total")
                                                                             AS "FondoTemporal__diff"',
                                                     '"FondoTemporal"."*"'),
                                   'order' => array('FondoTemporal__diff'=>'DESC','FondoTemporal.jurisdiccion_id,anio,trimestre')));
@@ -250,6 +254,11 @@ class FondoTemporalesController extends AppController {
                               $fondo['FondoTemporal']['f08'] +
                               $fondo['FondoTemporal']['f09'] +
                               $fondo['FondoTemporal']['f10'] +
+                              $fondo['FondoTemporal']['c1'] +
+                              $fondo['FondoTemporal']['c2'] +
+                              $fondo['FondoTemporal']['c3'] +
+                              $fondo['FondoTemporal']['c4'] +
+                              $fondo['FondoTemporal']['c5'] +
                               $fondo['FondoTemporal']['equipinf'] +
                               $fondo['FondoTemporal']['refaccion'] +
                               $fondo['FondoTemporal']['aula_movil'] -
@@ -271,6 +280,11 @@ class FondoTemporalesController extends AppController {
                               $fondo['FondoTemporal']['f08'] +
                               $fondo['FondoTemporal']['f09'] +
                               $fondo['FondoTemporal']['f10'] +
+                              $fondo['FondoTemporal']['c1'] +
+                              $fondo['FondoTemporal']['c2'] +
+                              $fondo['FondoTemporal']['c3'] +
+                              $fondo['FondoTemporal']['c4'] +
+                              $fondo['FondoTemporal']['c5'] +
                               $fondo['FondoTemporal']['equipinf'] +
                               $fondo['FondoTemporal']['refaccion'] +
                               $fondo['FondoTemporal']['aula_movil'];
@@ -371,7 +385,11 @@ class FondoTemporalesController extends AppController {
                              $this->data['FondoTemporal']['f08'] +
                              $this->data['FondoTemporal']['f09'] +
                              $this->data['FondoTemporal']['f10'] +
-                             $this->data['FondoTemporal']['f10'] +
+                             $this->data['FondoTemporal']['c1'] +
+                             $this->data['FondoTemporal']['c2'] +
+                             $this->data['FondoTemporal']['c3'] +
+                             $this->data['FondoTemporal']['c4'] +
+                             $this->data['FondoTemporal']['c5'] +
                              $this->data['FondoTemporal']['equipinf'] +
                              $this->data['FondoTemporal']['refaccion'] +
                              $this->data['FondoTemporal']['aula_movil'] -
@@ -787,6 +805,11 @@ class FondoTemporalesController extends AppController {
                          $fondo['FondoTemporal']['f08'] +
                          $fondo['FondoTemporal']['f09'] +
                          $fondo['FondoTemporal']['f10'] +
+                         $fondo['FondoTemporal']['c1'] +
+                         $fondo['FondoTemporal']['c2'] +
+                         $fondo['FondoTemporal']['c3'] +
+                         $fondo['FondoTemporal']['c4'] +
+                         $fondo['FondoTemporal']['c5'] +
                          $fondo['FondoTemporal']['equipinf']+
                          $fondo['FondoTemporal']['refaccion'] +
                          $fondo['FondoTemporal']['aula_movil']-
