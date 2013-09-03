@@ -22,6 +22,12 @@
                 echo $form->input('f08');
                 echo $form->input('f09');
                 echo $form->input('f10');
+                echo $form->input('c1');
+                echo $form->input('c2');
+                echo $form->input('c3');
+                echo $form->input('c4');
+                echo $form->input('c5');
+                echo $form->input('obs');
                 echo $form->input('equipinf');
                 echo $form->input('refaccion');
                 echo $form->input('aula_movil');

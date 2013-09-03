@@ -41,6 +41,12 @@ echo $paginator->counter(array(
         <th><?php echo $paginator->sort('f07c');?></th>
         <th><?php echo $paginator->sort('f08');?></th>
         <th><?php echo $paginator->sort('f09');?></th>
+        <th><?php echo $paginator->sort('f10');?></th>
+        <th><?php echo $paginator->sort('c1');?></th>
+        <th><?php echo $paginator->sort('c2');?></th>
+        <th><?php echo $paginator->sort('c3');?></th>
+        <th><?php echo $paginator->sort('c4');?></th>
+        <th><?php echo $paginator->sort('c5');?></th>
         <th><?php echo $paginator->sort('equipinf');?></th>
         <th><?php echo $paginator->sort('refaccion');?></th>
         <th><?php echo $paginator->sort('aula_movil');?></th>
@@ -64,6 +70,9 @@ foreach ($fondos as $fondo):
                     $fondo['FondoTemporal']['f06c']+$fondo['FondoTemporal']['f07a']+
                     $fondo['FondoTemporal']['f07b']+$fondo['FondoTemporal']['f07c']+
                     $fondo['FondoTemporal']['f08']+$fondo['FondoTemporal']['f09']+
+                    $fondo['FondoTemporal']['f10']+$fondo['FondoTemporal']['c1']+
+                    $fondo['FondoTemporal']['c2']+$fondo['FondoTemporal']['c3']+
+                    $fondo['FondoTemporal']['c4']+$fondo['FondoTemporal']['c5']+
                     $fondo['FondoTemporal']['equipinf']+$fondo['FondoTemporal']['refaccion'];
 ?>
 	<tr<?php echo $class;?>>
@@ -165,6 +174,24 @@ foreach ($fondos as $fondo):
 		</td>
                 <td>
 			<?php echo $fondo['FondoTemporal']['f09']; ?>
+		</td>
+		 <td>
+			<?php echo $fondo['FondoTemporal']['f10']; ?>
+		</td>
+		 <td>
+			<?php echo $fondo['FondoTemporal']['c1']; ?>
+		</td>
+		 <td>
+			<?php echo $fondo['FondoTemporal']['c2']; ?>
+		</td>
+		 <td>
+			<?php echo $fondo['FondoTemporal']['c3']; ?>
+		</td>
+		 <td>
+			<?php echo $fondo['FondoTemporal']['c4']; ?>
+		</td>
+		 <td>
+			<?php echo $fondo['FondoTemporal']['c5']; ?>
 		</td>
                 <td>
 			<?php echo $fondo['FondoTemporal']['equipinf']; ?>

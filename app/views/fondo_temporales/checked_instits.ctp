@@ -136,6 +136,11 @@ echo $javascript->link('scriptaculous-js-1.8.3/src/scriptaculous');
                     $fondo['FondoTemporal']['f08'] +
                     $fondo['FondoTemporal']['f09'] +
                     $fondo['FondoTemporal']['f10'] +
+                    $fondo['FondoTemporal']['c1'] +
+                    $fondo['FondoTemporal']['c2'] +
+                    $fondo['FondoTemporal']['c3'] +
+                    $fondo['FondoTemporal']['c4'] +
+                    $fondo['FondoTemporal']['c5'] +
                     $fondo['FondoTemporal']['equipinf'] +
                     $fondo['FondoTemporal']['refaccion'] +
                     $fondo['FondoTemporal']['aula_movil']-

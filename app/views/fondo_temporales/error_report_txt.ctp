@@ -130,6 +130,36 @@
                     <td style="text-align:right;"><?=number_format($fondo['FondoTemporal']['f10'],2,",",".")?></td>
                 </tr>
                 <? } ?>
+                <? if ($fondo['FondoTemporal']['c1']) { ?>
+                <tr>
+                    <td style="text-align:left;">C1</td>
+                    <td style="text-align:right;"><?=number_format($fondo['FondoTemporal']['c1'],2,",",".")?></td>
+                </tr>
+                <? } ?>
+                <? if ($fondo['FondoTemporal']['c2']) { ?>
+                <tr>
+                    <td style="text-align:left;">C2</td>
+                    <td style="text-align:right;"><?=number_format($fondo['FondoTemporal']['c2'],2,",",".")?></td>
+                </tr>
+                <? } ?>
+                <? if ($fondo['FondoTemporal']['c3']) { ?>
+                <tr>
+                    <td style="text-align:left;">C3</td>
+                    <td style="text-align:right;"><?=number_format($fondo['FondoTemporal']['c3'],2,",",".")?></td>
+                </tr>
+                <? } ?>
+                <? if ($fondo['FondoTemporal']['c4']) { ?>
+                <tr>
+                    <td style="text-align:left;">C4</td>
+                    <td style="text-align:right;"><?=number_format($fondo['FondoTemporal']['c4'],2,",",".")?></td>
+                </tr>
+                <? } ?>
+                <? if ($fondo['FondoTemporal']['c5']) { ?>
+                <tr>
+                    <td style="text-align:left;">C5</td>
+                    <td style="text-align:right;"><?=number_format($fondo['FondoTemporal']['c5'],2,",",".")?></td>
+                </tr>
+                <? } ?>
                 <? if ($fondo['FondoTemporal']['equipinf']) { ?>
                 <tr>
                     <td style="text-align:left;">equipinf</td>
