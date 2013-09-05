@@ -191,6 +191,7 @@ class ZFondoWork extends AppModel {
                     'total'              => $vAux['total'],
                     'resolucion'         => "''",
                     'description'        => $vAux['observacion'],
+                    'obs'                => $vAux['obs'],
                     'z_fondo_work_id'        => $vAux['id'],
                     );
                 
