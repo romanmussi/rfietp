@@ -14,11 +14,11 @@
     echo $javascript->link('zeroclipboard/ZeroClipboard.js');
     
     $descripcionPlural = "Se presenta información sobre %u Planes de Mejora institucionales aprobados por un total de $%s. <br/>" .
-                         "Período: 2006-2012. <br/>".
+                         "Período: 2006-1° semestre de 2013. <br/>".
                          "Para mayor información consulte las <a href='#notas'>notas metodológicas</a> al final de la página. <br/>";
 
     $descripcionSingular = "Se presenta información sobre 1 Plan de Mejora institucional aprobado por un total de $%s. <br/>" .
-                           "Período: 2006-2012. <br/>".
+                           "Período: 2006-1° semestre de 2013. <br/>".
                            "Para mayor información consulte las <a href='#notas'>notas metodológicas</a> al final de la página. <br/>";
 
     define("DESCRIPCION_PLURAL", $descripcionPlural);
@@ -84,7 +84,8 @@
                             ?>
                                 <dt onmouseover="jQuery(this).toggleClass('item_fondos_seleccionado')"
                                     onmouseout="jQuery(this).toggleClass('item_fondos_seleccionado')">
-                                    <?=$linea['description']?>
+                                    <?=$linea['description']?><? if (strlen($fondo['Fondo']['obs'])) { 
+                                        echo " - <b>".$fondo['Fondo']['obs']."</b>"; } ?>
                                 </dt>
                                 <dd>$ <?=number_format($linea['FondosLineasDeAccion']['monto'],2,",",".");?></dd>
                             <?php endforeach; ?>
@@ -113,7 +114,7 @@
                         <h3>Notas Metodológicas</h3>
                         <ul>
                             <li>
-                                La información publicada corresponde a Planes de Mejora aprobados desde el año 2006 al 2012 inclusive. La información será actualizada periódicamente.
+                                La información publicada corresponde a Planes de Mejora aprobados desde el año 2006 al 1° semestre de 2013 inclusive. La información será actualizada periódicamente.
                             </li>
                             <li>
                                 Los Planes de Mejora correspondientes a Formularios F04A y F04B se presentan unificados bajo la línea de acción "F04 - Prácticas profesionalizantes".
