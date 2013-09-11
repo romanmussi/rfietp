@@ -1,3 +1,9 @@
+<h1>RFIETP - Novedades de la versión 1.7.16</h1>
+<br>
+<ul>
+    <li>Se han publicado los Planes de Mejora del 1° semestre de 2013</li>
+</ul>
+
 <h1>RFIETP - Novedades de la versión 1.7.15</h1>
 <br>
 <ul>
