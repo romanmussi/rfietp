@@ -1,8 +1,4 @@
-config/database.php
-app/tmp/logs/*
-app/tmp/sessions/*
-app/tmp/cache/*
-app/tmp/tests/*
+app/tmp/*
 app/config/database.php
 app/config/config.email.php
 nbproject/*
