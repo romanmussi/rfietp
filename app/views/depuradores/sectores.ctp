@@ -3,7 +3,6 @@
 echo $javascript->link('prototype');
 echo $javascript->link('scriptaculous-js-1.8.3/src/scriptaculous');
 
-
 ?>
 <div class="instits form">
 <?php echo $form->create('Plan',array(	'url'=>'/depuradores/sectores/'.$jur_id,
@@ -52,19 +51,16 @@ echo $javascript->link('scriptaculous-js-1.8.3/src/scriptaculous');
 ?> 
 
 <script type="text/javascript">
-<!--
-
-$('sector_id').activate();
-
-Event.observe(window, "keypress", function(e){ 
-		var cKeyCode = e.keyCode || e.which; 
-		if (cKeyCode == Event.KEY_RETURN){ 
-			$('PlanDepurarForm').submit();
-		} 
-	});
--->
+//<!--
+////$('sector_id').activate();
+////Event.observe(window, "keypress", function(e){ 
+////		var cKeyCode = e.keyCode || e.which; 
+////		if (cKeyCode == Event.KEY_RETURN){ 
+////			$('PlanDepurarForm').submit();
+////		} 
+////	});
+//-->
 </script>
-
 
 <h2>Establecimiento</h2>
 <dl>
