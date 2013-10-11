@@ -283,8 +283,8 @@ class ExcelComponent extends Component {
 		$style = $this->style;
 	 	$html  = '<style>
 							<!--table
-							{mso-displayed-decimal-separator:"\,";
-							mso-displayed-thousand-separator:"\.";}
+							{mso-displayed-decimal-separator:"\.";
+							mso-displayed-thousand-separator:"\,";}
 							@page
 							{margin:1.0in .75in 1.0in .75in;
 							mso-header-margin:.5in;
