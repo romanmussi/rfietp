@@ -1,3 +1,4 @@
+<?php //prueba; ?>
 <!--[if IE 5]>
 
 <h2 style="color: red">¡¡ ATENCIÓN !! La versión del Internet Explorer no es compatible con ésta web</h2>
@@ -20,9 +21,10 @@ Requerimientos mínimos para utilizar el <b>Sistema Gestión de Registro</b>:<br /
 
 <h2>Versión <?php echo Configure::read('regetpVersion');?></h2>
 
-<p>Desde su puesta en funcionamiento en junio de 2009 el sistema RFIETP se encuentra en permanente actualización y mejoramiento, tanto del contenido de información de la base de datos como de la aplicación que permite su gestión. En esa línea de trabajo a partir del 11 de Septiembre de 2013 se ha instalado la versión  <?php echo Configure::read('regetpVersion');?> del sistema. Sus principales novedades son:</p>
+<p>Desde su puesta en funcionamiento en junio de 2009 el sistema RFIETP se encuentra en permanente actualización y mejoramiento, tanto del contenido de información de la base de datos como de la aplicación que permite su gestión. En esa línea de trabajo a partir del 11 de Octubre de 2013 se ha instalado la versión  <?php echo Configure::read('regetpVersion');?> del sistema. Sus principales novedades son:</p>
 <ul>
-        <li>Se han publicado los Planes de Mejora del 1° semestre de 2013</li>
+        <li>Se han publicado los Planes de Mejora del 3º trimestre de 2013</li>
+        <li>Se ha mejorado la visualización de planes de mejora</li>
 </ul>
 
 <br />

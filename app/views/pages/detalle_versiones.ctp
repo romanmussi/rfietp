@@ -1,3 +1,11 @@
+<?php //prueba; ?>
+<h1>RFIETP - Novedades de la versión 1.7.17</h1>
+<br>
+<ul>
+    <li>Se han publicado los Planes de Mejora del 3° trimestre de 2013</li>
+    <li>Se ha mejorado la visualización de planes de mejora</li>
+</ul>
+
 <h1>RFIETP - Novedades de la versión 1.7.16</h1>
 <br>
 <ul>
