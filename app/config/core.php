@@ -1,8 +1,4 @@
 <?php
-
-
-
-
 /* SVN FILE: $Id: core.php 7945 2008-12-19 02:16:01Z gwoo $ */
 /**
  * This is core configuration file.
@@ -181,7 +177,7 @@
  * Inet Options
  */
         Configure::write('es_dia_patrio', false);
-	Configure::write('trimestre_activo', '1-2011,2-2011');
+	Configure::write('trimestre_activo', '1-2013,2-2013,3-2013');
 	Configure::write('modo_linux', true);
         Configure::write('grupo_desarrolladores', 'desarrolladores');
         Configure::write('grupo_administradores', 'administradores');
