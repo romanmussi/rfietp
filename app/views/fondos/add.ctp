@@ -1,5 +1,4 @@
-+<?
-//echo $javascript->link('jquery-1.4.2.min');
+<?php //echo $javascript->link('jquery-1.4.2.min');
 echo $javascript->link('jquery.autocomplete');
 echo $javascript->link('jquery.blockUI');
 echo $javascript->link('jquery.meio.mask');
@@ -366,6 +365,9 @@ echo $html->css('jquery.autocomplete.css');
             <?=$form->input('memo', array('maxlength'=>30, 'size'=>10, 'style'=>'width: 40px; display:inline;', 'div' => false, 'label' => false))?>
             <label style="display:inline; width:100px; text-align: right;">Resolución:</label>
             <?=$form->input('resolucion', array('maxlength'=>30, 'size'=>10, 'style'=>'width: 70px; display:inline;', 'div' => false, 'label' => false))?>
+<?
+echo $form->input('pun',array('type'=> 'checkbox','label'=>array('text'=>'Plan de mejora del Programa Universidades Nacionales', 'class'=>'label-checkbox')));
+?>
         </div>
     </fieldset>
     <fieldset>

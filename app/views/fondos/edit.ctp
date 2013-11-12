@@ -11,6 +11,7 @@
 		echo $form->input('trimestre');
 		echo $form->input('memo');
 		echo $form->input('resolucion');
+                echo $form->input('pun');
 		echo $form->input('description');
 	?>
 	</fieldset>

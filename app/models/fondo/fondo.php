@@ -7,7 +7,8 @@ class Fondo extends AppModel {
 		'jurisdiccion_id' => array('numeric'),
 		'anio' => array('numeric'),
 		'trimestre' => array('numeric'),
-		//'memo' => array('notempty'),
+		'pun' => array('notempty'),
+            //'memo' => array('notempty'),
 		//'resolucion' => array('notempty')
 	);
 
