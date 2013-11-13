@@ -127,6 +127,9 @@
                                 En algunos Planes de Mejora la suma de líneas de acción no coincide exactamente con el total por razones de redondeo o ajustes menores.
                             </li>
                             <li>
+                                No se incluyen Planes de Mejora del Programa de Universidades Nacionales anteriores al año 2013.
+                            </li>
+                            <li>
                                 El listado anterior no incluye fondos recibidos por la Institución a través de Planes de Mejora jurisdiccionales, con la única excepción de la línea de acción Apoyo al Programa "Una computadora para cada alumno". Los planes jurisdiccionales pueden consultarse haciendo <?php echo $html->link(__('Click Aquí', true), array('controller'=>'jurisdicciones','action' => 'listado')); ?>.
                             </li>
                         </ul>

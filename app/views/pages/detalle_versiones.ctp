@@ -1,4 +1,12 @@
-<?php //prueba; ?>
+<?php //prueba;  ?>
+<h1>RFIETP - Novedades de la versión 1.7.18</h1>
+<br>
+<ul>
+    <li>Se han publicado los Planes de Mejora del Programa de Universidades Nacionales aprobados durante el 2013</li>
+    <li>Se ha mejorado la visualización de planes de mejora</li>
+    <li>Se han actualizado las Notas metodológicas referidas a Planes de Mejora institucionales</li>   
+</ul>
+
 <h1>RFIETP - Novedades de la versión 1.7.17</h1>
 <br>
 <ul>
@@ -15,42 +23,42 @@
 <h1>RFIETP - Novedades de la versión 1.7.15</h1>
 <br>
 <ul>
-	<li>Se han publicado los Planes de Mejora del 4° trimestre de 2012</li>
-        <li>A las instituciones con dependencia nacional se agregó a su nombre entre paréntesis el nombre de la dependencia</li>
-        <li>Se le asignaron permisos a los editores para poder ver los Planes de Mejora</li>
-        <li>Se agrandó el pop-up de edición de tickets pendientes de la Unidad de Información</li>
+    <li>Se han publicado los Planes de Mejora del 4° trimestre de 2012</li>
+    <li>A las instituciones con dependencia nacional se agregó a su nombre entre paréntesis el nombre de la dependencia</li>
+    <li>Se le asignaron permisos a los editores para poder ver los Planes de Mejora</li>
+    <li>Se agrandó el pop-up de edición de tickets pendientes de la Unidad de Información</li>
 </ul>
 
 <h1>RFIETP - Novedades de la versión 1.7.14</h1>
 <br>
 <ul>
-	<li>Se han publicado los Planes de Mejora del 3° trimestre de 2012</li>
+    <li>Se han publicado los Planes de Mejora del 3° trimestre de 2012</li>
 </ul>
 
 <h1>RFIETP - Novedades de la versión 1.7.13</h1>
 <br>
 <ul>
-	<li>Se han publicado los Planes de Mejora del 1° semestre de 2012</li>
-        <li>Se agregaron y optimizaron validaciones para la carga de Instituciones y Oferta por parte de la Unidad de Información</li>
-        <li>Se modificaron campos y opciones al momento de migrar Planes de Mejora</li>
-        <li>Se cambió el título de una columna de los Cuadros</li>
-        <li>Se modificó el actualizar ACOS, ya no necesita la aplicación en modo "debug"</li>
+    <li>Se han publicado los Planes de Mejora del 1° semestre de 2012</li>
+    <li>Se agregaron y optimizaron validaciones para la carga de Instituciones y Oferta por parte de la Unidad de Información</li>
+    <li>Se modificaron campos y opciones al momento de migrar Planes de Mejora</li>
+    <li>Se cambió el título de una columna de los Cuadros</li>
+    <li>Se modificó el actualizar ACOS, ya no necesita la aplicación en modo "debug"</li>
 </ul>
 
 <h1>RFIETP - Novedades de la versión 1.7.12</h1>
 <br>
 <ul>
-	<li>Se han publicado los Planes de Mejora del 4° Trimestre de 2011</li>
-        <li>Se agregaron y optimizaron validaciones para la carga de Instituciones por parte de la Unidad de Información</li>
-        <li>Se mejoró la lista de "Resúmen de Planes de Estudio" asociados a cada Título y se agregó mayor detalle y accesibilidad para facilitar el trabajo de la Unidad de Información</li>
+    <li>Se han publicado los Planes de Mejora del 4° Trimestre de 2011</li>
+    <li>Se agregaron y optimizaron validaciones para la carga de Instituciones por parte de la Unidad de Información</li>
+    <li>Se mejoró la lista de "Resúmen de Planes de Estudio" asociados a cada Título y se agregó mayor detalle y accesibilidad para facilitar el trabajo de la Unidad de Información</li>
 </ul>
 
 <h1>RFIETP - Novedades de la versión 1.7.11</h1>
 <br>
 <ul>
-	<li>Se agregaron validaciones para la carga de nombres de Planes de Estudio por parte de la Unidad de Información</li>
-        <li>Se mejoró la lista de "Resúmen de Planes de Estudio" asociados a cada Título y se agregó mayor detalle y accesibilidad para facilitar el trabajo de la Unidad de Información</li>
-        <li>Cambio de orden de aparición de campos de autoridades jurisdiccionales</li>
+    <li>Se agregaron validaciones para la carga de nombres de Planes de Estudio por parte de la Unidad de Información</li>
+    <li>Se mejoró la lista de "Resúmen de Planes de Estudio" asociados a cada Título y se agregó mayor detalle y accesibilidad para facilitar el trabajo de la Unidad de Información</li>
+    <li>Cambio de orden de aparición de campos de autoridades jurisdiccionales</li>
 </ul>
 
 <h1>RFIETP - Novedades de la versión 1.7.10</h1>
@@ -248,10 +256,10 @@
 <ul>
     <li><b>Rediseño de la presentación de la Oferta Educativa de Instituciones</b>
         <ul type="circle">
-           <li>Se reemplazó la antigua presentación de esta sección por una vista nueva que permite obtener un plano general de la Oferta Educativa de la Institución</li>
-           <li>Se utilizaron pestañas para diferenciar las Ofertas Educativas, y a su vez, los ciclos lectivos de las mismas</li>
-           <li>Se recuerdan tanto las últimas Oferta y Ciclo seleccionadas, como así también, los filtros de búsqueda, para una navegación más práctica y eficiente</li>
-           <li>La antigua vista se conserva ingresando al link "Ver vista clásica"</li>
+            <li>Se reemplazó la antigua presentación de esta sección por una vista nueva que permite obtener un plano general de la Oferta Educativa de la Institución</li>
+            <li>Se utilizaron pestañas para diferenciar las Ofertas Educativas, y a su vez, los ciclos lectivos de las mismas</li>
+            <li>Se recuerdan tanto las últimas Oferta y Ciclo seleccionadas, como así también, los filtros de búsqueda, para una navegación más práctica y eficiente</li>
+            <li>La antigua vista se conserva ingresando al link "Ver vista clásica"</li>
         </ul>
     </li>
     <li><b>Seguridad (ACL)</b>
@@ -274,13 +282,13 @@
 <ul>
     <li><b>Oferta Educativa de Instituciones</b>
         <ul type="circle">
-           <li>Se finalizó con la depuración de Estructuras de Ofertas Educativas</li>
-           <li>Se realizaron nuevas interfaces de carga y modificación de datos de acuerdo a las nuevas estructuraciones.</li>
+            <li>Se finalizó con la depuración de Estructuras de Ofertas Educativas</li>
+            <li>Se realizaron nuevas interfaces de carga y modificación de datos de acuerdo a las nuevas estructuraciones.</li>
         </ul>
     </li>
     <li><b>Buscador de Instituciones</b>
         <ul>
-        <li>Se ha establecido el nuevo buscador como predeterminado. Si aún necesita utilizar el viejo sistema de búsquedas puede hacer click en "Buscador Clásico"</li>
+            <li>Se ha establecido el nuevo buscador como predeterminado. Si aún necesita utilizar el viejo sistema de búsquedas puede hacer click en "Buscador Clásico"</li>
         </ul>
     </li>
     <br>
@@ -314,31 +322,31 @@
             <li>Se migraron los Planes de Mejora institucionales y jurisdiccionales aprobados desde el 2006 hasta el 4to trimestre del 2009.</li>
             <li>Se agregaron las pestañas de acceso a dicha información en las paginas de institucion y de jurisdiccion.</li>
         </ul>
-   </li>
-   <br>
-   <li><b>Datos de Jurisdicciones</b>
+    </li>
+    <br>
+    <li><b>Datos de Jurisdicciones</b>
         <ul type="circle">
             <li>Se diseñó un mapa para acceder a la información de las jurisdicciones.</li>
             <li>Se dividió dicha información en Datos Básicos (de autoridades y ministerios) y Planes de Mejora.</li>
         </ul>
-   </li>
-   <br>
-   <li><b>Buscador Beta</b>
+    </li>
+    <br>
+    <li><b>Buscador Beta</b>
         <ul type="circle">
             <li>Nuevo buscador más rápido y flexible.</li>
             <li>Al ingresar más de 3 letras se inicia la búsqueda automáticamente, sin tener que presionar otro botón y apareceran los resultados en la misma pantalla, permitiendo seguir escribiendo para una nueva búsqueda.</li>
             <li>Búsqueda Avanzada, con el mismo nivel de detalle que la antigua pero con una mejor distribución de los campos y rapidez.</li>
         </ul>
-   </li>
-   <br>
-   <li><b>Módulo de seguridad ACL</b>
+    </li>
+    <br>
+    <li><b>Módulo de seguridad ACL</b>
         <ul type="circle">
             <li>Implementación de tecnología Access Control List (ACL), la cual controla el acceso a cada página del sitio por parte de cada usuario.</li>
             <li>Se adaptó un plugin para la administración de dicha tecnología.</li>
             <li>Fueron modificados los formularios de alta y edición de usuarios del Registro, los cuales fueron relacionados directamente con ACL, garantizando una integridad total a nivel de seguridad.</li>
         </ul>
-   </li>
-   <br>
+    </li>
+    <br>
     <li><b>Estética</b>
         <ul type="circle">
             <li>Se mejoró el diseño de la interfaz gráfica.</li>
@@ -359,7 +367,7 @@
             <li>Se optimizó la visualización de información sobre instituciones.</li>
         </ul>
     </li>
-    
+
     <br>
 </ul>
 <br>
@@ -502,7 +510,7 @@
             <li> Se agregó la funcionalidad para que cuando el CUE es modificado el sistema conserve como histórico el CUE anterior.</li>
             <li> Al momento de dar de alta una institución se modificó para que la opción "estatal" no se encuentre seleccionada por defecto.</li>
             <li> Al momento de dar de alta o de modificar una institución se agregó una búsqueda de datos "similares" con el objetivo de poder visualizar antes de la carga si la institución
-	       no fue ingresada anteriormente. </li>
+                no fue ingresada anteriormente. </li>
         </ul>
 
         <br>
